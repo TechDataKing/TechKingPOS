@@ -1,0 +1,176 @@
+<Window x:Class="TechKingPOS.App.SalesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sales"
+        Height="700"
+        Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F6FA">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ================= LEFT PANEL ================= -->
+        <DockPanel Grid.Column="0" Margin="0,0,10,0">
+
+            <!-- Search -->
+            <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
+                <TextBox x:Name="SearchBox"
+                         Height="36"
+                         Padding="8"/>
+
+                <TextBlock Text="Search item..."
+                           Margin="12,0"
+                           VerticalAlignment="Center"
+                           Foreground="#888"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding Text.IsEmpty,
+                           ElementName=SearchBox,
+                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </Grid>
+
+            <!-- Items list -->
+            <ListBox x:Name="ItemsList"
+                     FontSize="14"
+                     DisplayMemberPath="Item2"
+                     MouseDoubleClick="ItemsList_DoubleClick"/>
+           
+
+        </DockPanel>
+
+        <!-- ================= RIGHT PANEL ================= -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="220"/>
+            </Grid.RowDefinitions>
+
+            <!-- TOP -->
+            <Border Grid.Row="0"
+                    Background="#EAEAEA"
+                    CornerRadius="6"
+                    Padding="10">
+                <TextBlock Text="Sales Header (reserved)"
+                           VerticalAlignment="Center"
+                           Foreground="#666"/>
+            </Border>
+
+            <!-- CART -->
+            <DataGrid Grid.Row="1"
+                      x:Name="CartGrid"
+                      Margin="0,10,0,10"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      IsReadOnly="True">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}" Width="60"/>
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" Width="80"/>
+                    <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="100"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Total}" Width="120"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- BOTTOM -->
+            <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+
+                <UniformGrid Columns="2"
+                     Grid.Column="0" Margin="0,0,10,0" Background="White" >
+    <Button Content="Change Qty"
+            Height="40"
+            Width="150"
+            Click="ChangeQty_Click"/>
+
+    <Button Content="Change Price"
+            Height="40"
+            Width="150"
+            Click="ChangePrice_Click"/>
+
+    <Button Content="Delete Item"
+            Height="40"
+            Width="150"
+            Click="DeleteItem_Click"/>
+
+    <Button Content="Delete All"
+            Height="40"
+            Width="150"            
+            Click="DeleteAll_Click"/>
+
+     <Button Content="Discount"
+            Height="40"
+            Width="150"            
+            Click="Discount_Click"/>
+</UniformGrid>
+
+
+                <Border Grid.Column="1"
+                        Background="White"
+                        CornerRadius="6"
+                        Padding="12">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Total Items" FontSize="14"/>
+                            <TextBlock Grid.Column="1"
+                                       x:Name="TotalItemsText"
+                                       FontWeight="Bold"
+                                       FontSize="14"
+                                       Text="0"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1" Margin="0,6,0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                 </Grid.ColumnDefinitions>
+
+                                     <TextBlock Text="TOTAL" FontWeight="Bold" FontSize="16"/>
+                                     <TextBlock Grid.Column="1"
+                                       x:Name="TotalAmountText"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="Green"
+                                       Text="$0.00"/>
+                                    </Grid>
+                                    
+
+                                    <CheckBox x:Name="PrintReceiptCheckBox"
+                                     Grid.Row="2"
+                                    Content="Print Receipt"
+                                     Margin="0,10,0,10"/>
+
+                                  <Button Grid.Row="3"
+                                    Content="FINISH &amp; PAY"
+                                    Height="40"
+                                    FontSize="18"
+                                    Background="#2E86DE"
+                                    Foreground="White"
+                                    Margin="0,0,0,5"
+                                    Click="FinishPay_Click"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
