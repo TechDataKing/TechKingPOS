@@ -1,0 +1,69 @@
+﻿<Window x:Class="TechKingPOS.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TechKing POS"
+        WindowState="Maximized"
+        Background="#1F2937">
+
+    <Grid>
+
+        <!-- ================= DESKTOP ================= -->
+        <Canvas x:Name="Desktop"
+                Background="#F5F6FA"/>
+
+        <!-- ================= TOP TASKBAR (OVERLAY) ================= -->
+        <Border Height="42"
+                Background="#111827"
+                VerticalAlignment="Top"
+                Panel.ZIndex="10">
+
+            <StackPanel x:Name="TaskBar"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Margin="10,0"/>
+        </Border>
+
+        <!-- ================= FLOATING TASK BUTTON ================= -->
+        <Button Content="☰"
+                Width="56"
+                Height="56"
+                FontSize="22"
+                Background="#111827"
+                Foreground="White"
+                BorderThickness="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="20"
+                Panel.ZIndex="20"
+                Click="ToggleTaskMenu"/>
+
+        <!-- ================= TASK MENU ================= -->
+        <Border x:Name="TaskMenu"
+                Width="220"
+                Background="White"
+                CornerRadius="10"
+                Padding="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="20,0,0,90"
+                Visibility="Collapsed"
+                Panel.ZIndex="30">
+
+            <StackPanel>
+                <TextBlock Text="Windows"
+                           Margin="0,0,0,10"/>
+
+                <Button Content="Sales" Click="OpenSales"/>
+                <Button Content="Add Items" Click="OpenItems"/>
+                <Button Content="Manage Stock" Click="OpenStock"/>
+                <Button Content="Credit Manager" Click="OpenCredit"/>
+                <Button Content="Reports" Click="OpenReports"/>
+                <Button Content="Workers" Click="OpenWorkers"/>
+                <Button Content="Settings" Click="OpenSettings"/>
+            
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+</Window>

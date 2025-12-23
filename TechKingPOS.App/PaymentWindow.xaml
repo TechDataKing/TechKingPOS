@@ -1,0 +1,97 @@
+<Window x:Class="TechKingPOS.App.PaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Payment"
+        Height="460"
+        Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!-- TOTAL LABEL -->
+            <RowDefinition Height="Auto"/>  <!-- TOTAL VALUE -->
+            <RowDefinition Height="Auto"/>  <!-- METHOD -->
+            <RowDefinition Height="Auto"/>  <!-- CASH -->
+            <RowDefinition Height="Auto"/>  <!-- MPESA -->
+            <RowDefinition Height="Auto"/>  <!-- CUSTOMER -->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>  <!-- BUTTONS -->
+        </Grid.RowDefinitions>
+
+        <!-- TOTAL -->
+        <TextBlock Text="TOTAL"
+                   FontSize="16"
+                   FontWeight="Bold"/>
+
+        <TextBlock x:Name="TotalText"
+                   Grid.Row="1"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="Green"
+                   Margin="0,5,0,15"/>
+
+        <!-- PAYMENT METHOD -->
+        <TextBlock Grid.Row="2" Text="Payment Method"/>
+        <ComboBox x:Name="PaymentMethodComboBox"
+                  Grid.Row="3"
+                  Height="30"
+                  Margin="0,5,0,10"
+                  SelectionChanged="PaymentMethodChanged">
+            <ComboBoxItem Content="Cash only" IsSelected="True"/>
+            <ComboBoxItem Content="Cash + Mpesa"/>
+            <ComboBoxItem Content="Mpesa only"/>
+            <ComboBoxItem Content="Credit"/>
+        </ComboBox>
+
+        <!-- CASH -->
+        <StackPanel Grid.Row="4" x:Name="CashPanel">
+            <TextBlock Text="Cash Paid"/>
+            <TextBox x:Name="CashTextBox"
+                     Height="30"
+                     Margin="0,5,0,10"
+                     TextChanged="PaymentChanged"/>
+        </StackPanel>
+
+        <!-- MPESA -->
+        <StackPanel Grid.Row="5" x:Name="MpesaPanel" Visibility="Collapsed">
+            <TextBlock Text="Mpesa Paid"/>
+            <TextBox x:Name="MpesaTextBox"
+                     Height="30"
+                     Margin="0,5,0,10"
+                     TextChanged="PaymentChanged"/>
+        </StackPanel>
+
+        <!-- CUSTOMER / CREDIT INFO -->
+        <StackPanel Grid.Row="6"
+                    x:Name="CustomerPanel"
+                    Visibility="Collapsed"
+                    Margin="0,10,0,10">
+
+            <TextBlock Text="Customer Name"/>
+            <TextBox x:Name="CustomerNameTextBox" Height="28"/>
+
+            <TextBlock Text="Phone Number" Margin="0,8,0,0"/>
+            <TextBox x:Name="PhoneTextBox" Height="28"/>
+        </StackPanel>
+
+        <!-- BUTTONS -->
+        <StackPanel Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+
+            <Button Content="Cancel"
+                    Width="90"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Click="Cancel_Click"/>
+
+            <Button Content="Confirm Payment"
+                    Width="140"
+                    Height="36"
+                    Background="#2E86DE"
+                    Foreground="White"
+                    Click="Confirm_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

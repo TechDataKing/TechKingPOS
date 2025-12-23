@@ -1,0 +1,19 @@
+1️⃣ Populate TaskBar with open windows
+2️⃣ Clicking taskbar item → bring window to front
+3️⃣ Minimized windows appear ONLY in taskbar
+4️⃣ Snap / bounds fine-tuning
+5️⃣ Persist positions 
+
+You’re driving now.
+Tell me what you want next, not what to fix.
+
+
+
+
+✅ Finish window bounds (4 sides)
+
+✅ Improve resize handles (top/left later)
+
+✅ Add z-order polish
+
+✅ Optional: make dialogs appear centered over their container

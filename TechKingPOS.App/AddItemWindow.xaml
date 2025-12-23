@@ -1,0 +1,125 @@
+<Window x:Class="TechKingPOS.App.AddItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Item"
+        Height="600"
+        Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F5F6FA">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <TextBlock
+            Text="Add New Item"
+            FontSize="20"
+            FontWeight="SemiBold"
+            Margin="0,0,0,16"/>
+
+        <!-- FORM -->
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+
+            <!-- NAME -->
+            <TextBlock Text="Item Name"/>
+            <Grid Margin="0,4,0,10">
+                <TextBox x:Name="NameBox" Height="38" Padding="10"/>
+                <TextBlock Text="e.g Sugar"
+                           Margin="12,0"
+                           VerticalAlignment="Center"
+                           Foreground="#888"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding Text.IsEmpty, ElementName=NameBox,
+                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </Grid>
+
+            <!-- ALIAS -->
+            <TextBlock Text="Alias"/>
+            <Grid Margin="0,4,0,10">
+                <TextBox x:Name="AliasBox" Height="38" Padding="10"/>
+                <TextBlock Text="Alias / more description"
+                           Margin="12,0"
+                           VerticalAlignment="Center"
+                           Foreground="#888"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding Text.IsEmpty, ElementName=AliasBox,
+                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                           <!-- SUGGESTIONS (FOR NAME + ALIAS) -->
+                            <ListBox x:Name="ItemSuggestions"
+                                    MaxHeight="140"
+                                    Margin="0,0,0,10"
+                                    Visibility="Collapsed"
+                                    DisplayMemberPath="Name"
+                                    SelectionChanged="ItemSuggestions_SelectionChanged"/>
+
+            </Grid>
+
+            <!-- PRICES -->
+            <TextBlock Text="Marked Price"/>
+            <TextBox x:Name="MarkedPriceBox"
+                     Height="38"
+                     Padding="10"
+                     Margin="0,4,0,10"/>
+
+            <TextBlock Text="Selling Price"/>
+            <TextBox x:Name="SellingPriceBox"
+                     Height="38"
+                     Padding="10"
+                     Margin="0,4,0,10"/>
+
+            <!-- QUANTITY -->
+            <TextBlock Text="Quantity"/>
+            <TextBox x:Name="QuantityBox"
+                     Height="38"
+                     Padding="10"
+                     Margin="0,4,0,10"/>
+
+            <!-- UNIT -->
+            <TextBlock Text="Unit"/>
+            <Grid Margin="0,4,0,10">
+                <TextBox x:Name="UnitBox" Height="38" Padding="10"/>
+                <TextBlock Text="e.g pcs, kg, ltr"
+                           Margin="12,0"
+                           VerticalAlignment="Center"
+                           Foreground="#888"
+                           IsHitTestVisible="False"
+                           Visibility="{Binding Text.IsEmpty, ElementName=UnitBox,
+                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            </Grid>
+
+        </StackPanel>
+
+        <!-- FOOTER BUTTONS -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+
+            <Button Content="Upload File"
+                    Width="110"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Click="Upload_Click"/>
+
+            <Button Content="Clear"
+                    Width="90"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Click="Clear_Click"/>
+
+            <Button Content="Save Item"
+                    Width="120"
+                    Height="36"
+                    Background="#2E86DE"
+                    Foreground="White"
+                    Click="Save_Click"/>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
