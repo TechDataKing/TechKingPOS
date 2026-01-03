@@ -20,6 +20,7 @@ namespace TechKingPOS.App
         public AddItemWindow()
         {
             InitializeComponent();
+            ItemSuggestions.SelectionChanged += ItemSuggestions_SelectionChanged;
 
             _allItems = ItemRepository.GetAllItems();
 
@@ -32,32 +33,55 @@ namespace TechKingPOS.App
             );
         }
 
-        private bool ValidateForm(out string errorMessage)
+ private bool ValidateForm(out string errorMessage)
+{
+    var errors = new List<string>();
+
+    if (string.IsNullOrWhiteSpace(NameBox.Text))
+        errors.Add("• Item Name is required");
+
+    if (!decimal.TryParse(MarkedPriceBox.Text, out _))
+        errors.Add("• Marked Price must be valid");
+
+    if (!decimal.TryParse(SellingPriceBox.Text, out _))
+        errors.Add("• Selling Price must be valid");
+
+    if (!decimal.TryParse(QuantityBox.Text, out var qty) || qty <= 0)
+        errors.Add("• Quantity must be a whole number");
+
+    if (UnitTypeBox.SelectedItem is not ComboBoxItem unitItem)
+    {
+        errors.Add("• Unit Type is required");
+        errorMessage = string.Join(Environment.NewLine, errors);
+        return false;
+    }
+
+
+        string unit = unitItem.Content.ToString();
+
+
+        if (unit == "pieces")
         {
-            var errors = new List<string>();
-
-            if (string.IsNullOrWhiteSpace(NameBox.Text))
-                errors.Add("• Item Name is required");
-
-            if (string.IsNullOrWhiteSpace(MarkedPriceBox.Text) ||
-                !decimal.TryParse(MarkedPriceBox.Text, out _))
-                errors.Add("• Marked Price must be a valid number");
-
-            if (string.IsNullOrWhiteSpace(SellingPriceBox.Text) ||
-                !decimal.TryParse(SellingPriceBox.Text, out _))
-                errors.Add("• Selling Price must be a valid number");
-
-            if (string.IsNullOrWhiteSpace(QuantityBox.Text) ||
-                !int.TryParse(QuantityBox.Text, out _))
-                errors.Add("• Quantity must be a whole number");
-
-            if (string.IsNullOrWhiteSpace(UnitBox.Text))
-                errors.Add("• Unit is required (e.g kg, pcs, ltr)");
-
-            errorMessage = string.Join(Environment.NewLine, errors);
-            return errors.Count == 0;
+            // OPTIONAL
+            if (!string.IsNullOrWhiteSpace(UnitValueBox.Text))
+            {
+                if (!decimal.TryParse(UnitValueBox.Text, out var uv) || uv <= 0)
+                    errors.Add("• Unit Value must be greater than zero if provided");
+            }
         }
-        private void Save_Click(object sender, RoutedEventArgs e)
+        else
+        {
+            // REQUIRED
+            if (!decimal.TryParse(UnitValueBox.Text, out var uv) || uv <= 0)
+                errors.Add("• Unit Value is required for this unit");
+        }
+
+
+    errorMessage = string.Join(Environment.NewLine, errors);
+    return errors.Count == 0;
+}
+
+private void Save_Click(object sender, RoutedEventArgs e)
 {
     if (!ValidateForm(out var errorMessage))
     {
@@ -67,21 +91,62 @@ namespace TechKingPOS.App
 
     string name = NameBox.Text.Trim();
     string alias = AliasBox.Text.Trim();
-    int qty = int.Parse(QuantityBox.Text);
     decimal marked = decimal.Parse(MarkedPriceBox.Text);
     decimal selling = decimal.Parse(SellingPriceBox.Text);
+    decimal inputQty = decimal.Parse(QuantityBox.Text);
+    string inputUnit = ((ComboBoxItem)UnitTypeBox.SelectedItem).Content.ToString();
+    decimal? unitValue = null;
+
+    if (!string.IsNullOrWhiteSpace(UnitValueBox.Text))
+    {
+        unitValue = decimal.Parse(UnitValueBox.Text);
+    }
+
+    // 🔄 CONVERT TO BASE
+        if (!UnitConverter.TryToBase(
+                inputUnit,
+                inputQty,
+                unitValue ?? 1m,
+                out var baseUnit,
+                out var baseQty,
+                out var unitError))
+        {
+            MessageBox.Show(
+                unitError,
+                "Invalid Unit",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+            );
+            return;
+        }
 
     try
     {
         // 🔍 CHECK IF ITEM EXISTS
-        var existing = ItemRepository.GetByNameOrAlias(name, alias);
+// 🔍 CHECK IF ITEM EXISTS
+var existing = ItemRepository.GetByNameOrAlias(name, alias);
 
-        if (existing != null)
-        {
-            // ➕ ADD STOCK INSTEAD OF INSERT
+if (existing != null)
+{
+    // 🚫 BLOCK UNIT MISMATCH (NO CRASH)
+    if (existing.UnitType != baseUnit)
+    {
+        MessageBox.Show(
+            $"Cannot update '{existing.Name}'.\n\n" +
+            $"Existing unit: {existing.UnitType}\n" +
+            $"Entered unit: {baseUnit}\n\n" +
+            "Please confirm and use the same unit as the existing item.",
+            "Unit Mismatch",
+            MessageBoxButton.OK,
+            MessageBoxImage.Warning
+        );
+        return;
+    }
+
+            // ➕ SAFE STOCK UPDATE
             ItemRepository.AddStock(
                 existing.Id,
-                qty,
+                baseQty,
                 marked,
                 selling
             );
@@ -95,14 +160,15 @@ namespace TechKingPOS.App
         }
         else
         {
-            // 🆕 INSERT NEW ITEM (OLD BEHAVIOR)
+            // 🆕 INSERT NEW ITEM
             ItemRepository.InsertItem(
                 name,
                 alias,
                 marked,
                 selling,
-                qty,
-                UnitBox.Text.Trim()
+                baseQty,
+                baseUnit,
+                unitValue
             );
 
             MessageBox.Show(
@@ -114,17 +180,20 @@ namespace TechKingPOS.App
         }
 
         Clear_Click(null, null);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show(
-            ex.Message,
-            "Save Failed",
-            MessageBoxButton.OK,
-            MessageBoxImage.Error
-        );
-    }
-}
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Save Failed",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+            }
+            _allItems = ItemRepository.GetAllItems();
+
+        }
 
 
         
@@ -136,7 +205,13 @@ namespace TechKingPOS.App
             MarkedPriceBox.Clear();
             SellingPriceBox.Clear();
             QuantityBox.Clear();
-            UnitBox.Clear();
+            UnitValueBox.Clear();
+            UnitTypeBox.SelectedIndex = -1;
+
+            // ✅ HIDE UNIT VALUE AGAIN
+            UnitValuePanel.Visibility = Visibility.Collapsed;
+
+            //UnitBox.Clear();
 
             LoggerService.Info(
                 "🧹",
@@ -176,6 +251,8 @@ namespace TechKingPOS.App
 
                     var preview = new ImportPreviewWindow(rows);
                    preview.ShowDialog();
+                   _allItems = ItemRepository.GetAllItems();
+
                 }
 
 
@@ -196,12 +273,13 @@ namespace TechKingPOS.App
                     Alias = parts[1].Trim(),
                     MarkedPrice = decimal.Parse(parts[2]),
                     SellingPrice = decimal.Parse(parts[3]),
-                    Quantity = int.Parse(parts[4]),
-                    Unit = parts[5].Trim()
+                    Quantity = decimal.Parse(parts[4]),
+                    UnitType = parts[5].Trim()
                 });
             }
 
             return items;
+            
         }
 
         private List<ItemModel> ImportFromExcel(string path)
@@ -229,7 +307,7 @@ namespace TechKingPOS.App
                     MarkedPrice = decimal.Parse(r[2].ToString()),
                     SellingPrice = decimal.Parse(r[3].ToString()),
                     Quantity = int.Parse(r[4].ToString()),
-                    Unit = r[5]?.ToString()
+                    UnitType = r[5]?.ToString()
                 });
             }
 
@@ -279,7 +357,7 @@ namespace TechKingPOS.App
     AliasBox.Text = item.Alias;
     MarkedPriceBox.Text = item.MarkedPrice.ToString("0.00");
     SellingPriceBox.Text = item.SellingPrice.ToString("0.00");
-    UnitBox.Text = item.Unit;
+    UnitTypeBox.Text = item.UnitType;
 
     QuantityBox.Clear(); // ❌ DO NOT AUTO-FILL
 
@@ -287,6 +365,15 @@ namespace TechKingPOS.App
 
     ItemSuggestions.Visibility = Visibility.Collapsed;
     ItemSuggestions.SelectedItem = null;
+}
+private void UnitType_Changed(object sender, SelectionChangedEventArgs e)
+{
+    if (UnitTypeBox.SelectedItem is not ComboBoxItem item)
+        return;
+
+    string unit = item.Content.ToString();
+
+    UnitValuePanel.Visibility = Visibility.Visible;
 }
 
 

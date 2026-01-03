@@ -1305,3 +1305,1716 @@
 2025-12-23 16:28:08 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
 2025-12-23 16:30:49 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
 2025-12-23 16:37:02 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:05:06 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:09:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:10:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:22:08 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:35:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:48:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:54:38 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 17:58:35 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 18:52:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:11:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:11:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:11:51 [INFO] 💾 [SALE] Saving sale started
+2025-12-23 19:11:51 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251223191151
+2025-12-23 19:11:51 [INFO] 📦 [SALE] Sale items saved | Count=2
+2025-12-23 19:11:51 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251223191151
+2025-12-23 19:16:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:17:11 [INFO] 💾 [SALE] Saving sale started
+2025-12-23 19:17:11 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251223191711
+2025-12-23 19:17:11 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-23 19:17:11 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251223191711
+2025-12-23 19:30:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:30:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:31:40 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:36:51 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:36:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:38:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:39:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:39:09 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:41:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:41:14 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:43:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:43:13 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:52:25 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:57:06 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:57:06 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:58:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:58:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:59:01 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:59:01 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 19:59:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 19:59:59 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:00:32 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:05:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:05:24 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:08:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:08:21 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:12:15 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:12:15 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:14:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:18:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:18:59 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:20:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:20:32 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:21:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:21:28 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:22:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:22:13 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:22:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:22:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:25:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:25:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:27:20 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:27:20 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:41:27 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:41:27 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:53:04 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:54:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:54:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-23 20:55:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-23 20:55:41 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 08:16:43 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 08:17:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 08:19:48 [INFO] 💾 [SALE] Saving sale started
+2025-12-24 08:19:48 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251224081948
+2025-12-24 08:19:48 [INFO] 📦 [SALE] Sale items saved | Count=4
+2025-12-24 08:19:48 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251224081948
+2025-12-24 08:35:04 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 08:35:41 [INFO] 💾 [SALE] Saving sale started
+2025-12-24 08:35:41 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251224083541
+2025-12-24 08:35:41 [INFO] 📦 [SALE] Sale items saved | Count=2
+2025-12-24 08:35:41 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251224083541
+2025-12-24 08:37:13 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 09:26:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 09:43:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 09:52:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 10:02:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 10:04:28 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 10:21:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 10:24:47 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 10:26:17 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 10:49:30 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 11:20:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 11:22:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 11:35:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 11:38:11 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 11:39:30 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 12:05:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 12:05:50 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 12:06:56 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 12:10:57 [INFO] 💾 [SALE] Saving sale started
+2025-12-24 12:10:57 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251224121057
+2025-12-24 12:10:57 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-24 12:10:57 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251224121057
+2025-12-24 13:43:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-24 13:44:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 13:44:35 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 13:45:21 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-24 13:51:16 [INFO] 💾 [SALE] Saving sale started
+2025-12-24 13:51:16 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251224135116
+2025-12-24 13:51:16 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-24 13:51:16 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251224135116
+2025-12-24 13:52:27 [INFO] 💾 [SALE] Saving sale started
+2025-12-24 13:52:27 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251224135227
+2025-12-24 13:52:27 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-24 13:52:27 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251224135227
+2025-12-25 22:28:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-25 22:28:18 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-25 22:40:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-25 22:53:34 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-25 23:35:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-25 23:36:20 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-25 23:54:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-25 23:57:25 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 00:05:11 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 00:16:46 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 00:19:27 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 00:28:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 00:29:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 00:42:22 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 01:00:11 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 01:00:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 01:01:20 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 08:38:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 08:52:38 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 08:54:23 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:00:30 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 09:00:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:01:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:16:44 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:17:11 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 09:26:05 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:26:52 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 09:39:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 09:57:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 09:57:19 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 09:59:04 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:05:50 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:06:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 10:06:07 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:07:00 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:23:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 10:23:40 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:26:18 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:35:46 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 10:37:00 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:38:39 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 10:39:13 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 10:39:13 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226103913
+2025-12-26 10:39:13 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 10:39:13 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226103913
+2025-12-26 11:44:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 19:11:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 19:11:54 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:22:15 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:22:15 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226192215
+2025-12-26 19:22:15 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:22:15 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226192215
+2025-12-26 19:22:44 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:22:44 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226192244
+2025-12-26 19:22:44 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:22:44 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226192244
+2025-12-26 19:23:50 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:24:09 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:24:09 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226192409
+2025-12-26 19:24:09 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:24:09 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226192409
+2025-12-26 19:34:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 19:34:52 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:35:45 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:36:18 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:36:18 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226193618
+2025-12-26 19:36:18 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:36:18 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226193618
+2025-12-26 19:38:17 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:38:17 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226193817
+2025-12-26 19:38:17 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:38:17 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226193817
+2025-12-26 19:42:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 19:42:40 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:43:11 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:43:11 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226194311
+2025-12-26 19:43:11 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:43:11 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226194311
+2025-12-26 19:46:05 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:46:05 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226194605
+2025-12-26 19:46:05 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:46:05 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226194605
+2025-12-26 19:58:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 19:58:09 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 19:58:22 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 19:58:22 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226195822
+2025-12-26 19:58:22 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 19:58:22 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226195822
+2025-12-26 20:39:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 20:39:36 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 20:39:58 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:39:58 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226203958
+2025-12-26 20:39:58 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:39:58 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226203958
+2025-12-26 20:40:47 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 20:41:02 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:41:02 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226204102
+2025-12-26 20:41:02 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:41:02 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226204102
+2025-12-26 20:41:38 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:41:38 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226204138
+2025-12-26 20:41:38 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:41:38 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226204138
+2025-12-26 20:45:35 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 20:45:38 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 20:45:53 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:45:53 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226204553
+2025-12-26 20:45:53 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:45:53 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226204553
+2025-12-26 20:48:02 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 20:48:05 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 20:48:25 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:48:25 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226204825
+2025-12-26 20:48:25 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:48:25 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226204825
+2025-12-26 20:56:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 20:56:36 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 20:56:52 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:56:52 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226205652
+2025-12-26 20:56:52 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:56:52 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226205652
+2025-12-26 20:59:19 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 20:59:19 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226205919
+2025-12-26 20:59:19 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 20:59:19 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226205919
+2025-12-26 21:07:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 21:07:25 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 21:07:41 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:07:41 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226210741
+2025-12-26 21:07:41 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:07:41 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226210741
+2025-12-26 21:08:03 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:08:03 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226210803
+2025-12-26 21:08:03 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:08:03 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226210803
+2025-12-26 21:09:20 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:09:20 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226210920
+2025-12-26 21:09:20 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:09:20 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226210920
+2025-12-26 21:09:52 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:09:52 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226210952
+2025-12-26 21:09:52 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:09:52 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226210952
+2025-12-26 21:17:47 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 21:18:06 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:18:06 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226211806
+2025-12-26 21:18:06 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:18:06 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226211806
+2025-12-26 21:39:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-26 21:40:01 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-26 21:40:16 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:40:16 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226214016
+2025-12-26 21:40:16 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:40:16 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226214016
+2025-12-26 21:40:36 [INFO] 💾 [SALE] Saving sale started
+2025-12-26 21:40:36 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251226214036
+2025-12-26 21:40:36 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-26 21:40:36 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251226214036
+2025-12-27 11:49:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 11:49:22 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 11:49:36 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 11:49:36 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227114936
+2025-12-27 11:49:36 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 11:49:36 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227114936
+2025-12-27 12:15:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:15:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:15:58 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:15:58 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227121558
+2025-12-27 12:15:58 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:15:58 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227121558
+2025-12-27 12:24:20 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:24:23 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:24:37 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:24:37 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227122437
+2025-12-27 12:24:37 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:24:37 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227122437
+2025-12-27 12:26:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:26:36 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:26:45 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:26:45 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227122645
+2025-12-27 12:26:45 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:26:45 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227122645
+2025-12-27 12:35:11 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:35:14 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:35:43 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:35:43 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227123543
+2025-12-27 12:35:43 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:35:43 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227123543
+2025-12-27 12:46:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:46:14 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:46:27 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:46:27 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227124627
+2025-12-27 12:46:27 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:46:27 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227124627
+2025-12-27 12:51:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 12:51:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 12:52:16 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 12:52:16 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227125216
+2025-12-27 12:52:16 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 12:52:16 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227125216
+2025-12-27 13:46:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 13:46:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 13:46:26 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 13:46:26 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227134626
+2025-12-27 13:46:26 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 13:46:26 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227134626
+2025-12-27 13:47:51 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 13:47:51 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227134751
+2025-12-27 13:47:51 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 13:47:51 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227134751
+2025-12-27 14:16:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 14:18:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 14:18:50 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:18:50 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227141850
+2025-12-27 14:18:50 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:18:50 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227141850
+2025-12-27 14:19:41 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:19:41 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227141941
+2025-12-27 14:19:41 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:19:41 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227141941
+2025-12-27 14:29:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 14:29:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 14:30:23 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:30:23 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227143023
+2025-12-27 14:30:23 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:30:23 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227143023
+2025-12-27 14:32:51 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 14:32:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 14:33:01 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:33:01 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227143301
+2025-12-27 14:33:01 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:33:01 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227143301
+2025-12-27 14:47:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 14:47:45 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 14:47:58 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:47:58 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227144758
+2025-12-27 14:47:58 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:47:58 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227144758
+2025-12-27 14:51:07 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:51:07 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227145107
+2025-12-27 14:51:07 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:51:07 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227145107
+2025-12-27 14:55:12 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 14:55:12 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227145512
+2025-12-27 14:55:12 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 14:55:12 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227145512
+2025-12-27 15:20:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 15:20:03 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:20:20 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:20:20 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227152020
+2025-12-27 15:20:20 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:20:20 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227152020
+2025-12-27 15:24:00 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 15:24:00 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:24:14 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:24:14 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227152414
+2025-12-27 15:24:14 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:24:14 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227152414
+2025-12-27 15:34:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 15:34:26 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:34:38 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:34:38 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227153438
+2025-12-27 15:34:38 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:34:38 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227153438
+2025-12-27 15:35:11 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:35:11 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227153511
+2025-12-27 15:35:11 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:35:11 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227153511
+2025-12-27 15:37:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:38:55 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:39:22 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:39:22 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227153922
+2025-12-27 15:39:22 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:39:22 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227153922
+2025-12-27 15:46:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 15:46:23 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:47:21 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:47:45 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:47:45 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227154745
+2025-12-27 15:47:45 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:47:45 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227154745
+2025-12-27 15:48:31 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:48:31 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227154831
+2025-12-27 15:48:31 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:48:31 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227154831
+2025-12-27 15:51:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 15:51:19 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:51:44 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 15:52:03 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 15:52:03 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227155203
+2025-12-27 15:52:03 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 15:52:03 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227155203
+2025-12-27 16:23:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 16:23:29 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 16:23:52 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 16:23:52 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227162352
+2025-12-27 16:23:52 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 16:23:52 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227162352
+2025-12-27 16:37:15 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 16:37:15 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 16:37:37 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 16:37:37 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227163737
+2025-12-27 16:37:37 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 16:37:37 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227163737
+2025-12-27 16:38:21 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 16:38:21 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227163821
+2025-12-27 16:38:21 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 16:38:21 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227163821
+2025-12-27 16:38:54 [INFO] 💾 [SALE] Saving sale started
+2025-12-27 16:38:54 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251227163854
+2025-12-27 16:38:54 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-27 16:38:54 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251227163854
+2025-12-27 16:43:15 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 17:21:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 17:47:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 17:47:29 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 18:53:43 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 18:53:43 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 18:54:15 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 18:54:35 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 18:54:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 18:55:03 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 18:55:45 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:23:17 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 19:23:17 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-27 19:25:35 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:25:54 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:46:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 19:46:24 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:48:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 19:48:48 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:51:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 19:51:41 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:52:01 [INFO] ⚠️ [STOCK] Damaged item recorded | Electric Kettle x1
+2025-12-27 19:52:01 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 19:54:07 [INFO] ⚠️ [STOCK] Damaged item recorded | Hammer x1
+2025-12-27 19:54:07 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:00:25 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:05:55 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 20:05:55 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:06:29 [INFO] ⚠️ [STOCK] Damaged item recorded | Sufuria x5
+2025-12-27 20:06:29 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:13:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 20:13:03 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:14:42 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:18:23 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:18:39 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 20:18:39 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-27 20:47:40 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-27 20:47:40 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-27 → 2025-12-27
+2025-12-27 20:47:40 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=28, Total=30224.45
+2025-12-27 20:47:40 [INFO] 📦 [REPORT] Loading sold items | 2025-12-27 → 2025-12-27
+2025-12-27 20:47:40 [INFO] ✅ [REPORT] Sold items loaded | Items=28
+2025-12-28 06:04:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 06:04:10 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 06:06:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 06:06:58 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 06:15:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 06:15:22 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 06:15:48 [INFO] 🎯 [STOCK] Targets loaded | Count=21
+2025-12-28 06:16:13 [INFO] 🎯 [STOCK] Target set | D-10 → 200
+2025-12-28 06:16:13 [INFO] 🎯 [STOCK] Targets loaded | Count=20
+2025-12-28 06:16:23 [INFO] 🎯 [STOCK] Target set | Electric Kettle → 60
+2025-12-28 06:16:23 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-28 06:16:29 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 06:16:49 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 06:16:49 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228061649
+2025-12-28 06:16:49 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 06:16:49 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228061649
+2025-12-28 06:17:46 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 06:17:46 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228061746
+2025-12-28 06:17:46 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 06:17:46 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228061746
+2025-12-28 06:19:31 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 06:19:31 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228061931
+2025-12-28 06:19:31 [INFO] 📦 [SALE] Sale items saved | Count=3
+2025-12-28 06:19:31 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228061931
+2025-12-28 06:19:56 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 06:20:19 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 06:20:19 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=3, Total=33550.0
+2025-12-28 06:20:19 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 06:20:19 [INFO] ✅ [REPORT] Sold items loaded | Items=5
+2025-12-28 06:28:43 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 06:28:43 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 06:28:57 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 06:49:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 06:49:21 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 07:04:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 07:04:22 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 07:04:22 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=3, Total=33550.0
+2025-12-28 07:04:22 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 07:04:22 [INFO] ✅ [REPORT] Sold items loaded | Items=5
+2025-12-28 07:04:22 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 07:12:15 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-28 07:12:36 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 07:13:02 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 07:13:02 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228071302
+2025-12-28 07:13:02 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 07:13:02 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228071302
+2025-12-28 07:14:01 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 07:14:30 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 07:14:30 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228071430
+2025-12-28 07:14:30 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 07:14:30 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228071430
+2025-12-28 07:14:51 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-28 07:29:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 07:29:28 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 07:29:28 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 07:29:28 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 07:29:28 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 07:29:28 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 07:33:24 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 07:33:24 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 07:33:24 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 07:33:24 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 07:33:24 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 07:33:34 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=TargetQuantity IS NOT NULL AND Quantity <= ROUND(TargetQuantity / 3.0), Count=4
+2025-12-28 07:33:47 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=TargetQuantity IS NOT NULL AND Quantity >= ROUND(TargetQuantity / 2.0), Count=1
+2025-12-28 08:36:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 08:36:32 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 08:36:32 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 08:36:32 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 08:36:32 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 08:36:32 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 08:54:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 08:54:32 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 08:54:32 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 08:54:32 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 08:54:32 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 08:54:32 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 09:13:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 09:13:19 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 09:13:19 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 09:13:19 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 09:13:19 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 09:13:19 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 11:02:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 11:03:00 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 11:03:00 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 11:03:00 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 11:03:00 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 11:03:00 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 11:07:16 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 11:07:16 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 11:07:16 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 11:07:16 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 11:07:16 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 11:07:16 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 11:07:55 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=TargetQuantity IS NOT NULL AND Quantity <= ROUND(TargetQuantity / 3.0), Count=4
+2025-12-28 11:20:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 11:20:13 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 11:20:13 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 11:20:13 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 11:20:13 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 11:20:13 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 11:28:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 11:28:22 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 11:28:22 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 11:28:22 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 11:28:22 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 11:28:22 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 11:44:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 11:44:59 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-28 → 2025-12-28
+2025-12-28 11:44:59 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=5, Total=38350.0
+2025-12-28 11:44:59 [INFO] 📦 [REPORT] Loading sold items | 2025-12-28 → 2025-12-28
+2025-12-28 11:44:59 [INFO] ✅ [REPORT] Sold items loaded | Items=7
+2025-12-28 11:44:59 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2025-12-28 18:02:28 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 18:02:52 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 18:02:52 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228180252
+2025-12-28 18:02:52 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 18:02:52 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228180252
+2025-12-28 20:23:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 20:23:45 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 20:25:33 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-28 20:31:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 20:31:31 [INFO] 🧾 [UI] Add Item window opened
+2025-12-28 20:46:57 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 20:47:31 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 20:47:31 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228204731
+2025-12-28 20:47:31 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 20:47:31 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228204731
+2025-12-28 21:13:56 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 21:13:56 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 21:14:13 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 21:14:13 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228211413
+2025-12-28 21:14:13 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 21:14:13 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228211413
+2025-12-28 21:20:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-28 21:20:31 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-28 21:20:44 [INFO] 💾 [SALE] Saving sale started
+2025-12-28 21:20:44 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251228212044
+2025-12-28 21:20:44 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-28 21:20:44 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251228212044
+2025-12-29 08:18:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 08:20:28 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 08:20:43 [INFO] 💾 [SALE] Saving sale started
+2025-12-29 08:20:43 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251229082043
+2025-12-29 08:20:43 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-29 08:20:43 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251229082043
+2025-12-29 09:25:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 09:26:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 09:26:27 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 10:21:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 10:33:25 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 10:33:38 [INFO] 💾 [SALE] Saving sale started
+2025-12-29 10:33:38 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251229103338
+2025-12-29 10:33:38 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-29 10:33:38 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251229103338
+2025-12-29 11:21:39 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 11:22:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 12:03:51 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 12:13:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 12:15:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 12:20:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 12:24:13 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-29 12:53:56 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 13:09:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 13:09:54 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 13:09:58 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 13:10:01 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-29 13:46:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 13:46:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 13:46:53 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 13:46:58 [INFO] 🎯 [STOCK] Targets loaded | Count=19
+2025-12-29 13:47:05 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 13:59:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:00:12 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 14:08:57 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:36:27 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:40:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:41:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:55:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 14:59:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 15:06:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 15:08:42 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 15:09:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 15:11:42 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 15:11:53 [INFO] 📦 [SALES] Items loaded into sales list | Count=25
+2025-12-29 19:41:55 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 19:41:59 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 19:42:58 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 19:43:22 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 19:49:06 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-29 19:49:06 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-29 19:49:06 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-29 20:22:12 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-29 20:22:18 [INFO] 📦 [SALES] Items loaded into sales list | Count=0
+2025-12-29 20:22:29 [INFO] 🧾 [UI] Add Item window opened
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Samsung phones
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Sufuria
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Grater
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Pliers
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Hammer
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | D-16
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | D-8
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | D-10
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-29 20:25:29 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-29 20:36:17 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 04:50:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 04:50:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 04:50:38 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 05:38:34 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 05:38:40 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 05:38:45 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 05:38:51 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 05:40:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 05:40:26 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 05:40:36 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-30 05:40:52 [INFO] 📦 [SALES] Items loaded into sales list | Count=1
+2025-12-30 05:41:49 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 05:41:54 [INFO] 📦 [SALES] Items loaded into sales list | Count=0
+2025-12-30 05:41:58 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 05:42:08 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-30 05:55:52 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:06:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:06:49 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Samsung phones
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Sufuria
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Grater
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Pliers
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Hammer
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | D-16
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | D-8
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | D-10
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-30 06:07:26 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-30 06:07:36 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 06:24:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:24:09 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 06:30:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:30:49 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Samsung phones
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Sufuria
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Grater
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Pliers
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Hammer
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | D-16
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | D-8
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | D-10
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-30 06:30:58 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-30 06:31:04 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 06:49:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:49:29 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 06:58:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 06:58:07 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 07:07:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 07:08:06 [INFO] 💾 [SALE] Saving sale started
+2025-12-30 07:08:06 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251230070806
+2025-12-30 07:08:06 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-30 07:08:06 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251230070806
+2025-12-30 07:13:12 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 07:13:15 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 07:14:28 [INFO] 🧹 [UI] Add Item form cleared
+2025-12-30 07:21:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 07:27:50 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 07:27:58 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 07:30:02 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 07:30:05 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 10:08:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 10:09:15 [INFO] 🎯 [STOCK] Targets loaded | Count=0
+2025-12-30 10:09:24 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Samsung phones
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Sufuria
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Grater
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Pliers
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Hammer
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | D-16
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | D-8
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | D-10
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-30 10:09:41 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-30 10:09:50 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 10:12:27 [INFO] 🧹 [UI] Add Item form cleared
+2025-12-30 10:12:36 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 15:49:25 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 15:49:29 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:12:00 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 16:12:04 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:25:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 16:26:03 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:31:51 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 16:31:55 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:35:04 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:36:15 [INFO] 📦 [REPACK] Rule added | Sugar
+2025-12-30 16:36:49 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 16:45:47 [INFO] 📦 [REPACK] Rule added | Sugar
+2025-12-30 16:48:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 16:49:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 16:49:32 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 17:12:40 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 17:12:46 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 17:22:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 17:22:16 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 17:27:44 [INFO] 📦 [REPACK] Rule added | Sugar
+2025-12-30 17:30:08 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 17:30:13 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 17:38:52 [INFO] 📦 [REPACK] Rule added | Sugar
+2025-12-30 18:09:35 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 18:09:40 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 18:10:15 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-30 18:10:28 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-30 18:10:47 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-30 18:11:31 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-30 18:11:47 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-30 18:24:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 18:30:04 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 18:41:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 18:41:21 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 18:41:26 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-30 22:43:47 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 22:43:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-30 22:43:55 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 22:46:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 22:46:32 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 22:49:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 22:49:08 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 22:49:17 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2025-12-30 22:53:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-30 22:53:59 [INFO] 🧾 [UI] Add Item window opened
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Samsung phones
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Sufuria
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Grater
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Pliers
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Hammer
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | D-16
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | D-8
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | D-10
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Nails
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Sugar
+2025-12-30 22:54:05 [INFO] 💾 [DB] Item inserted | Rice
+2025-12-30 22:54:13 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 03:59:06 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 03:59:06 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231035906
+2025-12-31 03:59:06 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 03:59:06 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231035906
+2025-12-31 04:01:14 [INFO] 🧹 [UI] Add Item form cleared
+2025-12-31 04:01:20 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 04:38:01 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 04:39:29 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 04:39:46 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 04:41:29 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 04:41:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 04:41:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 04:42:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 04:42:38 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 04:43:43 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 04:43:43 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231044343
+2025-12-31 04:43:43 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 04:43:43 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231044343
+2025-12-31 04:43:51 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 05:51:57 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 05:52:28 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 05:52:45 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 05:53:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 05:53:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 05:53:57 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 05:54:28 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 5: 'database is locked'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.ActivityRepository.Log(Activity activity) in C:\techKingPOS\TechKingPOS.app\Data\ActivityRepository.cs:line 60
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 75
+2025-12-31 06:26:04 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 06:26:07 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 06:26:22 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 06:26:22 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231062622
+2025-12-31 06:26:53 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 5: 'database is locked'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.ActivityRepository.Log(Activity activity) in C:\techKingPOS\TechKingPOS.app\Data\ActivityRepository.cs:line 60
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 127
+2025-12-31 06:39:30 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 06:39:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 06:39:56 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 06:39:56 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231063956
+2025-12-31 06:39:56 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 06:39:56 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231063956
+2025-12-31 07:09:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 07:09:15 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 07:09:23 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 07:09:44 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 07:09:44 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231070944
+2025-12-31 07:09:44 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 07:09:44 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231070944
+2025-12-31 07:10:04 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 07:28:46 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 08:58:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 08:58:35 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 09:01:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 09:01:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 09:01:26 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 09:01:26 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Price'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.ActivityRepository.Log(SqliteConnection connection, SqliteTransaction transaction, Activity activity) in C:\techKingPOS\TechKingPOS.app\Data\ActivityRepository.cs:line 121
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 75
+2025-12-31 09:18:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 09:18:11 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 09:18:26 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 09:18:26 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231091826
+2025-12-31 09:18:26 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 105
+2025-12-31 09:29:42 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 09:29:42 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231092942
+2025-12-31 09:29:42 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid)
+2025-12-31 09:45:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 09:45:58 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 09:48:40 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 09:48:40 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231094840
+2025-12-31 09:48:40 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table Sales has no column named ItemId'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 155
+2025-12-31 09:50:59 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 09:50:59 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231095059
+2025-12-31 09:50:59 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table Sales has no column named ItemId'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 155
+2025-12-31 10:20:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 10:20:09 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 10:33:15 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:15:18 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:15:22 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 11:16:55 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:17:02 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 11:19:40 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:19:43 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 11:20:47 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:22:38 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:22:45 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:27:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:27:25 [INFO] 🧾 [UI] Add Item window opened
+2025-12-31 11:27:31 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:29:57 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:30:03 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:31:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:31:49 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:39:04 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:39:11 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:39:37 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-31 11:40:07 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-31 11:42:57 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:47:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 11:47:57 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 11:48:37 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-31 12:10:42 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:10:48 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 12:12:04 [INFO] 📦 [REPACK] Rule added | Rice
+2025-12-31 12:12:09 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:14:55 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:15:02 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:18:25 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:18:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:19:02 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:19:02 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231121902
+2025-12-31 12:19:02 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table Sales has no column named ItemId'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 155
+2025-12-31 12:26:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:27:03 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:27:23 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:27:23 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231122723
+2025-12-31 12:27:23 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 12:27:23 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231122723
+2025-12-31 12:27:56 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 12:28:34 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:29:36 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:29:36 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231122936
+2025-12-31 12:29:36 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 105
+2025-12-31 12:31:49 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:31:49 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231123149
+2025-12-31 12:31:49 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 105
+2025-12-31 12:34:38 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:34:38 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231123438
+2025-12-31 12:34:38 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 105
+2025-12-31 12:34:58 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:34:58 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231123458
+2025-12-31 12:34:58 [ERROR] ❌ [SALE] Sale failed — rollback executed | System.InvalidOperationException: Quantity and unit value must be greater than zero
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 105
+2025-12-31 12:38:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:38:39 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:40:18 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:40:18 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231124018
+2025-12-31 12:40:18 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 12:40:18 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231124018
+2025-12-31 12:49:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 12:50:18 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 12:50:59 [INFO] 💾 [SALE] Saving sale started
+2025-12-31 12:50:59 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20251231125059
+2025-12-31 12:50:59 [INFO] 📦 [SALE] Sale items saved | Count=1
+2025-12-31 12:50:59 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20251231125059
+2025-12-31 12:53:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 13:27:36 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 13:28:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 13:48:35 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 13:54:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 13:57:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2025-12-31 14:05:54 [INFO] 🎯 [STOCK] Targets loaded | Count=13
+2025-12-31 14:06:08 [INFO] 🗑️ [STOCK] Item deleted | Pliers
+2025-12-31 14:06:08 [INFO] 🎯 [STOCK] Targets loaded | Count=12
+2025-12-31 14:06:18 [INFO] 🗑️ [STOCK] Item deleted | Pliers
+2025-12-31 14:06:18 [INFO] 🎯 [STOCK] Targets loaded | Count=12
+2025-12-31 14:25:46 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2025-12-31 14:31:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=12
+2025-12-31 14:56:56 [INFO] 📊 [REPORT] Loading sales summary | 2025-12-31 → 2025-12-31
+2025-12-31 14:56:56 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=7, Total=11750.0
+2025-12-31 14:56:56 [INFO] 📦 [REPORT] Loading sold items | 2025-12-31 → 2025-12-31
+2025-12-31 14:56:56 [INFO] ✅ [REPORT] Sold items loaded | Items=3
+2025-12-31 14:56:56 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2025-12-31 14:57:21 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=TargetQuantity IS NOT NULL AND Quantity <= ROUND(TargetQuantity / 3.0), Count=0
+2026-01-01 18:45:37 [INFO] 🎯 [STOCK] Targets loaded | Count=12
+2026-01-01 18:45:53 [INFO] 🎯 [STOCK] Target set | D-10 → 80
+2026-01-01 18:45:53 [INFO] 🎯 [STOCK] Targets loaded | Count=11
+2026-01-01 18:46:47 [INFO] 🎯 [STOCK] Targets loaded | Count=11
+2026-01-01 18:47:00 [INFO] 🗑️ [STOCK] Item deleted | Sufuria
+2026-01-01 18:47:00 [INFO] 🎯 [STOCK] Targets loaded | Count=10
+2026-01-01 21:13:50 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-01 21:13:55 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-01 → 2026-01-01
+2026-01-01 21:13:55 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=0, Total=0
+2026-01-01 21:13:55 [INFO] 📦 [REPORT] Loading sold items | 2026-01-01 → 2026-01-01
+2026-01-01 21:13:55 [INFO] ✅ [REPORT] Sold items loaded | Items=0
+2026-01-01 21:13:55 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:03:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 06:03:08 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:03:09 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=0, Total=0
+2026-01-02 06:03:09 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:03:09 [INFO] ✅ [REPORT] Sold items loaded | Items=0
+2026-01-02 06:03:09 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:10:15 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 06:10:19 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:10:19 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=0, Total=0
+2026-01-02 06:10:19 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:10:19 [INFO] ✅ [REPORT] Sold items loaded | Items=0
+2026-01-02 06:10:19 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:32:34 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 06:32:41 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:32:41 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=0, Total=0
+2026-01-02 06:32:41 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:32:41 [INFO] ✅ [REPORT] Sold items loaded | Items=0
+2026-01-02 06:32:41 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:33:10 [INFO] 📦 [SALES] Items loaded into sales list | Count=11
+2026-01-02 06:33:25 [INFO] 💾 [SALE] Saving sale started
+2026-01-02 06:33:25 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20260102063325
+2026-01-02 06:33:25 [INFO] 📦 [SALE] Sale items saved | Count=1
+2026-01-02 06:33:25 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20260102063325
+2026-01-02 06:33:40 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:33:40 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 06:33:40 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:33:40 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 06:33:40 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:36:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 06:40:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 06:40:27 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:40:27 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 06:40:27 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:40:27 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 06:40:27 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 06:47:06 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 06:47:06 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 06:47:06 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 06:47:06 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 06:47:06 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 07:03:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 07:03:14 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 07:03:14 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 07:03:14 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 07:03:14 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 07:03:14 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 07:20:25 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 07:20:31 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 07:20:31 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 07:20:31 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 07:20:31 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 07:20:31 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 08:22:53 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 08:22:58 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 08:22:58 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 08:22:58 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 08:22:58 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 08:22:58 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 10:47:10 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 11:22:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 11:50:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:17:36 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:18:24 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 12:18:24 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 12:18:24 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 12:18:24 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 12:18:24 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 12:18:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=11
+2026-01-02 12:20:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:27:08 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:32:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:35:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 12:37:43 [INFO] 📦 [SALES] Items loaded into sales list | Count=11
+2026-01-02 12:37:47 [INFO] 🧾 [UI] Add Item window opened
+2026-01-02 12:37:58 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 12:37:58 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 12:37:58 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 12:37:58 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 12:37:58 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 13:31:48 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 13:33:12 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 13:42:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 13:58:53 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 14:02:47 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 14:08:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 14:26:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 14:45:04 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 16:18:01 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 16:25:54 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 16:53:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 16:55:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 16:56:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 17:01:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 17:20:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 17:22:16 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-02 → 2026-01-02
+2026-01-02 17:22:16 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=180.0
+2026-01-02 17:22:16 [INFO] 📦 [REPORT] Loading sold items | 2026-01-02 → 2026-01-02
+2026-01-02 17:22:16 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-02 17:22:16 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=1
+2026-01-02 17:29:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 17:31:32 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-02 17:33:25 [INFO] 🎯 [STOCK] Targets loaded | Count=10
+2026-01-03 08:55:24 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:00:56 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:14:03 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:19:17 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:20:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:24:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:32:38 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:35:34 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:38:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 09:45:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 10:22:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 10:41:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 11:42:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 11:54:52 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 11:57:23 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:01:43 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:06:31 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:21:05 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:31:45 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:53:47 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:55:59 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 12:56:30 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 13:00:09 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2026-01-03 13:02:49 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 13:03:36 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 13:07:19 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 13:07:38 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Tecno Phones
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Samsung phones
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Sufuria
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Grater
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Pliers
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | Hammer
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | D-16
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | D-8
+2026-01-03 13:07:47 [INFO] 💾 [DB] Item inserted | D-10
+2026-01-03 13:07:48 [INFO] 💾 [DB] Item inserted | Nails
+2026-01-03 13:07:48 [INFO] 💾 [DB] Item inserted | Sugar
+2026-01-03 13:07:48 [INFO] 💾 [DB] Item inserted | Rice
+2026-01-03 13:07:53 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2026-01-03 13:16:09 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Samsung phones
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Sufuria
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Grater
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Electric Kettle
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Pliers
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | Hammer
+2026-01-03 13:16:39 [INFO] 💾 [DB] Item inserted | D-16
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | D-8
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | D-10
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Nails
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Sugar
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Rice
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Sweater
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Jackets
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Laptops
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Cups
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Pilllow
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | PillowCases
+2026-01-03 13:16:40 [INFO] 💾 [DB] Item inserted | Bed
+2026-01-03 13:16:41 [INFO] 💾 [DB] Item inserted | Matress
+2026-01-03 13:16:41 [INFO] 💾 [DB] Item inserted | Floor
+2026-01-03 13:16:48 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 13:18:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=13
+2026-01-03 13:21:48 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Sweater
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Jackets
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Laptops
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Cups
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Pilllow
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | PillowCases
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Bed
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Matress
+2026-01-03 13:25:26 [INFO] 💾 [DB] Item inserted | Floor
+2026-01-03 14:31:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 14:31:35 [INFO] 🎯 [STOCK] Targets loaded | Count=22
+2026-01-03 14:31:46 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 14:32:02 [INFO] 💾 [SALE] Saving sale started
+2026-01-03 14:32:02 [ERROR] ❌ [SALE] Sale failed — rollback executed | Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table Transactions has no column named BranchId'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at TechKingPOS.App.Data.SalesRepository.SaveSale(List`1 items, String cashier, Decimal subtotal, Decimal discount, Decimal vat, Decimal total, Decimal amountPaid) in C:\techKingPOS\TechKingPOS.app\Data\SalesRepository.cs:line 69
+2026-01-03 14:36:07 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 14:36:37 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 14:36:48 [INFO] 💾 [SALE] Saving sale started
+2026-01-03 14:36:48 [INFO] 🧾 [SALE] Transaction header saved | RCPT-20260103143648
+2026-01-03 14:36:48 [INFO] 📦 [SALE] Sale items saved | Count=1
+2026-01-03 14:36:48 [INFO] ✅ [SALE] Sale committed successfully | RCPT-20260103143648
+2026-01-03 14:37:02 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 14:37:02 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 14:37:02 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 14:37:02 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 14:37:02 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 15:15:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 15:15:29 [INFO] 🎯 [STOCK] Targets loaded | Count=22
+2026-01-03 15:20:08 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 15:20:08 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 15:20:08 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 15:20:08 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 15:20:08 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 15:29:38 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 15:57:53 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 15:59:10 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 15:59:52 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:00:15 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:11:11 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:16:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:17:06 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:17:06 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:17:06 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:17:06 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:17:06 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:17:11 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:17:11 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:17:11 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:17:11 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:17:11 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:26:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:26:52 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:26:52 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:26:52 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:26:52 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:26:52 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:27:10 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:27:10 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:27:10 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:27:10 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:27:10 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:27:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:28:09 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:28:09 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:28:09 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:28:09 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:28:09 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:28:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:28:40 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:28:40 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:28:40 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:28:40 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:28:40 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:29:26 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:29:29 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:29:29 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:29:29 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:29:29 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:29:29 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:33:40 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:33:45 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:33:45 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:33:45 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:33:45 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:33:45 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:34:16 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:34:19 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:34:19 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:34:19 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:34:19 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:34:19 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:37:57 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:38:01 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:38:01 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:38:01 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:38:01 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:38:01 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:38:20 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:38:20 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:38:20 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:38:20 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:38:20 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:50:09 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:50:13 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:50:13 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:50:13 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:50:13 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:50:13 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:50:16 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:50:16 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:50:16 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:50:16 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:50:16 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:51:53 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:51:57 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:51:57 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:51:57 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:51:57 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:51:57 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:52:01 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:52:01 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:52:01 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:52:01 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:52:01 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:52:23 [INFO] 🧾 [UI] Add Item window opened
+2026-01-03 16:52:29 [INFO] 🎯 [STOCK] Targets loaded | Count=0
+2026-01-03 16:53:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 16:54:31 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:54:31 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:54:31 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:54:31 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:54:31 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 16:54:34 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 16:54:34 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 16:54:34 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 16:54:34 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 16:54:34 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:03:41 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 17:03:57 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:03:57 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:03:57 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:03:57 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:03:57 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:04:01 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:04:01 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:04:01 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:04:01 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:04:01 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:08:17 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 17:08:37 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:08:37 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:08:37 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:08:37 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:08:37 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:10:28 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:10:28 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:10:28 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:10:28 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:10:28 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:10:43 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 17:10:59 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:10:59 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:10:59 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:10:59 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:10:59 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:22:15 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 17:22:18 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:22:18 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:22:18 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:22:18 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:22:18 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:22:24 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:22:24 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:22:24 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:22:24 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:22:24 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:47:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 17:47:48 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:47:48 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:47:48 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:47:48 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:47:48 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 17:47:51 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 17:47:51 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 17:47:51 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 17:47:51 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 17:47:51 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:04:28 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:04:48 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:04:48 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:04:48 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:04:48 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:04:48 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:04:51 [INFO] 🖱️ [UI] BranchComboBox_SelectionChanged FIRED | IsLoaded=True
+2026-01-03 18:04:51 [INFO] 🖱️ [UI] Branch selected | BranchId=0
+2026-01-03 18:04:51 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:04:51 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:04:51 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:04:51 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:04:51 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:12:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:12:48 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:12:48 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:12:48 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:12:48 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:12:48 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:14:33 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:14:36 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:14:36 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:14:36 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:14:36 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:14:36 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:24:44 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:24:48 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:24:48 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:24:48 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:24:48 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:24:48 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:28:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:28:28 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:28:28 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:28:28 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:28:28 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:28:28 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 18:30:50 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 18:30:55 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 18:30:55 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 18:30:55 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 18:30:55 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 18:30:55 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 19:12:37 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 19:12:40 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 19:12:40 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 19:12:40 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 19:12:40 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 19:12:40 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 19:13:30 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 19:13:34 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 19:13:34 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 19:13:34 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 19:13:34 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 19:13:34 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 19:58:22 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 19:58:27 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 19:58:27 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 19:58:27 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 19:58:27 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 19:58:27 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 20:11:20 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 20:11:26 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 20:11:26 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 20:11:26 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 20:11:26 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 20:11:26 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 20:49:20 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 20:49:26 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:26 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 20:49:26 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:26 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 20:49:26 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 20:49:33 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:33 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 20:49:33 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:33 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 20:49:33 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 20:49:35 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:35 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 20:49:35 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 20:49:35 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 20:49:35 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:14:25 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:25 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:14:25 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:25 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:14:25 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:14:28 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:28 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:14:28 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:28 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:14:28 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:14:33 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:33 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:14:33 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:14:33 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:14:33 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:45:51 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 21:45:55 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:45:55 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:45:55 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:45:55 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:45:55 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:45:58 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:45:58 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:45:58 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:45:58 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:45:58 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:01 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:01 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:01 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:01 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:01 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:10 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:10 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:10 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:10 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:10 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:14 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:14 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:14 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:14 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:14 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:20 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:20 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:20 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:20 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:20 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:23 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:23 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:23 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:23 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:23 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:29 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:29 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:29 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:29 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:29 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:46 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:46 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:46 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:46 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:46 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:47 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:47 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:47 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:47 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:47 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:53 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:53 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:53 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:53 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:53 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:57 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:57 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:57 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:57 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:57 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:46:59 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:59 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:46:59 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:46:59 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:46:59 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:50:17 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:17 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:50:17 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:17 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:50:17 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:50:20 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:20 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:50:20 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:20 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:50:20 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:50:22 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:22 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:50:22 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:22 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:50:22 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:50:25 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:25 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:50:25 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:25 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:50:25 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:50:27 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:27 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:50:27 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:50:27 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:50:27 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:51:35 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 21:51:51 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 21:52:31 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 21:54:29 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 21:54:41 [INFO] 📦 [SALES] Items loaded into sales list | Count=0
+2026-01-03 21:55:13 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 21:55:22 [INFO] 📦 [SALES] Items loaded into sales list | Count=0
+2026-01-03 21:56:58 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 21:57:01 [INFO] 📦 [SALES] Items loaded into sales list | Count=0
+2026-01-03 21:57:21 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 21:57:53 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 21:58:00 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:00 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:00 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:00 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:00 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:58:04 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:04 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:04 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:04 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:04 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:58:06 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:06 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:06 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:06 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:06 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:58:10 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:10 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:10 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:10 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:10 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:58:15 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:15 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:15 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:15 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:15 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 21:58:18 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:18 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 21:58:18 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 21:58:18 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 21:58:18 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:00:20 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:00:33 [INFO] 📦 [SALES] Items loaded into sales list | Count=22
+2026-01-03 22:03:41 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:03:41 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:03:41 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:03:41 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:03:41 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:03:55 [INFO] 🎯 [STOCK] Targets loaded | Count=0
+2026-01-03 22:07:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:07:28 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:07:28 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:07:28 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:07:28 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:07:28 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:09:36 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:36 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:09:36 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:36 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:09:36 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:09:45 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:45 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:09:45 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:45 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:09:45 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:09:49 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:49 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:09:49 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:09:49 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:09:49 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:10:39 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:10:39 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:10:39 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:10:39 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:10:39 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:10:45 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:10:45 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:10:45 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:10:45 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:10:45 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:16:05 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:05 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:16:05 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:05 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:16:05 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:16:19 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:19 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:16:19 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:19 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:16:19 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:16:49 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:49 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:16:49 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:16:49 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:16:49 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:39:50 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:40:06 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:40:06 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:40:06 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:40:06 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:40:06 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:41:12 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:41:26 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:41:26 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:41:26 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:41:26 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:41:26 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:44:14 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:44:27 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:44:27 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:44:27 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:44:27 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:44:27 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0
+2026-01-03 22:49:25 [INFO] 🗄️ [DB] Database initialized | C:\techKingPOS\TechKingPOS.app\bin\Debug\net8.0-windows\Data\app.db
+2026-01-03 22:49:39 [INFO] 📊 [REPORT] Loading sales summary | 2026-01-03 → 2026-01-03
+2026-01-03 22:49:39 [INFO] ✅ [REPORT] Sales summary loaded | Receipts=1, Total=200.0
+2026-01-03 22:49:39 [INFO] 📦 [REPORT] Loading sold items | 2026-01-03 → 2026-01-03
+2026-01-03 22:49:39 [INFO] ✅ [REPORT] Sold items loaded | Items=1
+2026-01-03 22:49:39 [INFO] 📦 [INVENTORY] Inventory loaded | Condition=Quantity = 0, Count=0

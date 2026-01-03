@@ -8,6 +8,10 @@ namespace TechKingPOS.App.Models
         public decimal Total { get; set; }
         public decimal Paid { get; set; }
         public decimal Balance { get; set; }
+        public int BranchId { get; set; }
+
+        public bool IsOverdue =>
+    (DateTime.Now - LastPaymentDate).TotalDays > 30;
 
         public DateTime LastPaymentDate { get; set; }
         public int DaysSinceLastPayment =>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 using TechKingPOS.App.Models;
+using TechKingPOS.App.Security;
 using TechKingPOS.App.Services;
 
 namespace TechKingPOS.App.Data
@@ -49,10 +50,10 @@ namespace TechKingPOS.App.Data
                     Quantity,
                     TargetQuantity
                 FROM Items
-                WHERE {condition}
+                WHERE {condition} AND (@branchId = 0 OR BranchId = @branchId)
                 ORDER BY Name ASC;
             ";
-
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {

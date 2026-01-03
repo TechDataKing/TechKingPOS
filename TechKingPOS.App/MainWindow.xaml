@@ -3,67 +3,259 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="TechKing POS"
         WindowState="Maximized"
-        Background="#1F2937">
+        Background="#1E3A8A">
 
-    <Grid>
+<Window.Resources>
+
+    <Style x:Key="TaskMenuButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="#FFF8E7"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="Padding" Value="14,0"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0,4,0,4"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="6">
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#F3EAD3"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#EADFBF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</Window.Resources>
+
+
+    <Grid PreviewMouseDown="RootGrid_MouseDown">
 
         <!-- ================= DESKTOP ================= -->
         <Canvas x:Name="Desktop"
-                Background="#F5F6FA"/>
+                Background="#1E3A8A"/>
 
-        <!-- ================= TOP TASKBAR (OVERLAY) ================= -->
-        <Border Height="42"
-                Background="#111827"
-                VerticalAlignment="Top"
-                Panel.ZIndex="10">
+                    <!-- ================= TOP TASKBAR (OVERLAY) ================= -->
+            <Border Height="42"
+                    Background="#111827"
+                    VerticalAlignment="Top"
+                    Panel.ZIndex="10">
 
-            <StackPanel x:Name="TaskBar"
-                        Orientation="Horizontal"
+                <Grid MouseDown="MainGrid_MouseDown">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LEFT SIDE: EXISTING TASK BAR -->
+                    <StackPanel x:Name="TaskBar"
+                                Grid.Column="0"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="10,0"/>
+
+            <!-- RIGHT SIDE: USER PROFILE -->
+            <Grid Grid.Column="1"
+                VerticalAlignment="Center"
+                Margin="0,0,12,0">
+
+                <!-- USER BUTTON -->
+                <Border Background="Transparent"
+                        Cursor="Hand"
                         VerticalAlignment="Center"
-                        Margin="10,0"/>
-        </Border>
+                        MouseLeftButtonUp="ToggleUserMenu">
+
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+
+                        <TextBlock Text="👤"
+                                FontSize="14"
+                                Foreground="White"
+                                Margin="0,0,6,0"/>
+
+                        <TextBlock x:Name="UserNameText"
+                                Text="John"
+                                Foreground="White"
+                                FontWeight="SemiBold"/>
+
+                        <TextBlock Text=" ▼"
+                                Foreground="White"
+                                FontSize="10"
+                                Margin="4,0,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- DROPDOWN POPUP -->
+                <Popup x:Name="UserMenu"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding RelativeSource={RelativeSource PreviousData}}"
+                    StaysOpen="False"
+                    AllowsTransparency="True">
+
+                    <Border Background="White"
+                            CornerRadius="6"
+                            Width="160"
+                            BorderBrush="#E5E7EB"
+                            BorderThickness="1"
+                            Padding="4">
+
+                        <StackPanel>
+
+                            <Button Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Left"
+                                    Padding="10"
+                                    Click="EditProfile_Click">
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="✏️"
+                                            Margin="0,0,8,0"/>
+                                    <TextBlock Text="Edit Profile"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Separator/>
+
+                            <Button Background="Transparent"
+                                    BorderThickness="0"
+                                    HorizontalContentAlignment="Left"
+                                    Padding="10"
+                                    Click="Logout_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="⏻"
+                                            Margin="0,0,8,0"/>
+                                    <TextBlock Text="Logout"/>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
+                </Grid>
+
+
+                </Grid>
+            </Border>
+
 
         <!-- ================= FLOATING TASK BUTTON ================= -->
-        <Button Content="☰"
-                Width="56"
-                Height="56"
-                FontSize="22"
-                Background="#111827"
-                Foreground="White"
-                BorderThickness="0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Margin="20"
-                Panel.ZIndex="20"
-                Click="ToggleTaskMenu"/>
+<Grid HorizontalAlignment="Left"
+      VerticalAlignment="Bottom"
+      Margin="20"
+      Panel.ZIndex="20">
 
-        <!-- ================= TASK MENU ================= -->
-        <Border x:Name="TaskMenu"
-                Width="220"
-                Background="White"
-                CornerRadius="10"
-                Padding="10"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Margin="20,0,0,90"
-                Visibility="Collapsed"
-                Panel.ZIndex="30">
+    <!-- FLOATING BUTTON -->
+    <Button x:Name="TaskToggleButton"
+            Content="☰"
+            Width="56"
+            Height="70"
+            FontSize="26"
+            FontWeight="SemiBold"
+            Background="#111827"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="ToggleTaskMenu"
+            MouseEnter="TaskButton_MouseEnter"
+            MouseLeave="TaskButton_MouseLeave"/>
 
-            <StackPanel>
-                <TextBlock Text="Windows"
-                           Margin="0,0,0,10"/>
+    <!-- HOVER LABEL -->
+    <Popup x:Name="TaskButtonHint"
+           Placement="Right"
+           PlacementTarget="{Binding ElementName=TaskToggleButton}"
+           AllowsTransparency="True"
+           IsHitTestVisible="False">
 
-                <Button Content="Sales" Click="OpenSales"/>
-                <Button Content="Add Items" Click="OpenItems"/>
-                <Button Content="Manage Stock" Click="OpenStock"/>
-                <Button Content="Credit Manager" Click="OpenCredit"/>
-                <Button Content="Reports" Click="OpenReports"/>
-                <Button Content="Workers" Click="OpenWorkers"/>
-                <Button Content="Settings" Click="OpenSettings"/>
-            
-            </StackPanel>
+        <Border Background="#111827"
+                Padding="10,6"
+                CornerRadius="6"
+                Opacity="0.95">
 
+            <TextBlock Text="Start"
+                       Foreground="White"
+                       FontSize="13"/>
         </Border>
+    </Popup>
 
+</Grid>
+
+
+ <!-- ================= TASK MENU ================= -->
+<Border x:Name="TaskMenu"
+        Width="220"
+        Background="White"
+        CornerRadius="10"
+        Padding="10"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        Margin="20,0,0,90"
+        Visibility="Collapsed"
+        Panel.ZIndex="30">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TITLE -->
+        <TextBlock Text="Windows"
+                   FontWeight="SemiBold"
+                   Margin="4,0,0,10"/>
+
+        <!-- BUTTONS -->
+        <StackPanel Grid.Row="1">
+
+    <Button x:Name="btnSales"
+            Content="Sales"
+            Click="OpenSales"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnItems"
+            Content="Add Items"
+            Click="OpenItems"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnStock"
+            Content="Manage Stock"
+            Click="OpenStock"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnCredit"
+            Content="Credit Manager"
+            Click="OpenCredit"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnReports"
+            Content="Reports"
+            Click="OpenReports"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnWorkers"
+            Content="Workers"
+            Click="OpenWorkers"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+    <Button x:Name="btnSettings"
+            Content="Settings"
+            Click="OpenSettings"
+            Style="{StaticResource TaskMenuButtonStyle}"/>
+
+</StackPanel>
+
+    </Grid>
+</Border>
     </Grid>
 </Window>

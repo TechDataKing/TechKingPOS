@@ -56,246 +56,276 @@
                 Background="White"
                 CornerRadius="8"
                 Padding="20">
+
             <Grid>
-                </Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                     <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-                        <Grid>
+                <!-- ================= SCROLLABLE CONTENT ================= -->
+                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                    <Grid>
 
-                    <!-- ================= BUSINESS ================= -->
-                            <StackPanel x:Name="BusinessPanel">
+                        <!-- ================= BUSINESS ================= -->
+                        <StackPanel x:Name="BusinessPanel">
                             <TextBlock Text="Business Settings"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,20"/>
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,20"/>
 
-                        <TextBlock Text="Business Name"/>
-                        <TextBox x:Name="BusinessNameBox" Height="38" Width="320"/>
+                            <TextBlock Text="Business Name"/>
+                            <TextBox x:Name="BusinessNameBox" Height="38" Width="420"/>
 
-                        <TextBlock Text="Branch Name" Margin="0,12,0,2"/>
-                        <TextBox x:Name="BranchNameBox" Height="38" Width="320"/>
+                            <TextBlock Text="Branch Name or code" Margin="0,12,0,2"/>
+                            <TextBox x:Name="BranchNameBox" Height="38" Width="420"/>
 
-                        <TextBlock Text="Phone" Margin="0,12,0,2"/>
-                        <TextBox x:Name="PhoneBox" Height="38" Width="320"/>
+                            <TextBlock Text="Phone" Margin="0,12,0,2"/>
+                            <TextBox x:Name="PhoneBox" Height="38" Width="420"/>
 
-                        <TextBlock Text="Email" Margin="0,12,0,2"/>
-                        <TextBox Height="38" Width="320"/>
+                            <TextBlock Text="Email" Margin="0,12,0,2"/>
+                            <TextBox x:Name= "EmailBox" Height="38" Width="420"/>
 
-                        <TextBlock Text="Physical Address" Margin="0,12,0,2"/>
-                        <TextBox Height="60" Width="420" AcceptsReturn="True"/>
+                            <TextBlock Text="Physical Address" Margin="0,12,0,2"/>
+                            <TextBox x:Name="AddressBox" Height="60" Width="420" AcceptsReturn="True"/>
 
-                        <TextBlock Text="Receipt Footer Message" Margin="0,12,0,2"/>
-                        <TextBox x:Name="FooterBox" Height="60" Width="420" AcceptsReturn="True"/>
-                    </StackPanel>
+                            <TextBlock Text="Receipt Footer Message" Margin="0,12,0,2"/>
+                            <TextBox x:Name="FooterBox" Height="60" Width="420" AcceptsReturn="True"/>
+                        </StackPanel>
 
-                    <!-- ================= RECEIPT ================= -->
-                    <StackPanel x:Name="ReceiptPanel" Visibility="Collapsed">
-                        <TextBlock Text="Receipt &amp; Print Settings"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,20"/>
+                        <!-- ================= RECEIPT ================= -->
+                        <StackPanel x:Name="ReceiptPanel" Visibility="Collapsed">
+                            <TextBlock Text="Receipt &amp; Print Settings"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,20"/>
 
-                        <CheckBox Content="Auto-print receipt after sale"/>
-                        <CheckBox Content="Show cashier name on receipt" Margin="0,8,0,0"/>
-                        <CheckBox Content="Show logo on receipt" Margin="0,8,0,0"/>
+                    <CheckBox x:Name="AutoPrintReceiptCheck"
+                            Content="Auto-print receipt after sale"/>
 
-                        <TextBlock Text="Paper Size" Margin="0,12,0,2"/>
-                        <ComboBox Height="36" Width="200">
-                            <ComboBoxItem Content="58mm"/>
-                            <ComboBoxItem Content="80mm"/>
-                        </ComboBox>
+                    <CheckBox x:Name="ShowCashierCheck"
+                            Content="Show cashier name on receipt"
+                            Margin="0,8,0,0"/>
 
-                        <TextBlock Text="Receipt Copies" Margin="0,12,0,2"/>
-                        <TextBox Height="36" Width="120"/>
-                    </StackPanel>
+                    <CheckBox x:Name="ShowLogoCheck"
+                            Content="Show logo on receipt"
+                            Margin="0,8,0,0"/>
 
-                    <!-- ================= SALES & PAYMENT ================= -->
+                            <TextBlock Text="Paper Size" Margin="0,12,0,2"/>
+
+                            <ComboBox x:Name="PaperSizeCombo"
+                                    Height="36"
+                                    Width="200">
+                                <ComboBoxItem Content="58mm"/>
+                                <ComboBoxItem Content="80mm"/>
+                            </ComboBox>
+
+                            <TextBlock Text="Receipt Copies" Margin="0,12,0,2"/>
+
+                            <TextBox x:Name="ReceiptCopiesBox"
+                                    Height="36"
+                                    Width="120"/>
+
+                        </StackPanel>
+
+                        <!-- ================= SALES & PAYMENT ================= -->
                     <StackPanel x:Name="SalesPanel" Visibility="Collapsed">
 
                         <TextBlock Text="Sales &amp; Payment Settings"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,20"/>
+                                FontSize="20"
+                                FontWeight="Bold"
+                                Margin="0,0,0,20"/>
 
-                        <CheckBox Content="Allow negative stock" Margin="0,12,0,0"/>
-                        <CheckBox Content="Allow price editing during sale (Admin)" Margin="0,8,0,0"/>
-                        <CheckBox Content="Enable credit sales" Margin="0,8,0,0"/>
+                        <CheckBox x:Name="AllowNegativeStockCheck"
+                                Content="Allow negative stock"
+                                Margin="0,12,0,0"/>
 
-                        <!-- VAT -->
-                        <CheckBox Content="Enable VAT"/>
-                        <TextBlock Text="VAT Percentage" Margin="0,8,0,2"/>
-                        <TextBox Height="36" Width="120"/>
+                        <CheckBox x:Name="AllowPriceEditCheck"
+                                Content="Allow price editing during sale (Admin)"
+                                Margin="0,8,0,0"/>
 
-                        <Separator Margin="0,16"/>
+                        <CheckBox x:Name="EnableCreditSalesCheck"
+                                Content="Enable credit sales"
+                                Margin="0,8,0,0"/>
 
-                        <!-- DISCOUNTS -->
-                        <TextBlock Text="Discount Settings"
-                                   FontSize="16"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,10"/>
+                        <Separator Margin="0,12"/>
 
-                        <CheckBox x:Name="EnableDiscountCheck"
-                                  Content="Enable Discounts"
-                                  FontWeight="Bold"
-                                  Margin="0,0,0,10"/>
+                        <CheckBox x:Name="VatEnabledCheck"
+                                Content="Enable VAT"/>
 
-                        <!-- FIXED -->
-                        <CheckBox x:Name="FixedDiscountCheck"
-                                  Content="Allow Fixed Amount Discount"/>
+                        <TextBlock Text="VAT Percentage"
+                                Margin="0,8,0,2"/>
 
-                        <StackPanel Margin="20,4,0,10">
-                            <TextBlock Text="Maximum Fixed Discount Amount (KES)"/>
-                            <TextBox x:Name="MaxFixedDiscountBox" Height="36" Width="140"/>
-                        </StackPanel>
+                        <TextBox x:Name="VatPercentBox"
+                                Height="36"
+                                Width="120"/>
 
-                        <!-- PERCENTAGE -->
-                        <CheckBox x:Name="PercentageDiscountCheck"
-                                  Content="Allow Percentage Discount"/>
 
-                        <StackPanel Margin="20,4,0,10">
-                            <TextBlock Text="Maximum Percentage Discount (%)"/>
-                            <TextBox x:Name="MaxPercentageDiscountBox" Height="36" Width="120"/>
-                        </StackPanel>
 
-                        <Separator Margin="0,16"/>
+                            <Separator Margin="0,16"/>
 
-                        <!-- ================= CONDITIONAL DISCOUNT (ADVANCED) ================= -->
-                        <CheckBox x:Name="ConditionalDiscountCheck"
-                                  Content="Enable Conditional Discount"
-                                  Margin="0,10,0,6"/>
+                            <TextBlock Text="Discount Settings"
+                                       FontSize="16"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,10"/>
 
-                        <StackPanel Margin="20,0,0,0">
+                            <CheckBox x:Name="EnableDiscountCheck"
+                                      Content="Enable Discounts"
+                                      FontWeight="Bold"
+                                      Margin="0,0,0,10"/>
 
-                            <!-- Discount Value Type -->
-                            <TextBlock Text="Discount Value Type" FontWeight="Bold"/>
+                            <CheckBox x:Name="FixedDiscountCheck"
+                                      Content="Allow Fixed Amount Discount"/>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
-                                <RadioButton x:Name="CondValueFixed"
-                                             Content="Fixed Amount (KES)"
-                                             IsChecked="True"
-                                             Margin="0,0,20,0"/>
-                                <RadioButton x:Name="CondValuePercent"
-                                             Content="Percentage (%)"/>
+                            <StackPanel Margin="20,4,0,10">
+                                <TextBlock Text="Maximum Fixed Discount Amount (KES)"/>
+                                <TextBox x:Name="MaxFixedDiscountBox" Height="36" Width="140"/>
                             </StackPanel>
 
-                            <!-- Discount Based On -->
-                            <TextBlock Text="Discount Based On" FontWeight="Bold"/>
+                            <CheckBox x:Name="PercentageDiscountCheck"
+                                      Content="Allow Percentage Discount"/>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
-                                <RadioButton x:Name="CondBasedAbove"
-                                             Content="Above Certain Sales"
-                                             Margin="0,0,20,0"/>
-                                <RadioButton x:Name="CondBasedRanges"
-                                             Content="Sales Ranges"
-                                             IsChecked="True"/>
+                            <StackPanel Margin="20,4,0,10">
+                                <TextBlock Text="Maximum Percentage Discount (%)"/>
+                                <TextBox x:Name="MaxPercentageDiscountBox" Height="36" Width="120"/>
                             </StackPanel>
 
-                            <!-- ABOVE SALES -->
-                            <StackPanel x:Name="AboveSalesPanel" Margin="0,4,0,12">
-                                <TextBlock Text="Apply discount when subtotal is above (KES)"/>
-                                <TextBox x:Name="ConditionalMinSubtotalBox" Height="36" Width="160"/>
-                            </StackPanel>
-                            <StackPanel Margin="0,6,0,12">
-                                <TextBlock Text="Discount Amount to Apply"/>
-                                <TextBox x:Name="ConditionalDiscountAmountBox"
-                                        Height="36"
-                                        Width="160"/>
-                            </StackPanel>
+                            <Separator Margin="0,16"/>
+
+                            <CheckBox x:Name="ConditionalDiscountCheck"
+                                      Content="Enable Conditional Discount"
+                                      Margin="0,10,0,6"/>
+
+                            <StackPanel Margin="20,0,0,0">
+
+                                <TextBlock Text="Discount Value Type" FontWeight="Bold"/>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
+                                    <RadioButton x:Name="CondValueFixed"
+                                                 Content="Fixed Amount (KES)"
+                                                 IsChecked="True"
+                                                 Margin="0,0,20,0"/>
+                                    <RadioButton x:Name="CondValuePercent"
+                                                 Content="Percentage (%)"/>
+                                </StackPanel>
+
+                                <TextBlock Text="Discount Based On" FontWeight="Bold"/>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
+                                   
+                                    <RadioButton x:Name="CondBasedRanges"
+                                                 Content="Sales Ranges"
+                                                 IsChecked="True"/>
+                                </StackPanel>
 
 
-                            <!-- RANGE BASED -->
-                            <StackPanel x:Name="RangeSalesPanel">
+                                <StackPanel x:Name="RangeSalesPanel">
 
-                                <TextBlock Text="Discount Type: Percentage (%)"
-                                           FontStyle="Italic"
-                                           Margin="0,0,0,6"/>
+                                    <TextBlock Text="Discount Type: Percentage (%)"
+                                               FontStyle="Italic"
+                                               Margin="0,0,0,6"/>
 
-                                <TextBlock Text="Sales Range Rules"
-                                           FontWeight="Bold"
-                                           Margin="0,4,0,6"/>
+                                    <TextBlock Text="Sales Range Rules"
+                                               FontWeight="Bold"
+                                               Margin="0,4,0,6"/>
 
-                                <DataGrid Height="200"
-                                          AutoGenerateColumns="False"
-                                          CanUserAddRows="False"
-                                          HeadersVisibility="Column">
+                                    <DataGrid x:Name="RangesGrid"
+                                              Height="200"
+                                              AutoGenerateColumns="False"
+                                              CanUserAddRows="False"
+                                              ItemsSource="{Binding}"
+                                              HeadersVisibility="Column">
 
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="From (KES)" Width="*"/>
-                                        <DataGridTextColumn Header="To (KES)" Width="*"/>
-                                        <DataGridTextColumn Header="Discount (%)" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="From (KES)" Binding="{Binding From}" Width="*"/>
+                                            <DataGridTextColumn Header="To (KES)" Binding="{Binding To}" Width="*"/>
+                                            <DataGridTextColumn  x:Name="DiscountColumn"
+                                                Header="Discount (%)" Binding="{Binding DiscountPercent}" Width="*"/>
+                                        </DataGrid.Columns>
+                                    </DataGrid>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                    <Button Content="+ Add Range"
-                                            Width="120"
-                                            Height="34"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content="🗑 Remove Selected"
-                                            Width="160"
-                                            Height="34"/>
+                                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                        <Button Content="+ Add Range"
+                                                Width="120"
+                                                Height="34"
+                                                Margin="0,0,10,0"
+                                                Click="AddRange_Click"/>
+                                        <Button Content="🗑 Remove Selected"
+                                                Width="160"
+                                                Height="34"
+                                                Click="RemoveRange_Click"/>
+                                    </StackPanel>
+
                                 </StackPanel>
 
                             </StackPanel>
-
                         </StackPanel>
 
-                    </StackPanel>
-
-                    <!-- ================= USERS ================= -->
-                    <StackPanel x:Name="UsersPanel" Visibility="Collapsed">
-                        <TextBlock Text="Users &amp; Security"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,20"/>
-
-                        <CheckBox Content="Require login on app start"/>
-                        <CheckBox Content="Auto logout after inactivity" Margin="0,8,0,0"/>
-                        <CheckBox Content="Allow workers to void sales" Margin="0,12,0,0"/>
-                        <CheckBox Content="Allow workers to edit prices" Margin="0,8,0,0"/>
-                        <CheckBox Content="Allow workers to give discounts" Margin="0,8,0,0"/>
-                    </StackPanel>
-
-                    <!-- ================= SYSTEM ================= -->
-                    <StackPanel x:Name="SystemPanel" Visibility="Collapsed">
-                        <TextBlock Text="System Settings"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,20"/>
-
-                        <TextBlock Text="License Status"/>
-                        <TextBox Height="36" IsReadOnly="True" Width="260"/>
-
-                        <TextBlock Text="License Expiry" Margin="0,12,0,2"/>
-                        <TextBox Height="36" IsReadOnly="True" Width="260"/>
-
-                        <Button Content="Activate License"
-                                Width="160"
-                                Height="38"
-                                Margin="0,16,0,0"/>
-                    </StackPanel>
-                    <Separator Margin="0,12"/>
-
-                    
-
-
-                </Grid>
-            </ScrollViewer>
-
-            <Button Grid.Row="1" Content="💾 Save Changes"
-                            Height="44"
-                            Background="#1976D2"
-                            Foreground="White"
+                <!-- ================= USERS ================= -->
+                <StackPanel x:Name="UsersPanel" Visibility="Collapsed">
+                    <TextBlock Text="Users &amp; Security"
+                            FontSize="20"
                             FontWeight="Bold"
-                            Margin="0,8,0,0"
-                            HorizontalAlignment="Right"
-                            Click="SaveChanges_Click"/>
+                            Margin="0,0,0,20"/>
 
-        </Grid>
+                    <CheckBox x:Name="RequireLoginCheck"
+                            Content="Require login on app start"/>
 
+                    <CheckBox x:Name="AutoLogoutCheck"
+                            Content="Auto logout after inactivity"
+                            Margin="0,8,0,0"/>
+
+                    <CheckBox x:Name="AllowVoidSalesCheck"
+                            Content="Allow workers to cancel sales"
+                            Margin="0,12,0,0"/>
+
+                    <CheckBox x:Name="AllowEditPricesCheck"
+                            Content="Allow workers to edit prices"
+                            Margin="0,8,0,0"/>
+
+                    <CheckBox x:Name="AllowGiveDiscountsCheck"
+                            Content="Allow workers to give discounts"
+                            Margin="0,8,0,0"/>
+                </StackPanel>
+
+
+                        <!-- ================= SYSTEM ================= -->
+                        <StackPanel x:Name="SystemPanel" Visibility="Collapsed">
+                            <TextBlock Text="System Settings"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Margin="0,0,0,20"/>
+
+                            <TextBlock Text="License Status"/>
+                            <TextBox Height="36" IsReadOnly="True" Width="260"/>
+
+                            <TextBlock Text="License Expiry" Margin="0,12,0,2"/>
+                            <TextBox Height="36" IsReadOnly="True" Width="260"/>
+
+                            <Button Content="Activate License"
+                                    Width="160"
+                                    Height="38"
+                                    Margin="0,16,0,0"/>
+                                     <Separator Margin="0,12"/>
+                        </StackPanel>
+
+                       
+
+                    </Grid>
+                </ScrollViewer>
+
+                <!-- ================= SAVE BUTTON ================= -->
+                <Button Grid.Row="1"
+                        Content="💾 Save Changes"
+                        Height="44"
+                        Background="#1976D2"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Margin="0,8,0,20"
+                        HorizontalAlignment="Right"
+                        Click="SaveChanges_Click"/>
+
+            </Grid>
         </Border>
     </Grid>
 </Window>

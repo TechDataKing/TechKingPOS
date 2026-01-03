@@ -5,17 +5,60 @@
         Height="650"
         Width="1000"
         Background="#F4F6F8"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Loaded="ReportsWindow_Loaded">
 
     <Window.Resources>
+            <!-- ===== COLOR PALETTE ===== -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#2563EB"/>   <!-- Blue -->
+        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#1E40AF"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#DC2626"/>    <!-- Red -->
+        <SolidColorBrush x:Key="TextDarkBrush" Color="#1F2937"/>
+        <SolidColorBrush x:Key="BorderBrushSoft" Color="#CBD5E1"/>
+        <SolidColorBrush x:Key="HoverBrush" Color="#EFF6FF"/>
 
         <!-- TAB STYLE -->
-        <Style TargetType="TabItem">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="26,10"/>
-            <Setter Property="Margin" Value="4,0"/>
-        </Style>
+<!-- ===== TAB STYLE ===== -->
+<Style TargetType="TabItem">
+    <Setter Property="FontSize" Value="16"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Padding" Value="22,10"/>
+    <Setter Property="Margin" Value="4,0"/>
+    <Setter Property="Foreground" Value="{StaticResource TextDarkBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TabItem">
+                <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="6"
+                        Padding="{TemplateBinding Padding}">
+                    <ContentPresenter
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"/>
+                </Border>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter TargetName="Border"
+                                Property="Background"
+                                Value="{StaticResource PrimaryBrush}"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border"
+                                Property="Background"
+                                Value="{StaticResource HoverBrush}"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
 
         <!-- DATAGRID CLEAN -->
         <Style TargetType="DataGrid">
@@ -28,16 +71,175 @@
         </Style>
 
         <!-- COMBO STYLE -->
-        <Style TargetType="ComboBox">
-            <Setter Property="Height" Value="42"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Padding" Value="10"/>
-        </Style>
+<!-- ===== COMBOBOX STYLE ===== -->
+<Style TargetType="ComboBox">
+    <Setter Property="Height" Value="42"/>
+    <Setter Property="FontSize" Value="15"/>
+    <Setter Property="Padding" Value="10,4"/>
+    <Setter Property="Background" Value="White"/>
+    <Setter Property="BorderBrush" Value="{StaticResource BorderBrushSoft}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Foreground" Value="{StaticResource TextDarkBrush}"/>
+
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ComboBox">
+                <Grid>
+                    <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6"/>
+
+                    <ContentPresenter
+                        Margin="10,2,30,2"
+                        VerticalAlignment="Center"/>
+
+                    <!-- Dropdown Arrow -->
+                    <TextBlock Text="▼"
+                               Foreground="{StaticResource PrimaryBrush}"
+                               HorizontalAlignment="Right"
+                               Margin="0,0,10,0"
+                               VerticalAlignment="Center"/>
+                </Grid>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border"
+                                Property="BorderBrush"
+                                Value="{StaticResource PrimaryBrush}"/>
+                    </Trigger>
+
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter TargetName="Border"
+                                Property="BorderBrush"
+                                Value="{StaticResource PrimaryBrush}"/>
+                        <Setter TargetName="Border"
+                                Property="BorderThickness"
+                                Value="2"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+<!-- ===== BUTTON STYLE ===== -->
+<Style TargetType="Button">
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Padding" Value="14,6"/>
+    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Cursor" Value="Hand"/>
+
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="6">
+                    <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                </Border>
+
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border"
+                                Property="Background"
+                                Value="{StaticResource PrimaryDarkBrush}"/>
+                    </Trigger>
+
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="Border"
+                                Property="Opacity"
+                                Value="0.85"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
 
     </Window.Resources>
 
     <Grid Margin="15">
-        <TabControl Background="White">
+
+        <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    
+        <!-- ================= REPORTS TOOLBAR ================= -->
+<Border Grid.Row="0"
+        Background="White"
+        Padding="14"
+        CornerRadius="8"
+        Margin="0,0,0,12">
+
+    <Grid VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>   <!-- REPORTS -->
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>   <!-- Branch Label -->
+            <ColumnDefinition Width="8"/>
+            <ColumnDefinition Width="220"/>    <!-- Branch Combo -->
+            <ColumnDefinition Width="*"/>      <!-- Spacer -->
+            <ColumnDefinition Width="Auto"/>   <!-- Buttons -->
+        </Grid.ColumnDefinitions>
+
+        <!-- TITLE -->
+        <TextBlock Grid.Column="0"
+                   Text="📊 REPORTS"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"/>
+
+        <!-- BRANCH LABEL -->
+        <TextBlock Grid.Column="2"
+                   Text="Branch:"
+                   FontSize="14"
+                   FontWeight="SemiBold"
+                   VerticalAlignment="Center"/>
+
+        <!-- BRANCH COMBO -->
+        <ComboBox Grid.Column="4"
+                  x:Name="BranchComboBox"
+                  VerticalAlignment="Center"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectionChanged="BranchComboBox_SelectionChanged">
+
+
+        </ComboBox>
+
+        <!-- ACTION BUTTONS -->
+        <StackPanel Grid.Column="6"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
+
+            <Button Content="📄 Export PDF"
+                    Margin="0,0,10,0"
+                    Padding="14,6"
+                    Click="ExportPdf_Click"/>
+
+            <Button Content="📊 Export Excel"
+                    Margin="0,0,10,0"
+                    Padding="14,6"
+                    Click="ExportExcel_Click"/>
+
+            <Button Content="🖨 Print"
+                    Padding="14,6"
+                    Click="PrintReport_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Border>
+
+
+        <TabControl x:Name="ReportsTabControl" Grid.Row="1" Background="White" >
 
             <!-- ================= SALES TAB ================= -->
             <TabItem Header="  Sales Report  ">
@@ -150,69 +352,8 @@
             
             </TabItem>
 
-            <!-- ================= INVENTORY TAB ================= -->
-            <TabItem Header="  Inventory  ">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <Grid Margin="18">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- FILTER -->
-                    <Border Background="White"
-                            Padding="14"
-                            CornerRadius="8"
-                            Margin="0,0,0,14">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="View Inventory:"
-                                       FontSize="16"
-                                       FontWeight="SemiBold"
-                                       VerticalAlignment="Center"
-                                       Margin="0,0,12,0"/>
-
-                            <ComboBox x:Name="InventoryFilterCombo"
-                                      Width="260"
-                                      SelectionChanged="InventoryFilterChanged">
-                                <ComboBoxItem Content="Out of Stock" IsSelected="True"/>
-                                <ComboBoxItem Content="Running Low"/>
-                                <ComboBoxItem Content="Good Stock"/>
-                            </ComboBox>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- INVENTORY LIST -->
-                    <Border Grid.Row="1"
-                            Background="White"
-                            Padding="14"
-                            CornerRadius="8">
-
-                        <DataGrid x:Name="InventoryGrid"
-                                  AutoGenerateColumns="False"
-                                  IsReadOnly="True">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Item"
-                                                    Binding="{Binding Name}"
-                                                    Width="*"/>
-                                <DataGridTextColumn Header="Qty"
-                                                    Binding="{Binding Quantity}"
-                                                    Width="120"/>
-                                <DataGridTextColumn Header="Target"
-                                                    Binding="{Binding TargetQuantity}"
-                                                    Width="120"/>
-                                <DataGridTextColumn Header="Deficit"
-                                                    Binding="{Binding Deficit}"
-                                                    Width="120"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-
-                    </Border>
-                </Grid>
-                </ScrollViewer>
-            </TabItem>
-            <!-- ================= CREDIT TAB ================= -->
-    <!-- ================= CREDIT TAB ================= -->
-<TabItem Header="  Credit  ">
+           <!-- ================= INVENTORY TAB ================= -->
+<TabItem Header="  Inventory  ">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="18">
             <Grid.RowDefinitions>
@@ -220,86 +361,420 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- HEADER + SEARCH -->
+            <!-- FILTER BAR -->
             <Border Background="White"
                     Padding="14"
                     CornerRadius="8"
                     Margin="0,0,0,14">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center">
 
-                    <!-- Title -->
-                    <TextBlock Text="💳 CREDIT ACCOUNTS"
-                               FontSize="20"
-                               FontWeight="Bold"
+                    <TextBlock Text="From"
+                               FontSize="13"
+                               FontWeight="SemiBold"
                                VerticalAlignment="Center"/>
 
-                    <!-- Search -->
-                    <TextBox x:Name="CreditSearchTextBox"
-                             Grid.Column="1"
-                             Width="280"
-                             Height="40"
-                             Margin="24,0,0,0"
-                             VerticalContentAlignment="Center"
-                             FontSize="14"
-                             TextChanged="CreditSearchChanged"/>
+                    <DatePicker x:Name="InventoryFromDatePicker"
+                                Width="140"
+                                Margin="8,0,16,0"/>
 
-                    <!-- TOTAL CREDIT BOOK -->
-                    <StackPanel Grid.Column="2"
-                                Margin="24,0,0,0"
-                                VerticalAlignment="Center">
-                        <TextBlock Text="Total Credit Book"
-                                   FontSize="14"
-                                   FontWeight="SemiBold"
-                                   Foreground="#666"
-                                   HorizontalAlignment="Right"/>
-                        <TextBlock x:Name="TotalCreditText"
-                                   FontSize="18"
-                                   FontWeight="Bold"
-                                   Foreground="#C0392B"
-                                   HorizontalAlignment="Right"
-                                   Text="0.00"/>
-                    </StackPanel>
-                </Grid>
+                    <TextBlock Text="To"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <DatePicker x:Name="InventoryToDatePicker"
+                                Width="140"
+                                Margin="8,0,16,0"/>
+
+                    <TextBlock Text="View"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"/>
+
+                    <ComboBox x:Name="InventoryFilterCombo"
+                              Width="220"
+                              Margin="8,0"
+                              SelectionChanged="InventoryFilterChanged">
+                        <ComboBoxItem Content="Out of Stock" IsSelected="True"/>
+                        <ComboBoxItem Content="Running Low"/>
+                        <ComboBoxItem Content="Good Stock"/>
+                    </ComboBox>
+
+                    <Button Content="🔍 Load"
+                            Padding="14,6"
+                            Margin="10,0,0,0"
+                            Click="LoadInventoryByDate_Click"/>
+                </StackPanel>
             </Border>
 
-            <!-- CREDIT LIST -->
+            <!-- INVENTORY LIST -->
             <Border Grid.Row="1"
                     Background="White"
                     Padding="14"
                     CornerRadius="8">
-                <DataGrid x:Name="CreditGrid"
+
+                <DataGrid x:Name="InventoryGrid"
                           AutoGenerateColumns="False"
                           IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Receipt"
-                                            Binding="{Binding ReceiptNumber}"
-                                            Width="180"/>
-                        <DataGridTextColumn Header="Name"
-                                            Binding="{Binding CustomerName}"
+                        <DataGridTextColumn Header="Item"
+                                            Binding="{Binding Name}"
                                             Width="*"/>
-                        <DataGridTextColumn Header="Phone"
-                                            Binding="{Binding Phone}"
-                                            Width="160"/>
-                        <DataGridTextColumn Header="Balance"
-                                            Binding="{Binding Balance}"
+                        <DataGridTextColumn Header="Qty"
+                                            Binding="{Binding Quantity}"
                                             Width="120"/>
-                        <DataGridTextColumn Header="Date"
-                                            Binding="{Binding CreatedAt}"
-                                            Width="140"/>
+                        <DataGridTextColumn Header="Target"
+                                            Binding="{Binding TargetQuantity}"
+                                            Width="120"/>
+                        <DataGridTextColumn Header="Deficit"
+                                            Binding="{Binding Deficit}"
+                                            Width="120"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </Border>
 
+            </Border>
         </Grid>
     </ScrollViewer>
 </TabItem>
 
-            
+        <!-- ================= CREDIT TAB ================= -->
+        <TabItem Header="  Credit  ">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid Margin="18">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- HEADER + SEARCH -->
+                    <Border Background="White"
+                            Padding="14"
+                            CornerRadius="8"
+                            Margin="0,0,0,10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title -->
+                            <TextBlock Text="💳 CREDIT ACCOUNTS"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    VerticalAlignment="Center"/>
+
+                            <!-- Search -->
+                            <Grid Grid.Column="1"
+                                Margin="24,0,0,0"
+                                VerticalAlignment="Center">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="12"/>
+                                    <ColumnDefinition Width="280"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Label -->
+                                <TextBlock Text="Search"
+                                        FontSize="13"
+                                        FontWeight="SemiBold"
+                                        Foreground="#555"
+                                        VerticalAlignment="Center"/>
+
+                                <!-- Search Box -->
+                                <Grid Grid.Column="2"
+                                    Height="40">
+
+                                    <TextBox x:Name="CreditSearchTextBox"
+                                            FontSize="14"
+                                            VerticalContentAlignment="Center"
+                                            TextChanged="CreditSearchChanged"/>
+
+                                    <!-- Placeholder -->
+                                    <TextBlock Text="Search by name or phone"
+                                            Margin="10,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Foreground="#999"
+                                            IsHitTestVisible="False">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Text, ElementName=CreditSearchTextBox}"
+                                                                Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                </Grid>
+                            </Grid>
+
+                            <!-- TOTAL CREDIT BOOK -->
+                            <StackPanel Grid.Column="2"
+                                        Margin="24,0,0,0"
+                                        VerticalAlignment="Center">
+                                <TextBlock Text="Total Credit Book"
+                                        FontSize="14"
+                                        FontWeight="SemiBold"
+                                        Foreground="#666"
+                                        HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="TotalCreditText"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="#C0392B"
+                                        HorizontalAlignment="Right"
+                                        Text="0.00"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- DATE FILTER BAR -->
+                    <Border Grid.Row="1"
+                            Background="White"
+                            Padding="12"
+                            CornerRadius="8"
+                            Margin="0,0,0,14">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+
+                            <TextBlock Text="From"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#555"
+                                    VerticalAlignment="Center"/>
+
+                            <DatePicker x:Name="CreditFromDatePicker"
+                                        Width="140"
+                                        Margin="8,0,16,0"/>
+
+                            <TextBlock Text="To"
+                                    FontSize="13"
+                                    FontWeight="SemiBold"
+                                    Foreground="#555"
+                                    VerticalAlignment="Center"/>
+
+                            <DatePicker x:Name="CreditToDatePicker"
+                                        Width="140"
+                                        Margin="8,0,16,0"/>
+
+                            <Button Content="Apply"
+                                    Width="90"
+                                    Height="32"
+                                    Margin="0,0,6,0"
+                                    Click="ApplyCreditDateFilter_Click"/>
+
+                            <Button Content="Clear"
+                                    Width="90"
+                                    Height="32"
+                                    Click="ClearCreditDateFilter_Click"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- CREDIT LIST -->
+                    <Border Grid.Row="2"
+                            Background="White"
+                            Padding="14"
+                            CornerRadius="8">
+                        <DataGrid x:Name="CreditGrid"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Receipt"
+                                                    Binding="{Binding ReceiptNumber}"
+                                                    Width="180"/>
+                                <DataGridTextColumn Header="Name"
+                                                    Binding="{Binding CustomerName}"
+                                                    Width="*"/>
+                                <DataGridTextColumn Header="Phone"
+                                                    Binding="{Binding Phone}"
+                                                    Width="160"/>
+                                <DataGridTextColumn Header="Balance"
+                                                    Binding="{Binding Balance}"
+                                                    Width="120"/>
+                                <DataGridTextColumn Header="Date"
+                                                    Binding="{Binding CreatedAt}"
+                                                    Width="140"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+                </Grid>
+            </ScrollViewer>
+        </TabItem>
+
+
+ <!-- ================= EXPENSES TAB ================= -->
+<TabItem Header="  Expenses  ">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="18">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ========== LEFT: ADD / EDIT EXPENSE ========== -->
+            <Border Grid.Column="0"
+                    Background="White"
+                    Padding="16"
+                    CornerRadius="8">
+
+                <StackPanel>
+                    <TextBlock x:Name="ExpenseFormTitle"
+                               Text="➕ Add Expense"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Margin="0,0,0,16"/>
+
+                    <TextBlock Text="Date"/>
+                    <DatePicker x:Name="ExpenseDatePicker"
+                                Height="36"
+                                Margin="0,4,0,12"/>
+
+                    <TextBlock Text="Category"/>
+                    <ComboBox x:Name="ExpenseCategoryCombo"
+                              Height="36"
+                              Margin="0,4,0,12">
+                        <ComboBoxItem Content="Rent"/>
+                        <ComboBoxItem Content="Electricity"/>
+                        <ComboBoxItem Content="Water"/>
+                        <ComboBoxItem Content="Salaries"/>
+                        <ComboBoxItem Content="Transport"/>
+                        <ComboBoxItem Content="Supplies"/>
+                        <ComboBoxItem Content="Other"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Description"/>
+                    <TextBox x:Name="ExpenseDescriptionTextBox"
+                             Height="60"
+                             TextWrapping="Wrap"
+                             Margin="0,4,0,12"/>
+
+                    <TextBlock Text="Amount"/>
+                    <TextBox x:Name="ExpenseAmountTextBox"
+                             Height="36"
+                             Margin="0,4,0,12"/>
+
+                    <TextBlock Text="Payment Method"/>
+                    <ComboBox x:Name="ExpensePaymentCombo"
+                              Height="36"
+                              Margin="0,4,0,20">
+                        <ComboBoxItem Content="Cash"/>
+                        <ComboBoxItem Content="Mpesa"/>
+                        <ComboBoxItem Content="Bank"/>
+                    </ComboBox>
+
+                    <Button x:Name="SaveExpenseButton"
+                            Content="Save Expense"
+                            Height="40"
+                            Background="#DC2626"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="SaveExpense_Click"/>
+                </StackPanel>
+            </Border>
+
+            <!-- ========== RIGHT: EXPENSE LIST ========== -->
+            <Border Grid.Column="2"
+                    Background="White"
+                    Padding="16"
+                    CornerRadius="8">
+
+                <StackPanel>
+
+                    <!-- FILTER BAR -->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,0,0,12">
+
+                        <TextBlock Text="From"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <DatePicker x:Name="ExpenseFromDatePicker"
+                                    Width="140"
+                                    Margin="8,0,16,0"/>
+
+                        <TextBlock Text="To"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <DatePicker x:Name="ExpenseToDatePicker"
+                                    Width="140"
+                                    Margin="8,0,16,0"/>
+
+                        <Button Content="🔍 Load"
+                                Padding="14,6"
+                                Click="LoadExpensesByDate_Click"/>
+                    </StackPanel>
+
+                    <!-- HEADER -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="📋 Expenses"
+                                   FontSize="18"
+                                   FontWeight="Bold"/>
+
+                        <TextBlock x:Name="TotalExpensesText"
+                                   Grid.Column="1"
+                                   Text="0.00"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#DC2626"/>
+                    </Grid>
+
+                    <!-- EXPENSE TABLE -->
+                    <DataGrid x:Name="ExpensesGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date"
+                                                Binding="{Binding Date}"
+                                                Width="120"/>
+                            <DataGridTextColumn Header="Category"
+                                                Binding="{Binding Category}"
+                                                Width="140"/>
+                            <DataGridTextColumn Header="Description"
+                                                Binding="{Binding Description}"
+                                                Width="*"/>
+                            <DataGridTextColumn Header="Amount"
+                                                Binding="{Binding Amount}"
+                                                Width="120"/>
+
+                            <DataGridTemplateColumn Header="Actions" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="✏"
+                                                    Width="36"
+                                                    Margin="0,0,6,0"
+                                                    Click="EditExpense_Click"/>
+                                            <Button Content="🗑"
+                                                    Width="36"
+                                                    Click="DeleteExpense_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</TabItem>
+        
 
         </TabControl>
     </Grid>

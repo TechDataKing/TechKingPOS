@@ -9,32 +9,48 @@
 
     <!-- ================= RESOURCES ================= -->
     <Window.Resources>
-<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-
         <!-- WATERMARK TEXTBOX -->
-        <Style x:Key="WatermarkTextBox" TargetType="TextBox">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost"/>
-                            <TextBlock Text="{TemplateBinding Tag}"
-                                       Margin="12,0,0,0"
-                                       Foreground="#333"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"
-                                       IsHitTestVisible="False"
-                                       Visibility="{Binding Text.IsEmpty,
-                                           RelativeSource={RelativeSource TemplatedParent},
-                                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Padding" Value="12"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
+<Style x:Key="WatermarkTextBox" TargetType="TextBox">
+    <Setter Property="Height" Value="40"/>
+    <Setter Property="Padding" Value="12"/>
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TextBox">
+                <Grid>
+                    <ScrollViewer x:Name="PART_ContentHost"/>
+
+                    <TextBlock Text="{TemplateBinding Tag}"
+                               Margin="12,0,0,0"
+                               Foreground="#777"
+                               FontSize="14"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text.Length,
+                                            RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Text.Length,
+                                            RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Value="1">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
 
         <!-- TAB ITEM STYLE -->
         <Style TargetType="TabItem">
@@ -216,6 +232,442 @@
                     </Grid>
                 </Border>
             </TabItem>
+<!-- ================= DAMAGED GOODS TAB ================= -->
+<TabItem Header=" Damaged ">
+    <Border Padding="15" Background="White">
+        <Grid>
+            <!-- 3 COLUMNS -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ================= LEFT : ITEM SEARCH ================= -->
+            <Border Grid.Column="0"
+                    Padding="12"
+                    Margin="0,0,10,0"
+                    Background="#FAFAFA"
+                    BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                <DockPanel LastChildFill="True">
+
+                    <!-- Search -->
+                    <TextBox DockPanel.Dock="Top"
+                             Style="{StaticResource WatermarkTextBox}"
+                             TextChanged="DamagedSearchBox_TextChanged"
+                             Tag="Search item / alias..."
+                             Margin="0,0,0,10"/>
+
+                    <!-- Items List -->
+                    <ListBox x:Name="DamagedItemSearchList"
+                             FontSize="14"
+                               SelectionChanged="DamagedItemSearchList_SelectionChanged"/>
+
+                </DockPanel>
+            </Border>
+
+            <!-- ================= MIDDLE : DAMAGED ENTRY ================= -->
+            <Border Grid.Column="1"
+                    Padding="20"
+                    Margin="0,0,10,0"
+                    Background="#FAFAFA"
+                    BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                <StackPanel>
+
+    <TextBlock Text="Mark Damaged Item"
+               FontSize="18"
+               FontWeight="SemiBold"
+               Margin="0,0,0,15"/>
+
+    <TextBlock Text="Item Name"/>
+    <TextBox x:Name="DamagedNameBox"
+             Height="34"
+             IsReadOnly="True"
+             Margin="0,5,0,10"/>
+
+    <TextBlock Text="Alias"/>
+    <TextBox x:Name="DamagedAliasBox"
+             Height="34"
+             IsReadOnly="True"
+             Margin="0,5,0,10"/>
+
+    <TextBlock Text="Current Stock"/>
+    <TextBox x:Name="DamagedStockBox"
+             Height="34"
+             IsReadOnly="True"
+             Margin="0,5,0,10"/>
+
+    <TextBlock Text="Selling Price"/>
+    <TextBox x:Name="DamagedPriceBox"
+             Height="34"
+             IsReadOnly="True"
+             Margin="0,5,0,10"/>
+
+    <TextBlock Text="Damaged Quantity"/>
+    <TextBox x:Name="DamagedQtyBox"
+             Height="34"
+             Margin="0,5,0,15"/>
+
+    <!-- ================= REASON ================= -->
+    <TextBlock Text="Reason"/>
+
+    <ComboBox x:Name="DamageReasonCombo"
+              Height="34"
+              Margin="0,5,0,10"
+               SelectionChanged="DamageReasonCombo_SelectionChanged">
+        <ComboBoxItem Content="Broken"/>
+        <ComboBoxItem Content="Expired"/>
+        <ComboBoxItem Content="Spoiled"/>
+        <ComboBoxItem Content="Lost"/>
+        <ComboBoxItem Content="Other"/>
+    </ComboBox>
+
+    <!-- OTHER REASON -->
+    <TextBox x:Name="OtherReasonBox"
+             Height="34"
+             Margin="0,0,0,20"
+             Visibility="Collapsed"
+             Tag="Specify other reason"/>
+
+    <!-- Buttons -->
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Right">
+        <Button Content="Clear"
+                Width="90"
+                Height="34"
+                Margin="0,0,10,0"
+                Click = "ClearDamagedForm_Click"/>
+
+        <Button Content="Add"
+                Width="90"
+                Height="34"
+                Background="#1E88E5"
+                Foreground="White"
+                 Click="AddDamaged_Click"/>
+    </StackPanel>
+
+</StackPanel>
+
+            </Border>
+
+            <!-- ================= RIGHT : DAMAGED LIST ================= -->
+            <Border Grid.Column="2"
+                    Padding="12"
+                    Background="#FAFAFA"
+                    BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/> <!-- Search -->
+                        <RowDefinition Height="*"/>   <!-- List -->
+                        <RowDefinition Height="Auto"/> <!-- Delete -->
+                    </Grid.RowDefinitions>
+
+                    <!-- Search -->
+                    <TextBox Grid.Row="0"
+                             Style="{StaticResource WatermarkTextBox}"
+                             Tag="Search damaged items..."
+                             Margin="0,0,0,10"/>
+
+                    <!-- Damaged Items List -->
+<!-- Damaged Items List -->
+<DataGrid x:Name="DamagedItemsList"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          CanUserAddRows="False"
+          SelectionMode="Single"
+          Margin="5"
+          BorderThickness="0"
+          GridLinesVisibility="None"
+          FontSize="14"
+          HeadersVisibility="Column">
+
+    <!-- Optional: slightly bigger header text -->
+    <DataGrid.ColumnHeaderStyle>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontSize" Value="14.5"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </DataGrid.ColumnHeaderStyle>
+
+    <!-- Optional: increase row height a bit -->
+    <DataGrid.RowStyle>
+        <Style TargetType="DataGridRow">
+            <Setter Property="MinHeight" Value="32"/>
+        </Style>
+    </DataGrid.RowStyle>
+
+    <DataGrid.Columns>
+        <DataGridTextColumn Header="Item Name"
+                            Binding="{Binding Name}"
+                            Width="*" />
+
+        <DataGridTextColumn Header="Quantity"
+                            Binding="{Binding Quantity}"
+                            Width="80" />
+
+        <DataGridTextColumn Header="Buying Price"
+                            Binding="{Binding SellingPrice, StringFormat={}{0:0.00}}"
+                            Width="120" />
+
+        <DataGridTextColumn Header="Damaged At"
+                            Binding="{Binding CreatedAt, StringFormat={}{0:yyyy-MM-dd HH:mm}}"
+                            Width="160" />
+    </DataGrid.Columns>
+</DataGrid>
+
+
+
+                    <!-- Delete Button (Fixed) -->
+                    <Button Grid.Row="2"
+                            Content="Delete Selected"
+                            Height="38"
+                            Margin="0,10,0,0"
+                            Background="#E53935"
+                            Foreground="White"
+                            Click="DeleteDamaged_Click"/>
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Border>
+</TabItem>
+<TabItem Header=" Repack ">
+    <Border Padding="15" Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ================= LEFT : BULK ITEMS ================= -->
+            <Border Grid.Column="0"
+                    Padding="12"
+                    Margin="0,0,10,0"
+                    Background="#FAFAFA"
+                    BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                <DockPanel LastChildFill="True">
+
+                    <TextBox x:Name="RepackSearchBox"
+                             DockPanel.Dock="Top"
+                             Style="{StaticResource WatermarkTextBox}"
+                             Tag="Search bulk item..."
+                             TextChanged="RepackSearchBox_TextChanged"
+                             Margin="0,0,0,10"/>
+
+                    <ListBox x:Name="RepackItemList"
+                             FontSize="14"
+                             DisplayMemberPath="Name"
+                             SelectionChanged="RepackItemList_SelectionChanged"/>
+                </DockPanel>
+            </Border>
+
+            <!-- ================= RIGHT : SALE RULES ================= -->
+            <Border Grid.Column="1"
+                    Padding="18"
+                    Background="#FAFAFA"
+                    BorderBrush="#DDD"
+                    BorderThickness="1"
+                    CornerRadius="6">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/> <!-- HEADER -->
+                        <RowDefinition Height="Auto"/> <!-- META -->
+                        <RowDefinition Height="Auto"/> <!-- ADD PANEL -->
+                        <RowDefinition Height="*"/>    <!-- GRID -->
+                        <RowDefinition Height="Auto"/> <!-- ACTIONS -->
+                    </Grid.RowDefinitions>
+
+                    <!-- HEADER -->
+                    <StackPanel Grid.Row="0" Margin="0,0,0,10">
+                        <TextBlock Text="Sale Rules (Repack)"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+
+                        <TextBlock x:Name="RepackSelectedItemText"
+                                   Text="Select a bulk item"
+                                   Foreground="#666"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+
+                    <!-- ITEM META -->
+                    <StackPanel Grid.Row="1"
+                                Orientation="Horizontal"
+                                Margin="0,0,0,12">
+
+                        <TextBlock Text="Stock Unit:"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,6,0"/>
+
+                        <TextBlock x:Name="RepackStockUnitText"
+                                   Text="—"/>
+
+                        <TextBlock Text="   Available:"
+                                   FontWeight="SemiBold"
+                                   Margin="20,0,6,0"/>
+
+                        <TextBlock x:Name="RepackAvailableStockText"
+                                   Text="—"/>
+                    </StackPanel>
+
+                    <!-- ADD SALE RULE PANEL -->
+                    <Border x:Name="AddRepackRulePanel"
+                            Grid.Row="2"
+                            Margin="0,0,0,12"
+                            Padding="16"
+                            Background="White"
+                            BorderBrush="#CCC"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            HorizontalAlignment="Left"
+                            Visibility="Collapsed">
+
+                        <StackPanel>
+
+                            <TextBlock Text="Add Sale Rule"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Margin="0,0,0,10"/>
+
+                            <TextBlock x:Name="AddRuleItemText"
+                                       Foreground="#555"
+                                       Margin="0,0,0,6"/>
+
+                            <TextBlock x:Name="AddRuleUnitText"
+                                       Foreground="#555"
+                                       Margin="0,0,0,12"/>
+
+                            <TextBlock Text="Sell Amount"
+                                       FontWeight="SemiBold"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,6,0,12">
+                                <TextBox x:Name="AddRuleQuantityBox"
+                                         Width="120"
+                                         Height="32"/>
+
+                                <TextBlock x:Name="AddRuleUnitSuffix"
+                                           Margin="10,0,0,0"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <TextBlock Text="Price (KES)"
+                                       FontWeight="SemiBold"
+                                       />
+
+                            <TextBox x:Name="AddRulePriceBox"
+                                     Width="120"
+                                     Height="32"
+                                     Margin="0,6,0,12"
+                                     />
+
+                            <CheckBox x:Name="AddRuleActiveCheck"
+                                      Content="Active"
+                                      IsChecked="True"
+                                      Margin="0,0,0,14"/>
+
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right">
+
+                                <Button Content="SAVE"
+                                        Width="90"
+                                        Height="34"
+                                        Margin="0,0,10,0"
+                                        Click="SaveAddRepackRule_Click"/>
+
+                                <Button Content="CANCEL"
+                                        Width="90"
+                                        Height="34"
+                                        Click="CancelAddRepackRule_Click"/>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Border>
+
+                    <!-- RULES GRID -->
+                    <DataGrid x:Name="RepackRulesGrid"
+                              Grid.Row="3"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="None"
+                              FontSize="14"
+                              RowHeight="34"
+                              SelectionMode="Single"
+                                SelectionUnit="FullRow"
+                                SelectionChanged="RepackRulesGrid_SelectionChanged">
+                                                
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="UnitValue"
+                                                Binding="{Binding UnitValue}"
+                                                Width="100"/>
+
+                            <DataGridTextColumn Header="Unit"
+                                                Binding="{Binding UnitType}"
+                                                Width="80"/>
+
+                            <DataGridTextColumn Header="Selling Price"
+                                                Binding="{Binding SellingPrice}"
+                                                Width="120"/>
+
+                            <DataGridCheckBoxColumn Header="Active"
+                                                    Binding="{Binding IsActive}"
+                                                    Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- ACTIONS -->
+                    <StackPanel Grid.Row="4"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0,12,0,0">
+
+                        <Button Content="➕ Add Sale Rule"
+                                Width="140"
+                                Height="36"
+                                Margin="0,0,10,0"
+                                Click="OpenAddRepackRule_Click"/>
+
+                        <Button Content="✏ Edit"
+                                Width="80"
+                                Height="36"
+                                Margin="0,0,10,0"
+                                Click="EditRepackRule_Click"/>
+
+                        <Button Content="❌ Disable"
+                                Width="90"
+                                Height="36"
+                                Margin="0,0,10,0"
+                                Click="DisableRepackRule_Click"/>
+
+                        <Button Content="🗑 Delete"
+                                Width="90"
+                                Height="36"
+                                Background="#E53935"
+                                Foreground="White"
+                                Click="DeleteRepackRule_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</TabItem>
+
 
         </TabControl>
     </Grid>

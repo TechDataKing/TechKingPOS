@@ -1,0 +1,117 @@
+<Window x:Class="TechKingPOS.App.EditProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Edit Profile"
+        Height="520"
+        Width="420"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F5F6FA">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ================= HEADER ================= -->
+        <StackPanel HorizontalAlignment="Center" Margin="0,0,0,16">
+            <TextBlock Text="👤"
+                       FontSize="36"
+                       HorizontalAlignment="Center"/>
+
+            <TextBlock Text="User Profile"
+                       FontSize="20"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- ================= FORM ================= -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- FULL NAME -->
+                <TextBlock Text="Full Name"/>
+                <TextBox x:Name="NameBox"
+                         Height="38"
+                         Padding="10"
+                         Margin="0,4,0,10"/>
+
+                <!-- USERNAME (READ ONLY) -->
+                <TextBlock Text="Username / Login"/>
+                <TextBox x:Name="UsernameBox"
+                         Height="38"
+                         Padding="10"
+                         Margin="0,4,0,10"
+                         IsReadOnly="True"
+                         Background="#EEE"/>
+
+                <!-- EMAIL -->
+                <TextBlock Text="Email"/>
+                <TextBox x:Name="EmailBox"
+                         Height="38"
+                         Padding="10"
+                         Margin="0,4,0,10"/>
+
+                <!-- PHONE -->
+                <TextBlock Text="Phone"/>
+                <TextBox x:Name="PhoneBox"
+                         Height="38"
+                         Padding="10"
+                         Margin="0,4,0,16"/>
+
+                <Separator Margin="0,10"/>
+
+                <!-- ================= CHANGE PASSWORD ================= -->
+                <TextBlock Text="Change Password"
+                           FontWeight="SemiBold"
+                           Margin="0,0,0,10"/>
+
+                <!-- CURRENT -->
+                <TextBlock Text="Current Password"/>
+                <PasswordBox x:Name="CurrentPasswordBox"
+                             Height="38"
+                             Padding="10"
+                             Margin="0,4,0,10"/>
+
+                <!-- NEW -->
+                <TextBlock Text="New Password"/>
+                <PasswordBox x:Name="NewPasswordBox"
+                             Height="38"
+                             Padding="10"
+                             Margin="0,4,0,10"/>
+
+                <!-- CONFIRM -->
+                <TextBlock Text="Confirm Password"/>
+                <PasswordBox x:Name="ConfirmPasswordBox"
+                             Height="38"
+                             Padding="10"
+                             Margin="0,4,0,10"/>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- ================= FOOTER ================= -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+
+            <Button Content="Cancel"
+                    Width="90"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Click="Cancel_Click"/>
+
+            <Button Content="Save Changes"
+                    Width="120"
+                    Height="36"
+                    Background="#2E86DE"
+                    Foreground="White"
+                    Click="Save_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -12,22 +12,26 @@ namespace TechKingPOS.App
         }
         private void AddCredit_Click(object sender, RoutedEventArgs e)
 {
-    new SalesWindow().Show();
+    ((MainWindow)Application.Current.MainWindow)
+        .OpenSalesFromChild();
 }
 
 private void FindCustomer_Click(object sender, RoutedEventArgs e)
 {
-    new ReportsWindow().Show();
+    ((MainWindow)Application.Current.MainWindow)
+        .OpenReportsFromChild();
 }
 
 private void CreditSummary_Click(object sender, RoutedEventArgs e)
 {
-    new ReportsWindow().Show();
+    ((MainWindow)Application.Current.MainWindow)
+        .OpenReportsFromChild();
 }
 
 private void PaymentHistory_Click(object sender, RoutedEventArgs e)
 {
-    new ReportsWindow().Show();
+    ((MainWindow)Application.Current.MainWindow)
+        .OpenReportsFromChild();
 }
 
 

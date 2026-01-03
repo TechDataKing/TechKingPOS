@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Data;
+using TechKingPOS.App.Services;
 using ExcelDataReader;
 using System.Data;
 
@@ -25,31 +26,120 @@ namespace TechKingPOS.App
             Close();
         }
 
-        private void Import_Click(object sender, RoutedEventArgs e)
-        {
-            var validRows = _rows.Where(r => r.IsValid).ToList();
+   private void Import_Click(object sender, RoutedEventArgs e)
+{
+    var validRows = _rows.Where(r => r.IsValid).ToList();
 
-            foreach (var r in validRows)
-            {
-                ItemRepository.InsertItem(
-                    r.Name,
-                    r.Alias,
-                    decimal.Parse(r.MarkedPrice),
-                    decimal.Parse(r.SellingPrice),
-                    int.Parse(r.Quantity),
-                    r.Unit
+    var skipped = new List<ItemImportResult>();
+    var imported = 0;
+
+    foreach (var r in validRows)
+    {
+        decimal qty = decimal.Parse(
+            r.Quantity,
+            System.Globalization.CultureInfo.InvariantCulture
+        );
+
+        decimal marked = decimal.Parse(
+            r.MarkedPrice,
+            System.Globalization.CultureInfo.InvariantCulture
+        );
+
+        decimal selling = decimal.Parse(
+            r.SellingPrice,
+            System.Globalization.CultureInfo.InvariantCulture
+        );
+
+        decimal unitValue =
+            r.UnitType == "pieces"
+                ? 1m
+                : decimal.Parse(
+                    r.UnitValue,
+                    System.Globalization.CultureInfo.InvariantCulture
                 );
+
+        // 🔄 SAFE UNIT CONVERSION
+        if (!UnitConverter.TryToBase(
+                r.UnitType,
+                qty,
+                unitValue,
+                out var baseUnit,
+                out var baseQty,
+                out var unitError))
+        {
+            r.IsValid = false;
+            r.Error = unitError;
+            skipped.Add(r);
+            continue;
+        }
+
+        // 🔍 CHECK EXISTING ITEM
+        string cleanName = r.Name.Trim();
+        string? cleanAlias =
+            string.IsNullOrWhiteSpace(r.Alias) ? null : r.Alias.Trim();
+
+        var existing = ItemRepository.GetByNameOrAlias(cleanName, cleanAlias);
+
+        if (existing != null)
+        {
+            if (existing.UnitType != baseUnit)
+            {
+                r.IsValid = false;
+                r.Error =
+                    $"Unit mismatch: existing [{existing.UnitType}], import [{baseUnit}]. Confirm unit before importing.";
+                skipped.Add(r);
+                continue;
             }
 
-            MessageBox.Show(
-                $"{validRows.Count} items imported successfully",
-                "Import Complete",
-                MessageBoxButton.OK,
-                MessageBoxImage.Information
+            ItemRepository.AddStock(
+                existing.Id,
+                baseQty,
+                marked,
+                selling
             );
-
-            Close();
         }
+        else
+        {
+            ItemRepository.InsertItem(
+                r.Name,
+                r.Alias,
+                marked,
+                selling,
+                baseQty,
+                baseUnit,
+                unitValue
+            );
+        }
+
+        imported++;
+    }
+
+    // 📢 SUMMARY MESSAGE
+    var message =
+        $"Imported: {imported} items\n" +
+        $"Skipped: {skipped.Count} items";
+
+    if (skipped.Any())
+    {
+        message += "\n\nSkipped items:\n" +
+            string.Join(
+                "\n",
+                skipped.Select(s => $"- {s.Name}: {s.Error}")
+            );
+    }
+
+    MessageBox.Show(
+        message,
+        "Import Result",
+        MessageBoxButton.OK,
+        skipped.Any()
+            ? MessageBoxImage.Warning
+            : MessageBoxImage.Information
+    );
+
+    Close();
+}
+
 
         // ---------- CSV ----------
         public static List<ItemImportResult> FromCsv(string path)
@@ -66,7 +156,8 @@ namespace TechKingPOS.App
                     parts.ElementAtOrDefault(2),
                     parts.ElementAtOrDefault(3),
                     parts.ElementAtOrDefault(4),
-                    parts.ElementAtOrDefault(5)
+                    parts.ElementAtOrDefault(5),
+                    parts.ElementAtOrDefault(6)
                 );
 
                 results.Add(row);
@@ -98,7 +189,8 @@ namespace TechKingPOS.App
                     r[2]?.ToString(),
                     r[3]?.ToString(),
                     r[4]?.ToString(),
-                    r[5]?.ToString()
+                    r[5]?.ToString(),
+                    r[6]?.ToString()
                 );
 
                 results.Add(row);
@@ -114,7 +206,8 @@ namespace TechKingPOS.App
             string marked,
             string selling,
             string qty,
-            string unit)
+            string unitType,
+            string unitValue)
         {
             var row = new ItemImportResult
             {
@@ -123,14 +216,24 @@ namespace TechKingPOS.App
                 MarkedPrice = marked?.Trim(),
                 SellingPrice = selling?.Trim(),
                 Quantity = qty?.Trim(),
-                Unit = unit?.Trim()
+                UnitType = unitType?.Trim(),
+                UnitValue = unitValue?.Trim()
+
             };
 
             try
             {
                 decimal.Parse(row.MarkedPrice);
                 decimal.Parse(row.SellingPrice);
-                int.Parse(row.Quantity);
+                decimal.Parse(row.Quantity);
+
+                if (row.UnitType != "pieces")
+                {
+                    if (string.IsNullOrWhiteSpace(row.UnitValue))
+                        throw new Exception("UnitValue required");
+
+                    decimal.Parse(row.UnitValue);
+                }
 
                 row.IsValid = true;
                 row.Error = "OK";
@@ -140,6 +243,7 @@ namespace TechKingPOS.App
                 row.IsValid = false;
                 row.Error = "Invalid data";
             }
+
 
             return row;
         }

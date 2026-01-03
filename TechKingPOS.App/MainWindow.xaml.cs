@@ -4,11 +4,22 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TechKingPOS.App.Security;
+using TechKingPOS.App.Services;
+
 
 namespace TechKingPOS.App
 {
-    public partial class MainWindow : Window
+    class WindowStateData
     {
+        public bool IsMaximized;
+        public double Left;
+        public double Top;
+        public double Width;
+        public double Height;
+    }
+    public partial class MainWindow : Window
+    {   public static MainWindow Instance { get; private set; }
         private Border _draggingWindow;
         private Point _dragOffset;
 
@@ -54,6 +65,11 @@ namespace TechKingPOS.App
         public MainWindow()
         {
             InitializeComponent();
+            ApplyPermissions();
+            LoadLoggedInUser();
+            Instance = this;
+             if (SessionService.IsLoggedIn)
+            UserNameText.Text = SessionService.CurrentUser.Name;
         }
 
         // ================= DEFAULT SIZES =================
@@ -62,8 +78,8 @@ namespace TechKingPOS.App
             switch (key)
             {
                 case "Sales": host.Width = 1200; host.Height = 700; break;
-                case "Items": host.Width = 500; host.Height = 600; break;
-                case "Stock": host.Width = 800; host.Height = 700; break;
+                case "Items": host.Width = 500; host.Height = 660; break;
+                case "Stock": host.Width = 1200; host.Height = 700; break;
                 case "Credit": host.Width = 900; host.Height = 650; break;
                 case "Reports": host.Width = 1200; host.Height = 700; break;
                 case "Workers": host.Width = 850; host.Height = 700; break;
@@ -81,33 +97,44 @@ namespace TechKingPOS.App
         }
 
         // ================= OPEN WINDOW =================
-        private void OpenWindow(string key, Func<Window> factory)
-        {
-            TaskMenu.Visibility = Visibility.Collapsed;
+private void OpenWindow(
+    string key,
+    Func<Window> factory)
+{
+   if (!PermissionService.CanOpen(key))
+    {
+        MessageBox.Show("Access denied", "Permission",
+            MessageBoxButton.OK, MessageBoxImage.Warning);
+        return;
+    }
 
-            if (_openWindows.ContainsKey(key))
-            {
-                RestoreWindow(key);
-                return;
-            }
+    TaskMenu.Visibility = Visibility.Collapsed;
 
-            var win = factory();
-            var content = win.Content as UIElement;
-            win.Content = null;
-            win.Close();
+    if (_openWindows.ContainsKey(key))
+    {
+        RestoreWindow(key);
+        return;
+    }
 
-            var host = CreateChildHost(win.Title, content, key);
-            ApplyDefaultSize(key, host);
+    var win = factory();
 
-            _openWindows[key] = host;
-            Desktop.Children.Add(host);
+    var content = win.Content as UIElement;
+    win.Content = null;
+    win.Close();
 
-            Canvas.SetLeft(host, 120);
-            Canvas.SetTop(host, 80);
+    var host = CreateChildHost(win.Title, content, key);
+    ApplyDefaultSize(key, host);
 
-            AddTaskButton(key, win.Title);
-            BringToFront(host);
-        }
+    _openWindows[key] = host;
+    Desktop.Children.Add(host);
+
+    Canvas.SetLeft(host, 120);
+    Canvas.SetTop(host, 80);
+
+    AddTaskButton(key, win.Title);
+    BringToFront(host);
+}
+
 
         // ================= TASKBAR =================
         private void AddTaskButton(string key, string title)
@@ -411,34 +438,168 @@ namespace TechKingPOS.App
         }
 
         // ================= ROUTES =================
-        private void OpenSales(object sender, RoutedEventArgs e) =>
-            OpenWindow("Sales", () => new SalesWindow());
+private void OpenSales(object sender, RoutedEventArgs e) =>
+    OpenWindow("Sales", () => new SalesWindow());
 
-        private void OpenItems(object sender, RoutedEventArgs e) =>
-            OpenWindow("Items", () => new AddItemWindow());
+private void OpenItems(object sender, RoutedEventArgs e) =>
+    OpenWindow("Items", () => new AddItemWindow());
 
-        private void OpenStock(object sender, RoutedEventArgs e) =>
-            OpenWindow("Stock", () => new ManageStockWindow());
+private void OpenStock(object sender, RoutedEventArgs e) =>
+    OpenWindow("Stock", () => new ManageStockWindow());
 
-        private void OpenCredit(object sender, RoutedEventArgs e) =>
-            OpenWindow("Credit", () => new CreditManagement());
+private void OpenCredit(object sender, RoutedEventArgs e) =>
+    OpenWindow("Credit", () => new CreditManagement());
 
-        private void OpenReports(object sender, RoutedEventArgs e) =>
-            OpenWindow("Reports", () => new ReportsWindow());
-
-        private void OpenWorkers(object sender, RoutedEventArgs e) =>
-            OpenWindow("Workers", () => new WorkerWindow());
-
-        private void OpenSettings(object sender, RoutedEventArgs e) =>
-            OpenWindow("Settings", () => new SettingsWindow());
-    }
-
-    class WindowStateData
+private void OpenReports(object sender, RoutedEventArgs e) =>
+    OpenWindow("Reports", () =>
     {
-        public bool IsMaximized;
-        public double Left;
-        public double Top;
-        public double Width;
-        public double Height;
+        var w = new ReportsWindow();
+        w.InitializeReport();
+        return w;
+    });
+
+private void OpenWorkers(object sender, RoutedEventArgs e) =>
+    OpenWindow("Workers", () => new WorkerWindow());
+
+private void OpenSettings(object sender, RoutedEventArgs e) =>
+    OpenWindow("Settings", () => new SettingsWindow());
+
+            public void OpenReportsFromChild()
+        {
+            OpenWindow("Reports", () =>
+            {
+                var w = new ReportsWindow();
+                w.InitializeReport();
+                return w;
+            });
+        }
+
+public void OpenSalesFromChild()
+{
+    OpenWindow("Sales", () => new SalesWindow());
+}
+
+
+private void ApplyPermissions()
+{
+    // If worker is logged in → restrict access
+    if (UserSession.IsWorker)
+    {
+        // Worker allowed windows
+        btnSales.Visibility   = Visibility.Visible;
+        btnStock.Visibility   = Visibility.Visible;
+        btnCredit.Visibility  = Visibility.Visible;
+
+        // Worker NOT allowed windows
+        btnReports.Visibility = Visibility.Collapsed;
+        btnWorkers.Visibility = Visibility.Collapsed;
+        btnSettings.Visibility = Visibility.Collapsed;
+    }
+    else
+    {
+        // Admin → everything visible
+        btnSales.Visibility   = Visibility.Visible;
+        btnItems.Visibility   = Visibility.Visible;
+        btnStock.Visibility   = Visibility.Visible;
+        btnCredit.Visibility  = Visibility.Visible;
+        btnReports.Visibility = Visibility.Visible;
+        btnWorkers.Visibility = Visibility.Visible;
+        btnSettings.Visibility = Visibility.Visible;
     }
 }
+
+private void LoadLoggedInUser()
+{
+    if (SessionService.CurrentUser == null)
+    {
+        UserNameText.Text = "Guest";
+        return;
+    }
+
+    string fullName = SessionService.CurrentUser.Name ?? "";
+
+    // FIRST NAME ONLY
+    string firstName = fullName
+        .Trim()
+        .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .FirstOrDefault() ?? "User";
+
+    UserNameText.Text = firstName;
+}
+        private void ToggleUserMenu(object sender, MouseButtonEventArgs e)
+        {
+            UserMenu.IsOpen = !UserMenu.IsOpen;
+        }
+
+private void Logout_Click(object sender, RoutedEventArgs e)
+{
+    // End session
+    SessionService.Logout();
+
+    // Show login window
+    var login = new LoginWindow();
+    Application.Current.MainWindow = login;
+    login.Show();
+
+    // Close main window
+    this.Close();
+}
+
+private void EditProfile_Click(object sender, RoutedEventArgs e)
+{
+    if (!SessionService.IsLoggedIn)
+        return;
+
+    var win = new EditProfileWindow
+    {
+        Owner = this
+    };
+
+    win.ShowDialog();
+
+    // Close the dropdown after opening
+    UserMenu.IsOpen = false;
+}
+
+public static void RefreshUserName(string name)
+{
+    Instance?.Dispatcher.Invoke(() =>
+    {
+        Instance.UserNameText.Text = name;
+    });
+}
+private void RootGrid_MouseDown(object sender, MouseButtonEventArgs e)
+{
+    // Close task menu if click is outside it
+    if (TaskMenu.Visibility == Visibility.Visible &&
+        !TaskMenu.IsMouseOver)
+    {
+        TaskMenu.Visibility = Visibility.Collapsed;
+    }
+
+    // Close user dropdown if click is outside it
+    if (UserMenu.IsOpen && !UserMenu.IsMouseOver)
+    {
+        UserMenu.IsOpen = false;
+    }
+}
+
+private void MainGrid_MouseDown(object sender, MouseButtonEventArgs e)
+{
+    if (UserMenu.IsOpen && !UserMenu.IsMouseOver)
+    {
+        UserMenu.IsOpen = false;
+    }
+}
+private void TaskButton_MouseEnter(object sender, MouseEventArgs e)
+{
+    TaskButtonHint.IsOpen = true;
+}
+
+private void TaskButton_MouseLeave(object sender, MouseEventArgs e)
+{
+    TaskButtonHint.IsOpen = false;
+}
+
+   }  
+ }

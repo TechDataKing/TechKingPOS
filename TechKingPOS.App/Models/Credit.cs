@@ -7,5 +7,7 @@ namespace TechKingPOS.App.Models
         public decimal Total { get; set; }
         public decimal Paid { get; set; }
         public decimal Balance { get; set; }
+        public int BranchId { get; set; }
+
     }
 }

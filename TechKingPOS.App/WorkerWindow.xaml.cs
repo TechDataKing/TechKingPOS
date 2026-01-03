@@ -4,56 +4,143 @@ using System.Windows;
 using System.Windows.Controls;
 using TechKingPOS.App.Data;
 using TechKingPOS.App.Models;
+using TechKingPOS.App.Security;
+using TechKingPOS.App.Services; 
 
 namespace TechKingPOS.App
 {
     public partial class WorkerWindow : Window
     {
         private List<WorkerView> _allWorkers = new();
+        private int? _editingWorkerId = null;
+        private WorkerView _editingWorker = null;
+
+private List<Branch> _branches = new();
 
         public WorkerWindow()
         {
             InitializeComponent();
             LoadWorkers();
+            LoadBranches();
         }
+private Window GetMainWindow()
+{
+    var main = Application.Current.MainWindow;
+
+    if (main == null || !main.IsVisible)
+        throw new InvalidOperationException("Main window is not available.");
+
+    return main;
+}
 
         private void LoadWorkers()
-        {
+        { int branchId = SessionContext.CurrentBranchId;
             _allWorkers = WorkerRepository.GetAll();
             WorkersGrid.ItemsSource = _allWorkers;
         }
+private void SaveWorker_Click(object sender, RoutedEventArgs e)
+{
+    if (string.IsNullOrWhiteSpace(NameBox.Text) ||
+        string.IsNullOrWhiteSpace(NationalIdBox.Text) ||
+        string.IsNullOrWhiteSpace(PhoneBox.Text))
+    {
+        MessageBox.Show("Name, ID and Phone are required.");
+        return;
+    }
 
-        private void SaveWorker_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(NameBox.Text) ||
-                string.IsNullOrWhiteSpace(NationalIdBox.Text) ||
-                string.IsNullOrWhiteSpace(PhoneBox.Text))
-            {
-                MessageBox.Show("Name, ID and Phone are required.");
-                return;
-            }
+    var selectedRoleItem = RoleBox.SelectedItem as ComboBoxItem;
+    var roleText = selectedRoleItem?.Tag?.ToString();
 
-            WorkerRepository.Insert(
-                NameBox.Text.Trim(),
-                NationalIdBox.Text.Trim(),
-                PhoneBox.Text.Trim(),
-                EmailBox.Text.Trim()
-            );
+    UserRole role = roleText == "Admin"
+        ? UserRole.Admin
+        : UserRole.Worker;
 
-            NameBox.Clear();
-            NationalIdBox.Clear();
-            PhoneBox.Clear();
-            EmailBox.Clear();
+    // ================= EDIT MODE =================
+    if (_editingWorker != null)
+{
+    var confirm = MessageBox.Show(
+        "Do you want to edit this worker?",
+        "Confirm Edit",
+        MessageBoxButton.YesNo,
+        MessageBoxImage.Warning);
 
-            LoadWorkers();
-        }
+    if (confirm != MessageBoxResult.Yes)
+        return;
+
+    var changes = new Dictionary<string, object>();
+
+    if (NameBox.Text.Trim() != _editingWorker.Name)
+        changes["Name"] = NameBox.Text.Trim();
+
+    if (NationalIdBox.Text.Trim() != _editingWorker.NationalId)
+        changes["NationalId"] = NationalIdBox.Text.Trim();
+
+    if (PhoneBox.Text.Trim() != _editingWorker.Phone)
+        changes["Phone"] = PhoneBox.Text.Trim();
+
+    if (EmailBox.Text.Trim() != _editingWorker.Email)
+        changes["Email"] = EmailBox.Text.Trim();
+
+    var selectedRole =
+        ((ComboBoxItem)RoleBox.SelectedItem).Tag.ToString() == "Admin"
+        ? UserRole.Admin
+        : UserRole.Worker;
+
+    if (selectedRole.ToString() != _editingWorker.Role)
+        changes["Role"] = (int)selectedRole;
+
+    int branchId = SessionContext.CurrentBranchId;
+    if (branchId != _editingWorker.BranchId)
+        changes["BranchId"] = branchId;
+
+    if (changes.Count == 0)
+    {
+        MessageBox.Show("No changes detected.");
+        return;
+    }
+
+    WorkerRepository.UpdateProfileByAdmin(
+        _editingWorker.Id,
+        changes);
+
+    MessageBox.Show("Worker updated successfully.");
+
+    _editingWorker = null;
+}
+
+    // ================= CREATE MODE =================
+    else
+    {
+        WorkerRepository.Insert(
+            NameBox.Text.Trim(),
+            NationalIdBox.Text.Trim(),
+            PhoneBox.Text.Trim(),
+            EmailBox.Text.Trim(),
+            role,
+            SessionContext.CurrentBranchId
+        );
+
+        MessageBox.Show("Worker created successfully.");
+    }
+
+    // RESET FORM
+    NameBox.Clear();
+    NationalIdBox.Clear();
+    PhoneBox.Clear();
+    EmailBox.Clear();
+    RoleBox.SelectedIndex = 1;
+
+    LoadWorkers();
+}
+
+
 
         private void Activate_Click(object sender, RoutedEventArgs e)
         {
             if (WorkersGrid.SelectedItem is not WorkerView worker)
                 return;
 
-            WorkerRepository.SetActive(worker.Id, true);
+            WorkerRepository.ActivateWorker(worker.Id);
             LoadWorkers();
         }
 
@@ -62,7 +149,7 @@ namespace TechKingPOS.App
             if (WorkersGrid.SelectedItem is not WorkerView worker)
                 return;
 
-            WorkerRepository.SetActive(worker.Id, false);
+            WorkerRepository.DeactivateWorker(worker.Id);
             LoadWorkers();
         }
 
@@ -82,5 +169,97 @@ namespace TechKingPOS.App
                 w.NationalId.ToLower().Contains(text)
             ).ToList();
         }
+
+
+private void EditWorker_Click(object sender, RoutedEventArgs e)
+{
+    if (WorkersGrid.SelectedItem is not WorkerView worker)
+    {
+        MessageBox.Show("Please select a worker to edit.");
+        return;
+    }
+
+    if (!UserSession.IsAdmin)
+    {
+        MessageBox.Show("Only admin can edit worker details.");
+        return;
+    }
+
+    // ENTER EDIT MODE
+    _editingWorker = worker;
+    _editingWorkerId = worker.Id;
+
+    // Populate form
+    NameBox.Text = worker.Name;
+    NationalIdBox.Text = worker.NationalId;
+    PhoneBox.Text = worker.Phone;
+    EmailBox.Text = worker.Email;
+
+    // Role select
+    RoleBox.SelectedIndex =
+        worker.Role == "Admin" ? 0 : 1;
+
+    MessageBox.Show("Edit mode enabled. Update details and click Save.");
+}
+private void AddBranch_Click(object sender, RoutedEventArgs e)
+{
+    var win = new AddBranchWindow
+    {
+        Owner = GetMainWindow(),
+        WindowStartupLocation = WindowStartupLocation.CenterOwner
+    };
+
+    win.ShowDialog();
+    LoadBranches();
+}
+private void EditBranch_Click(object sender, RoutedEventArgs e)
+{
+    if (BranchCombo.SelectedItem is not Branch branch)
+    {
+        MessageBox.Show("Select a branch first.");
+        return;
+    }
+
+    var win = new EditBranchWindow(branch)
+    {
+        Owner = GetMainWindow(),
+        WindowStartupLocation = WindowStartupLocation.CenterOwner
+    };
+
+    win.ShowDialog();
+    LoadBranches();
+}
+
+
+
+private void BranchCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (BranchCombo.SelectedValue == null)
+        return;
+
+    SessionContext.CurrentBranchId =
+        (int)BranchCombo.SelectedValue;
+
+    LoadWorkers();
+}
+private void LoadBranches()
+{
+    _branches = BranchRepository.GetActive();
+
+    if (_branches.Count == 0)
+    {
+        MessageBox.Show("No active branches found.");
+        return;
+    }
+
+    BranchCombo.ItemsSource = _branches;
+
+    // Default → Main / first active
+    BranchCombo.SelectedIndex = 0;
+
+    SessionContext.CurrentBranchId =
+        (int)BranchCombo.SelectedValue;
+}
+
     }
 }

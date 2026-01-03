@@ -25,39 +25,83 @@
         <!-- FORM -->
         <StackPanel Grid.Row="1" VerticalAlignment="Top">
 
-            <!-- NAME -->
-            <TextBlock Text="Item Name"/>
-            <Grid Margin="0,4,0,10">
-                <TextBox x:Name="NameBox" Height="38" Padding="10"/>
-                <TextBlock Text="e.g Sugar"
-                           Margin="12,0"
-                           VerticalAlignment="Center"
-                           Foreground="#888"
-                           IsHitTestVisible="False"
-                           Visibility="{Binding Text.IsEmpty, ElementName=NameBox,
-                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </Grid>
+<!-- NAME -->
+<TextBlock Text="Item Name"/>
+<Grid Margin="0,4,0,10">
+    <TextBox x:Name="NameBox"
+             Height="38"
+             Padding="10"
+             VerticalContentAlignment="Center"/>
 
-            <!-- ALIAS -->
-            <TextBlock Text="Alias"/>
-            <Grid Margin="0,4,0,10">
-                <TextBox x:Name="AliasBox" Height="38" Padding="10"/>
-                <TextBlock Text="Alias / more description"
-                           Margin="12,0"
-                           VerticalAlignment="Center"
-                           Foreground="#888"
-                           IsHitTestVisible="False"
-                           Visibility="{Binding Text.IsEmpty, ElementName=AliasBox,
-                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                           <!-- SUGGESTIONS (FOR NAME + ALIAS) -->
-                            <ListBox x:Name="ItemSuggestions"
-                                    MaxHeight="140"
-                                    Margin="0,0,0,10"
-                                    Visibility="Collapsed"
-                                    DisplayMemberPath="Name"
-                                    SelectionChanged="ItemSuggestions_SelectionChanged"/>
+    <!-- Placeholder -->
+    <TextBlock Text="e.g Sugar"
+               Margin="12,0"
+               VerticalAlignment="Center"
+               Foreground="#B0B0B0"
+               IsHitTestVisible="False">
+        <TextBlock.Style>
+            <Style TargetType="TextBlock">
+                <!-- hidden by default -->
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Style.Triggers>
+                    <!-- show ONLY when empty -->
+                    <DataTrigger Binding="{Binding Text, ElementName=NameBox}" Value="">
+                        <Setter Property="Visibility" Value="Visible"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </TextBlock.Style>
+    </TextBlock>
+</Grid>
 
-            </Grid>
+
+<!-- ALIAS -->
+<TextBlock Text="Alias"/>
+
+<Grid Margin="0,4,0,10">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <!-- Alias input -->
+    <Grid Grid.Row="0">
+        <TextBox x:Name="AliasBox"
+                 Height="38"
+                 Padding="10"/>
+
+        <!-- Placeholder -->
+        <TextBlock Text="Alias / more description"
+                   Margin="12,0"
+                   VerticalAlignment="Center"
+                   Foreground="#B0B0B0"
+                   IsHitTestVisible="False">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <!-- hidden by default -->
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <!-- show ONLY when empty -->
+                        <DataTrigger Binding="{Binding Text, ElementName=AliasBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+
+    <!-- ✅ ONE suggestion list below Alias -->
+    <ListBox x:Name="ItemSuggestions"
+             Grid.Row="1"
+             MaxHeight="140"
+             Margin="0,4,0,0"
+             Visibility="Collapsed"
+             DisplayMemberPath="Name"
+             SelectionChanged="ItemSuggestions_SelectionChanged"/>
+</Grid>
+
+
 
             <!-- PRICES -->
             <TextBlock Text="Marked Price"/>
@@ -79,18 +123,29 @@
                      Padding="10"
                      Margin="0,4,0,10"/>
 
-            <!-- UNIT -->
-            <TextBlock Text="Unit"/>
-            <Grid Margin="0,4,0,10">
-                <TextBox x:Name="UnitBox" Height="38" Padding="10"/>
-                <TextBlock Text="e.g pcs, kg, ltr"
-                           Margin="12,0"
-                           VerticalAlignment="Center"
-                           Foreground="#888"
-                           IsHitTestVisible="False"
-                           Visibility="{Binding Text.IsEmpty, ElementName=UnitBox,
-                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            </Grid>
+        <!-- UNIT TYPE -->
+        <TextBlock Text="Unit Type"/>
+        <ComboBox x:Name="UnitTypeBox"
+                Height="38"
+                Margin="0,4,0,10"
+                SelectionChanged="UnitType_Changed">
+            <ComboBoxItem Content="pieces"/>
+            <ComboBoxItem Content="kg"/>
+            <ComboBoxItem Content="g"/>
+            <ComboBoxItem Content="mg"/>
+            <ComboBoxItem Content="l"/>
+            <ComboBoxItem Content="ml"/>
+        </ComboBox>
+
+        <!-- UNIT VALUE (CONDITIONAL) -->
+        <StackPanel x:Name="UnitValuePanel" Visibility="Collapsed">
+            <TextBlock Text="Unit Value (per item)"/>
+            <TextBox x:Name="UnitValueBox"
+                    Height="38"
+                    Padding="10"
+                    Margin="0,4,0,10"/>
+        </StackPanel>
+
 
         </StackPanel>
 

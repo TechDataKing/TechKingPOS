@@ -3,12 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Sales"
         Height="700"
-        Width="auto"
+        Width="Auto"
         WindowStartupLocation="CenterScreen"
         Background="#F5F6FA"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
-        WindowStyle="none">
+        WindowStyle="None">
+
 
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -22,18 +23,30 @@
             <!-- Search -->
             <Grid DockPanel.Dock="Top" Margin="0,0,0,10">
                 <TextBox x:Name="SearchBox"
-                         Height="36"
-                         Padding="8"/>
+                        Height="36"
+                        Padding="8"/>
 
                 <TextBlock Text="Search item..."
-                           Margin="12,0"
-                           VerticalAlignment="Center"
-                           Foreground="#888"
-                           IsHitTestVisible="False"
-                           Visibility="{Binding Text.IsEmpty,
-                           ElementName=SearchBox,
-                           Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        Margin="12,0"
+                        VerticalAlignment="Center"
+                        Foreground="#888"
+                        IsHitTestVisible="False">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=SearchBox}" Value="0">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Text.Length, ElementName=SearchBox}" Value="1">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
+
 
             <!-- Items list -->
             <ListBox x:Name="ItemsList"
@@ -47,9 +60,9 @@
         <!-- ================= RIGHT PANEL ================= -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="125"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="220"/>
+                <RowDefinition Height="250"/>
             </Grid.RowDefinitions>
 
             <!-- TOP -->
@@ -76,12 +89,12 @@
                      Margin="0,0,10,0">
 
             <!-- Customer Slots (placeholders) -->
-            <Button x:Name="Customer1Btn" Content="Customer 1" Height="40" Click="Customer_Click"/>
-            <Button x:Name="Customer2Btn" Content="Customer 2" Height="40" Visibility="Collapsed" Click="Customer_Click"/>
-            <Button x:Name="Customer3Btn" Content="Customer 3" Height="40" Visibility="Collapsed" Click="Customer_Click"/>
-            <Button x:Name="Customer4Btn" Content="Customer 4" Height="40" Visibility="Collapsed" Click="Customer_Click"/>
-            <Button x:Name="Customer5Btn" Content="Customer 5" Height="40" Visibility="Collapsed" Click="Customer_Click"/>
-            <Button x:Name="Customer6Btn" Content="Customer 6" Height="40" Visibility="Collapsed" Click="Customer_Click"/>
+            <Button x:Name="Customer1Btn" Content="Customer 1" Height="25" Click="Customer_Click"/>
+            <Button x:Name="Customer2Btn" Content="Customer 2" Height="25" Visibility="Collapsed" Click="Customer_Click"/>
+            <Button x:Name="Customer3Btn" Content="Customer 3" Height="25" Visibility="Collapsed" Click="Customer_Click"/>
+            <Button x:Name="Customer4Btn" Content="Customer 4" Height="25" Visibility="Collapsed" Click="Customer_Click"/>
+            <Button x:Name="Customer5Btn" Content="Customer 5" Height="25" Visibility="Collapsed" Click="Customer_Click"/>
+            <Button x:Name="Customer6Btn" Content="Customer 6" Height="25" Visibility="Collapsed" Click="Customer_Click"/>
 
         </UniformGrid>
 
@@ -89,18 +102,20 @@
         <Border Grid.Column="1"
                 Background="#F5F6FA"
                 CornerRadius="6"
+                Height="80"
                 Padding="10"
                 Margin="0,0,10,0">
 
-            <StackPanel VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center" >
                 <TextBlock Text="TOTAL SERVED"
                            FontSize="14"
-                           Foreground="#555"
+                           Height="auto"
+                           Foreground="#555"                           
                            HorizontalAlignment="Center"/>
 
                 <TextBlock Text="0"
-                           FontSize="32"
-                           FontWeight="Bold"
+                           FontSize="12"
+                           Height="20"
                            Foreground="#2E86DE"
                            HorizontalAlignment="Center"
                            Margin="0,5,0,0"/>
@@ -112,6 +127,7 @@
         <Border Grid.Column="2"
                 Background="#F5F6FA"
                 CornerRadius="6"
+                Height="800"
                 Padding="10">
 
             <StackPanel>
@@ -122,13 +138,13 @@
 
                <Button x:Name="MpesaQuickBtn"
                     Content="💳 MPesa"
-                    Height="40"
+                    Height="30"
                     Margin="0,0,0,6"
                     Click="QuickPayment_Click"/>
 
                 <Button x:Name="CashQuickBtn"
                     Content="💵 Cash"
-                    Height="40"
+                    Height="30"
                     Click="QuickPayment_Click"/>
 
             </StackPanel>
@@ -140,12 +156,49 @@
 
 
             <!-- CART -->
-            <DataGrid Grid.Row="1"
-                      x:Name="CartGrid"
-                      Margin="0,10,0,10"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      IsReadOnly="True">
+            <DataGrid
+                    Grid.Row="1"
+                    x:Name="CartGrid"
+                    Margin="0,10,0,10"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    IsReadOnly="True"
+
+                    GridLinesVisibility="None"
+                    BorderThickness="0"
+                    HeadersVisibility="Column"
+                    RowBackground="Transparent"
+                    AlternatingRowBackground="Transparent"
+                    >
+
+                    <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Margin" Value="0,4"/> <!-- spacing -->
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="SnapsToDevicePixels" Value="True"/>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#EAF3FF"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Trigger>
+
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#F5F8FC"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Resources>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Padding" Value="6,4"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Style>
+                    </DataGrid.Resources>
+
 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
@@ -187,7 +240,8 @@
 
      <Button Content="Discount"
             Height="40"
-            Width="150"            
+            Width="150" 
+            Click="Discount_Click"           
             />
             <Button Content="Add Customer"
             Height="40"
@@ -200,9 +254,10 @@
 </UniformGrid>
 
 
-                <Border Grid.Column="1"
+    <Border Grid.Column="1"
         Background="White"
         CornerRadius="6"
+        Margin="0,-10,0,0"
         Padding="12">
 
     <Grid>
@@ -269,7 +324,7 @@
                        FontWeight="Bold"/>
             <TextBlock x:Name="TotalAmountText"
                        Grid.Column="1"
-                       FontSize="20"
+                       FontSize="22"
                        FontWeight="Bold"
                        Foreground="Green"
                        Text="0.00"/>
@@ -288,6 +343,7 @@
                      Grid.Column="1"
                      Height="30"
                      Padding="6"
+                     FontWeight="Bold"
                      TextChanged="CashGiven_TextChanged"/>
         </Grid>
 
@@ -310,13 +366,12 @@
         <CheckBox x:Name="PrintReceiptCheckBox"
                   Grid.Row="6"
                   Content="Print Receipt"
-                  IsChecked="True"
                   Margin="0,10,0,10"/>
 
         <!-- FINISH -->
         <Button Grid.Row="7"
                 Content="FINISH &amp; PAY"
-                Height="40"
+                Height="30"
                 FontSize="18"
                 Background="#2E86DE"
                 Foreground="White"

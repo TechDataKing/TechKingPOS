@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
-//using OfficeOpenXml;
+using TechKingPOS.App.Data;    // ✅ correct namespace
+using TechKingPOS.App.Models;
+using TechKingPOS.App.Services;
+using TechKingPOS.App.Security;
 
 namespace TechKingPOS.App
 {
@@ -8,8 +11,6 @@ namespace TechKingPOS.App
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            // ✅ EPPlus 8+ REQUIRED LICENSE SETUP
-            //ExcelPackage.License = EPPlusLicense.NonCommercial;
             // Global crash handlers
             AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
             {
@@ -33,12 +34,26 @@ namespace TechKingPOS.App
             };
 
             base.OnStartup(e);
+            BranchService.Load();
+
 
             ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-            var login = new LoginWindow();
-            MainWindow = login;
-            login.Show();
+            // ✅ LOAD SETTINGS FIRST
+            SettingsCache.Load();
+
+            var settings = SettingsCache.Current;
+
+            if (settings.RequireLogin)
+            {
+                MainWindow = new LoginWindow();
+            }
+            else
+            {
+                MainWindow = new MainWindow();
+            }
+
+            MainWindow.Show();
         }
     }
 }

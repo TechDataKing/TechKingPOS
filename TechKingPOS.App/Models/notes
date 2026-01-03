@@ -1,19 +1,920 @@
-1️⃣ Populate TaskBar with open windows
-2️⃣ Clicking taskbar item → bring window to front
-3️⃣ Minimized windows appear ONLY in taskbar
-4️⃣ Snap / bounds fine-tuning
-5️⃣ Persist positions 
+// 1️⃣ What a complete POS reporting system usually includes
 
-You’re driving now.
-Tell me what you want next, not what to fix.
+// A solid POS normally has 5–7 major report categories:
+
+// A. Sales & Revenue
+
+// Daily / weekly / monthly sales
+
+// Total sales
+
+// Profit (sales – cost)
+
+// Number of receipts
+
+// Payment method split (Cash, Mpesa, Mixed)
+
+// Best-selling items
+
+// Low-performing items
+
+// 👉 You already have most of this
+
+// B. Inventory & Stock
+
+// Out of stock items
+
+// Running low items
+
+// Overstocked items
+
+// Stock valuation (cost value of inventory)
+
+// Stock movement (what came in vs sold)
+
+// 👉 You have Out / Low / Good, but not valuation or movement (yet)
+
+// C. Credit & Debtors
+
+// All customers on credit
+
+// Outstanding balances
+
+// Credit aging (0–7 days, 8–30 days, 30+ days)
+
+// Payments history
+
+// Total credit exposure (credit book)
+
+// 👉 You have the core, but it can be smarter
+
+// D. Expenses (VERY IMPORTANT – missing)
+
+// Electricity
+
+// Rent
+
+// Internet
+
+// Workers salaries
+
+// Transport
+
+// Misc expenses
+
+// 👉 This is completely missing and you’re right to add it
+
+// E. Workers / Payroll
+
+// Total wages paid
+
+// Advances given
+
+// Salary balance
+
+// Sales by cashier (who sold what)
+
+// 👉 Currently missing
+
+// F. Profit & Loss (Summary)
+
+// Total sales
+
+// Total expenses
+
+// Gross profit
+
+// Net profit
+
+// 👉 This becomes the business health dashboard
+
+// G. Audit / Activity (optional later)
+
+// Voided receipts
+
+// Deleted items
+
+// Price overrides
+
+// User activity
+
+/*┌──────────────────────────────────────────────────────────────┐
+│                    PROFIT & LOSS REPORT                      │
+└──────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────┐
+│  From: [  Date  ]   To: [  Date  ]   [ Today ] [ This Month ]│
+└──────────────────────────────────────────────────────────────┘
+
+
+┌───────────────┬───────────────┬───────────────┬──────────────┐
+│ TOTAL SALES   │ TOTAL EXPENSE │ GROSS PROFIT  │ NET PROFIT   │
+│               │               │               │              │
+│   125,000     │    72,000     │   53,000      │   53,000     │
+└───────────────┴───────────────┴───────────────┴──────────────┘
+
+
+┌──────────────────────────────────────────────────────────────┐
+│ STATUS: ✔ BUSINESS IS PROFITABLE                             │
+└──────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────┬──────────────────────────────┐
+│        EXPENSE BREAKDOWN     │        SALES BREAKDOWN       │
+├──────────────────────────────┼──────────────────────────────┤
+│ Category        | Amount     │ Payment Method | Amount     │
+│──────────────────────────────│──────────────────────────────│
+│ Electricity     |  6,000     │ Cash           |  58,000    │
+│ Salaries        | 35,000     │ Mpesa          |  42,000    │
+│ Rent            | 20,000     │ Credit         |  25,000    │
+│ Transport       |  4,000     │                |            │
+│ Misc            |  7,000     │                |            │
+│──────────────────────────────│──────────────────────────────│
+│ TOTAL           | 72,000     │ TOTAL          | 125,000    │
+└──────────────────────────────┴──────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────┐
+│                PROFIT & LOSS SUMMARY TABLE                   │
+├──────────────────────────────────────────────────────────────┤
+│ Total Sales .................................... 125,000     │
+│ Total Expenses ................................. 72,000      │
+│--------------------------------------------------------------│
+│ Net Profit ..................................... 53,000      │
+└──────────────────────────────────────────────────────────────┘
+*/
+ext = "DELETE FROM Items WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$id", id);
 
 
 
 
-✅ Finish window bounds (4 sides)
+finish sales logic
+manage stock 
+permissin in settings
+reports 
 
-✅ Improve resize handles (top/left later)
 
-✅ Add z-order polish
 
-✅ Optional: make dialogs appear centered over their container
+Item created
+
+Stock added
+
+Stock reduced (sale / damage)
+
+Target set
+
+Item edited
+
+Item deleted
+
+Sale made
+
+Payment received
+
+Credit created
+
+Credit payment
+
+Expense added
+
+Worker created / disabled
+
+Settings changed
+
+
+
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
+using TechKingPOS.App.Models;
+using TechKingPOS.App.Services;
+
+namespace TechKingPOS.App.Data
+{
+    public static class ItemRepository
+    {
+        // ================= INSERT =================
+        public static void InsertItem(
+            string name,
+            string alias,
+            decimal markedPrice,
+            decimal sellingPrice,
+            decimal quantity,
+            string unitType,
+            decimal? unitValue)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                INSERT INTO Items
+                (Name, Alias, MarkedPrice, SellingPrice, Quantity, UnitType,UnitValue, TargetQuantity, CreatedAt)
+                VALUES
+                ($name, $alias, $mp, $sp, $qty, $unitType, $unitValue, NULL, $created);
+            ";
+
+            cmd.Parameters.AddWithValue("$name", name);
+            cmd.Parameters.AddWithValue("$alias", alias);
+            cmd.Parameters.AddWithValue("$mp", markedPrice);
+            cmd.Parameters.AddWithValue("$sp", sellingPrice);
+            cmd.Pardecimal unitvalue = inameters.AddWithValue("$qty", quantity);
+            cmd.Parameters.AddWithValue("$unitType", unitType);cmd.Parameters.AddWithValue("$unitValue",unitValue.HasValue ? unitValue.Value : DBNull.Value);
+            cmd.Parameters.AddWithValue("$created", DateTime.UtcNow);
+
+            cmd.ExecuteNonQuery();
+
+            LoggerService.Info("💾", "DB", "Item inserted", name);
+
+            long newItemId = connection.LastInsertRowId;
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = newItemId,
+                EntityName = name,
+                Action = "ADD_ITEM",
+                QuantityChange = quantity,
+                UnitType = unitType,
+                UnitValue = unitValue,
+                BeforeValue = null,
+                AfterValue = quantity,
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= LOAD ALL =================
+        public static List<ItemLookup> GetAllItems()
+        {
+            var items = new List<ItemLookup>();
+
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Alias, Quantity,
+                    MarkedPrice, SellingPrice,
+                    UnitType, TargetQuantity
+                FROM Items
+                ORDER BY Name ASC;
+            ";
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(ReadItem(reader));
+            }
+
+            return items;
+        }
+
+        // ================= SEARCH =================
+        public static List<ItemLookup> SearchItems(string text)
+        {
+            var items = new List<ItemLookup>();
+
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Alias, Quantity,
+                    MarkedPrice, SellingPrice,
+                    UnitType, TargetQuantity
+                FROM Items
+                WHERE Name LIKE $q OR Alias LIKE $q
+                ORDER BY Name ASC;
+            ";
+
+            cmd.Parameters.AddWithValue("$q", $"%{text}%");
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(ReadItem(reader));
+            }
+
+            return items;
+        }
+
+        // ================= TARGET TAB =================
+        public static List<ItemLookup> GetItemsWithoutTarget(string text)
+        {
+            var items = new List<ItemLookup>();
+
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Quantity
+                FROM Items
+                WHERE TargetQuantity IS NULL
+                AND Name LIKE $q
+                ORDER BY Name ASC;
+            ";
+
+            cmd.Parameters.AddWithValue("$q", $"%{text}%");
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                items.Add(new ItemLookup
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    Quantity = reader.GetDecimal(2)
+                });
+            }
+
+            return items;
+        }
+public static ItemModel? GetByNameOrAlias(string name, string? alias)
+{
+    using var connection = DbService.GetConnection();
+    connection.Open();
+
+    using var cmd = connection.CreateCommand();
+    cmd.CommandText = @"
+        SELECT
+            Id, Name, Alias,
+            MarkedPrice, SellingPrice,
+            Quantity, UnitType
+        FROM Items
+        WHERE
+            LOWER(Name) = LOWER($name)
+            OR (
+                $alias IS NOT NULL
+                AND $alias <> ''
+                AND LOWER(Alias) = LOWER($alias)
+            )
+        LIMIT 1;
+    ";
+
+    cmd.Parameters.AddWithValue("$name", name.Trim());
+    cmd.Parameters.AddWithValue(
+        "$alias",
+        string.IsNullOrWhiteSpace(alias) ? DBNull.Value : alias.Trim()
+    );
+
+    using var reader = cmd.ExecuteReader();
+
+    if (!reader.Read())
+        return null;
+
+    return new ItemModel
+    {
+        Id = reader.GetInt32(0),
+        Name = reader.GetString(1),
+        Alias = reader.IsDBNull(2) ? "" : reader.GetString(2),
+        MarkedPrice = reader.GetDecimal(3),
+        SellingPrice = reader.GetDecimal(4),
+        Quantity = reader.GetDecimal(5),
+        UnitType = reader.GetString(6)
+    };
+}
+
+public static void AddStock(
+    int itemId,
+    decimal addQuantity,
+    decimal markedPrice,
+    decimal sellingPrice
+)
+{
+    using var connection = DbService.GetConnection();
+    connection.Open();
+
+    using var cmd = connection.CreateCommand();
+    cmd.CommandText = @"
+        UPDATE Items
+        SET 
+            Quantity = Quantity + $qty,
+            MarkedPrice = $marked,
+            SellingPrice = $selling
+        WHERE Id = $id
+    ";
+
+    cmd.Parameters.AddWithValue("$qty", addQuantity);
+    cmd.Parameters.AddWithValue("$marked", markedPrice);
+    cmd.Parameters.AddWithValue("$selling", sellingPrice);
+    cmd.Parameters.AddWithValue("$id", itemId);
+
+    cmd.ExecuteNonQuery();
+                ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = itemId,
+                EntityName = name,
+                Action = "STOCK_IN",
+                QuantityChange = addQuantity,
+                UnitType = unitType,
+                UnitValue = unitValue,
+                BeforeValue = beforeQty,
+                AfterValue = beforeQty + addQuantity,
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+}
+
+
+
+        // ================= UPDATE ITEM =================
+        public static void UpdateItem(
+            int id,
+            string name,
+            string alias,
+            decimal quantity,
+            decimal markedPrice,
+            decimal sellingPrice,
+            decimal? targetQuantity)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Items SET
+                    Name = $name,
+                    Alias = $alias,
+                    Quantity = $qty,
+                    MarkedPrice = $mp,
+                    SellingPrice = $sp,
+                    TargetQuantity = $target
+                WHERE Id = $id;
+            ";
+
+            cmd.Parameters.AddWithValue("$name", name);
+            cmd.Parameters.AddWithValue("$alias", alias);
+            cmd.Parameters.AddWithValue("$qty", quantity);
+            cmd.Parameters.AddWithValue("$mp", markedPrice);
+            cmd.Parameters.AddWithValue("$sp", sellingPrice);
+            cmd.Parameters.AddWithValue(
+                "$target",
+                targetQuantity.HasValue ? targetQuantity.Value : DBNull.Value
+            );
+            cmd.Parameters.AddWithValue("$id", id);
+
+            cmd.ExecuteNonQuery();
+                        ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = id,
+                EntityName = name,
+                Action = "UPDATE_ITEM",
+                QuantityChange = quantity - beforeQty,
+                BeforeValue = beforeQty,
+                AfterValue = quantity,
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+
+            LoggerService.Info("💾", "STOCK", "Item updated", name);
+        }
+
+        // ================= SET TARGET =================
+        public static void SetTarget(int id, int target)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Items SET TargetQuantity = $target WHERE Id = $id;
+            ";
+
+            cmd.Parameters.AddWithValue("$target", target);
+            cmd.Parameters.AddWithValue("$id", id);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        // ================= DELETE =================
+        public static void DeleteItem(int id)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM Items WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$id", id);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        // ================= HELPER =================
+        private static ItemLookup ReadItem(SqliteDataReader reader)
+        {
+            return new ItemLookup
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Alias = reader.IsDBNull(2) ? "" : reader.GetString(2),
+                Quantity = reader.GetDecimal(3),
+                MarkedPrice = reader.GetDecimal(4),
+                SellingPrice = reader.GetDecimal(5),
+                UnitType = reader.GetString(6),
+                TargetQuantity = reader.IsDBNull(7) ? null : reader.GetInt32(7)
+            };
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
+using TechKingPOS.App.Models;
+using TechKingPOS.App.Services;
+
+namespace TechKingPOS.App.Data
+{
+    public static class ItemRepository
+    {
+        // ================= INSERT =================
+        public static void InsertItem(
+            string name,
+            string alias,
+            decimal markedPrice,
+            decimal sellingPrice,
+            decimal quantity,
+            string unitType,
+            decimal? unitValue)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                INSERT INTO Items
+                (Name, Alias, MarkedPrice, SellingPrice, Quantity, UnitType, UnitValue, TargetQuantity, CreatedAt)
+                VALUES
+                ($name, $alias, $mp, $sp, $qty, $unitType, $unitValue, NULL, $created);
+            ";
+
+            cmd.Parameters.AddWithValue("$name", name);
+            cmd.Parameters.AddWithValue("$alias", alias);
+            cmd.Parameters.AddWithValue("$mp", markedPrice);
+            cmd.Parameters.AddWithValue("$sp", sellingPrice);
+            cmd.Parameters.AddWithValue("$qty", quantity);
+            cmd.Parameters.AddWithValue("$unitType", unitType);
+            cmd.Parameters.AddWithValue(
+                "$unitValue",
+                unitValue.HasValue ? unitValue.Value : DBNull.Value
+            );
+            cmd.Parameters.AddWithValue("$created", DateTime.UtcNow);
+
+            cmd.ExecuteNonQuery();
+
+            long newItemId = connection.LastInsertRowId;
+
+            LoggerService.Info("💾", "DB", "Item inserted", name);
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = newItemId,
+                EntityName = name,
+                Action = "ADD_ITEM",
+                QuantityChange = quantity,
+                UnitType = unitType,
+                UnitValue = unitValue,
+                BeforeValue = null,
+                AfterValue = quantity,
+                Reason = "New item created",
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= LOAD ALL =================
+        public static List<ItemLookup> GetAllItems()
+        {
+            var items = new List<ItemLookup>();
+
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Alias, Quantity,
+                    MarkedPrice, SellingPrice,
+                    UnitType, TargetQuantity
+                FROM Items
+                ORDER BY Name ASC;
+            ";
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+                items.Add(ReadItem(reader));
+
+            return items;
+        }
+
+        // ================= SEARCH =================
+        public static List<ItemLookup> SearchItems(string text)
+        {
+            var items = new List<ItemLookup>();
+
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Alias, Quantity,
+                    MarkedPrice, SellingPrice,
+                    UnitType, TargetQuantity
+                FROM Items
+                WHERE Name LIKE $q OR Alias LIKE $q
+                ORDER BY Name ASC;
+            ";
+
+            cmd.Parameters.AddWithValue("$q", $"%{text}%");
+
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+                items.Add(ReadItem(reader));
+
+            return items;
+        }
+
+        // ================= GET BY NAME / ALIAS =================
+        public static ItemModel? GetByNameOrAlias(string name, string? alias)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                SELECT
+                    Id, Name, Alias,
+                    MarkedPrice, SellingPrice,
+                    Quantity, UnitType, UnitValue
+                FROM Items
+                WHERE
+                    LOWER(Name) = LOWER($name)
+                    OR (
+                        $alias IS NOT NULL
+                        AND $alias <> ''
+                        AND LOWER(Alias) = LOWER($alias)
+                    )
+                LIMIT 1;
+            ";
+
+            cmd.Parameters.AddWithValue("$name", name.Trim());
+            cmd.Parameters.AddWithValue(
+                "$alias",
+                string.IsNullOrWhiteSpace(alias) ? DBNull.Value : alias.Trim()
+            );
+
+            using var reader = cmd.ExecuteReader();
+            if (!reader.Read())
+                return null;
+
+            return new ItemModel
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Alias = reader.IsDBNull(2) ? "" : reader.GetString(2),
+                MarkedPrice = reader.GetDecimal(3),
+                SellingPrice = reader.GetDecimal(4),
+                Quantity = reader.GetDecimal(5),
+                UnitType = reader.GetString(6),
+                UnitValue = reader.IsDBNull(7) ? null : reader.GetDecimal(7)
+            };
+        }
+
+        // ================= ADD STOCK =================
+        public static void AddStock(
+            int itemId,
+            decimal addQuantity,
+            decimal markedPrice,
+            decimal sellingPrice)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            decimal beforeQty = 0;
+            string name = "";
+            string unitType = "";
+            decimal? unitValue = null;
+
+            using (var readCmd = connection.CreateCommand())
+            {
+                readCmd.CommandText = @"
+                    SELECT Name, Quantity, UnitType, UnitValue
+                    FROM Items WHERE Id = $id;
+                ";
+                readCmd.Parameters.AddWithValue("$id", itemId);
+
+                using var reader = readCmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    name = reader.GetString(0);
+                    beforeQty = reader.GetDecimal(1);
+                    unitType = reader.GetString(2);
+                    unitValue = reader.IsDBNull(3) ? null : reader.GetDecimal(3);
+                }
+            }
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Items
+                SET 
+                    Quantity = Quantity + $qty,
+                    MarkedPrice = $marked,
+                    SellingPrice = $selling
+                WHERE Id = $id;
+            ";
+
+            cmd.Parameters.AddWithValue("$qty", addQuantity);
+            cmd.Parameters.AddWithValue("$marked", markedPrice);
+            cmd.Parameters.AddWithValue("$selling", sellingPrice);
+            cmd.Parameters.AddWithValue("$id", itemId);
+
+            cmd.ExecuteNonQuery();
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = itemId,
+                EntityName = name,
+                Action = "STOCK_IN",
+                QuantityChange = addQuantity,
+                UnitType = unitType,
+                UnitValue = unitValue,
+                BeforeValue = beforeQty,
+                AfterValue = beforeQty + addQuantity,
+                Reason = "Stock added",
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= UPDATE ITEM =================
+        public static void UpdateItem(
+            int id,
+            string name,
+            string alias,
+            decimal quantity,
+            decimal markedPrice,
+            decimal sellingPrice,
+            decimal? targetQuantity)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            decimal beforeQty = 0;
+
+            using (var readCmd = connection.CreateCommand())
+            {
+                readCmd.CommandText = "SELECT Quantity FROM Items WHERE Id = $id;";
+                readCmd.Parameters.AddWithValue("$id", id);
+                using var reader = readCmd.ExecuteReader();
+                if (reader.Read())
+                    beforeQty = reader.GetDecimal(0);
+            }
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Items SET
+                    Name = $name,
+                    Alias = $alias,
+                    Quantity = $qty,
+                    MarkedPrice = $mp,
+                    SellingPrice = $sp,
+                    TargetQuantity = $target
+                WHERE Id = $id;
+            ";
+
+            cmd.Parameters.AddWithValue("$name", name);
+            cmd.Parameters.AddWithValue("$alias", alias);
+            cmd.Parameters.AddWithValue("$qty", quantity);
+            cmd.Parameters.AddWithValue("$mp", markedPrice);
+            cmd.Parameters.AddWithValue("$sp", sellingPrice);
+            cmd.Parameters.AddWithValue(
+                "$target",
+                targetQuantity.HasValue ? targetQuantity.Value : DBNull.Value
+            );
+            cmd.Parameters.AddWithValue("$id", id);
+
+            cmd.ExecuteNonQuery();
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = id,
+                EntityName = name,
+                Action = "UPDATE_ITEM",
+                QuantityChange = quantity - beforeQty,
+                BeforeValue = beforeQty,
+                AfterValue = quantity,
+                Reason = "Item updated",
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= SET TARGET =================
+        public static void SetTarget(int id, int target)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                UPDATE Items SET TargetQuantity = $target WHERE Id = $id;
+            ";
+
+            cmd.Parameters.AddWithValue("$target", target);
+            cmd.Parameters.AddWithValue("$id", id);
+            cmd.ExecuteNonQuery();
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = id,
+                Action = "SET_TARGET",
+                AfterValue = target,
+                Reason = "Target quantity set",
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= DELETE =================
+        public static void DeleteItem(int id)
+        {
+            using var connection = DbService.GetConnection();
+            connection.Open();
+
+            string name = "";
+            decimal qty = 0;
+            string unitType = "";
+            decimal? unitValue = null;
+
+            using (var readCmd = connection.CreateCommand())
+            {
+                readCmd.CommandText = @"
+                    SELECT Name, Quantity, UnitType, UnitValue
+                    FROM Items WHERE Id = $id;
+                ";
+                readCmd.Parameters.AddWithValue("$id", id);
+
+                using var reader = readCmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    name = reader.GetString(0);
+                    qty = reader.GetDecimal(1);
+                    unitType = reader.GetString(2);
+                    unitValue = reader.IsDBNull(3) ? null : reader.GetDecimal(3);
+                }
+            }
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM Items WHERE Id = $id;";
+            cmd.Parameters.AddWithValue("$id", id);
+            cmd.ExecuteNonQuery();
+
+            ActivityRepository.Log(new Activity
+            {
+                EntityType = "Item",
+                EntityId = id,
+                EntityName = name,
+                Action = "DELETE_ITEM",
+                QuantityChange = -qty,
+                UnitType = unitType,
+                UnitValue = unitValue,
+                BeforeValue = qty,
+                AfterValue = 0,
+                Reason = "Item deleted",
+                PerformedBy = SessionContext.CurrentUserName,
+                CreatedAt = DateTime.UtcNow
+            });
+        }
+
+        // ================= HELPER =================
+        private static ItemLookup ReadItem(SqliteDataReader reader)
+        {
+            return new ItemLookup
+            {
+                Id = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Alias = reader.IsDBNull(2) ? "" : reader.GetString(2),
+                Quantity = reader.GetDecimal(3),
+                MarkedPrice = reader.GetDecimal(4),
+                SellingPrice = reader.GetDecimal(5),
+                UnitType = reader.GetString(6),
+                TargetQuantity = reader.IsDBNull(7) ? null : reader.GetInt32(7)
+            };
+        }
+    }
+}
+

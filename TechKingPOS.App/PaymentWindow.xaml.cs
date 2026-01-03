@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TechKingPOS.App.Models;
 
+
 namespace TechKingPOS.App
 {
     public partial class PaymentWindow : Window
@@ -13,17 +14,23 @@ namespace TechKingPOS.App
 
         private readonly decimal _total;
 
-        public PaymentWindow(decimal total)
+        public PaymentWindow(PaymentResult payment)
         {
             InitializeComponent();
 
-            _total = total;
-            Result = new PaymentResult(total);
+            Result = payment;
+            
+            _total= payment.Total;
 
-            TotalText.Text = total.ToString("0.00");
+            TotalText.Text = payment.Total.ToString("0.00");
 
             _isLoaded = true;
+            
+            ChangePanel.Visibility = Visibility.Collapsed;
+            ChangeText.Text = "0.00";
+
         }
+
 
         // ----------------------------
         // PAYMENT METHOD CHANGED
@@ -40,6 +47,7 @@ namespace TechKingPOS.App
             CashPanel.Visibility = Visibility.Collapsed;
             MpesaPanel.Visibility = Visibility.Collapsed;
             CustomerPanel.Visibility = Visibility.Collapsed;
+            ChangePanel.Visibility = Visibility.Collapsed;
 
             switch (method)
             {
@@ -62,6 +70,7 @@ namespace TechKingPOS.App
             }
 
             UpdateCustomerPanelByAmount();
+            UpdateChangeVisibility();
         }
 
         // ----------------------------
@@ -71,6 +80,7 @@ namespace TechKingPOS.App
         private void PaymentChanged(object sender, TextChangedEventArgs e)
         {
             UpdateCustomerPanelByAmount();
+            UpdateChangeVisibility();
         }
 
         // ----------------------------
@@ -180,5 +190,39 @@ namespace TechKingPOS.App
 
             return 0;
         }
+        private void UpdateChangeVisibility()
+{
+    string method = GetSelectedMethod();
+
+    // Only cash-based methods can show change
+    bool allowsChange =
+        method == "Cash only" ||
+        method == "Cash + Mpesa";
+
+    if (!allowsChange)
+    {
+        ChangePanel.Visibility = Visibility.Collapsed;
+        ChangeText.Text = "0.00";
+        return;
+    }
+
+    decimal cash = ParseDecimal(CashTextBox.Text);
+    decimal mpesa = ParseDecimal(MpesaTextBox.Text);
+    decimal paid = cash + mpesa;
+
+    decimal change = paid - _total;
+
+    if (change > 0)
+    {
+        ChangePanel.Visibility = Visibility.Visible;
+        ChangeText.Text = change.ToString("0.00");
+    }
+    else
+    {
+        ChangePanel.Visibility = Visibility.Collapsed;
+        ChangeText.Text = "0.00";
+    }
+}
+
     }
 }

@@ -31,21 +31,52 @@
 
                 <TextBox x:Name="UsernameBox"
                          Height="34"
-                         Margin="0,0,0,15"/>
+                         Margin="0,0,0,15"
+                         TextAlignment="Center"
+                         VerticalContentAlignment="Center"/>
 
                 <TextBlock Text="Password"
-                           Margin="0,0,0,5"/>
+           Margin="0,0,0,5"/>
 
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Hidden password -->
                 <PasswordBox x:Name="PasswordBox"
-                             Height="34"
-                             Margin="0,0,0,10"/>
+                            Height="34"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"/>
+
+                <!-- Visible password -->
+                <TextBox x:Name="PasswordTextBox"
+                        Height="34"
+                        Grid.Column="0"
+                        Visibility="Collapsed"
+                        TextAlignment="Center"
+                        VerticalContentAlignment="Center"/>
+
+                <!-- Toggle visibility button -->
+                <Button Grid.Column="1"
+                        Content="👁"
+                        FontSize="14"
+                        Cursor="Hand"
+                        BorderThickness="1"
+                        Background="Transparent"
+                        Click="TogglePasswordVisibility"/>
+            </Grid>
+
 
                 <TextBlock Text="Forgot password?"
                            Foreground="#4F46E5"
                            FontSize="12"
                            HorizontalAlignment="Right"
                            Cursor="Hand"
-                           Margin="0,0,0,20"/>
+                           Margin="0,0,0,20"
+                           MouseLeftButtonUp="ForgotPassword_Click"/>
 
                 <Button Content="Login"
                         Height="40"

@@ -8,44 +8,128 @@
         Background="#F4F6F8">
 
     <!-- PLACEHOLDER STYLE (WPF SAFE) -->
-    <Window.Resources>
+<Window.Resources>
 
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+<Style x:Key="PlaceholderTextBox" TargetType="TextBox">
+    <Setter Property="Foreground" Value="Black"/>
+    <Setter Property="Height" Value="36"/>
+    <Setter Property="Padding" Value="10"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="TextBox">
+                <Grid>
+                    <ScrollViewer x:Name="PART_ContentHost"/>
 
-        <Style x:Key="PlaceholderTextBox" TargetType="TextBox">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost"/>
+                    <TextBlock Text="{TemplateBinding Tag}"
+                               Foreground="#999"
+                               Margin="6,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <!-- show placeholder when empty -->
+                                    <DataTrigger Binding="{Binding Text.Length,
+                                        RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
 
-                            <TextBlock Text="{TemplateBinding Tag}"
-                                       Foreground="#999"
-                                       Margin="6,0,0,0"
-                                       VerticalAlignment="Center"
-                                       IsHitTestVisible="False"
-                                       Visibility="{Binding Text.IsEmpty,
-                                           RelativeSource={RelativeSource TemplatedParent},
-                                           Converter={StaticResource BoolToVis}}"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                                    <!-- hide when text exists -->
+                                    <DataTrigger Binding="{Binding Text.Length,
+                                        RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Value="1">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
 
-    </Window.Resources>
+
+</Window.Resources>
+
 
     <!-- ✅ PAGE SCROLL -->
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!-- BRANCH SELECTOR BAR -->
+<Border Grid.Row="0"
+        Background="White"
+        Padding="12"
+        CornerRadius="8"
+        Margin="100,0,0,16">
+
+    <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center">
+
+        <TextBlock Text="BRANCH:"
+                   VerticalAlignment="Center"
+                   Margin="0,0,10,0"
+                   FontWeight="Bold"
+                   FontSize="14"/>
+
+        <ComboBox x:Name="BranchCombo"
+                  Width="220"
+                  Height="36"
+                  DisplayMemberPath="Name"
+                  SelectedValuePath="Id"
+                  SelectionChanged="BranchCombo_SelectionChanged"/>
+
+<Button Margin="16,0,0,0"
+        Height="36"
+        Padding="14,0"
+        Background="#F9A825"
+        Foreground="White"
+        BorderThickness="0"
+        Click="AddBranch_Click">
+
+    <StackPanel Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+
+        <TextBlock Text="+"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   Margin="0,0,6,0"/>
+
+        <TextBlock Text="Add Branch"
+                   FontSize="14"
+                   VerticalAlignment="Center"/>
+    </StackPanel>
+</Button>
+
+
+        <!-- EDIT BRANCH -->
+        <Button Margin="8,0,0,0"
+                Height="36"
+                Padding="14,0"
+                Background="#6A1B9A"
+                Foreground="White"
+                FontWeight="SemiBold"
+                FontSize="14"
+                BorderThickness="0"
+                Click="EditBranch_Click">
+            Edit Branch
+        </Button>
+    </StackPanel>
+</Border>
+
 
             <!-- CREATE WORKER -->
-<Border Grid.Row="0"
+<Border Grid.Row="1"
         Background="White"
         Padding="24"
         CornerRadius="10"
@@ -105,20 +189,46 @@
                  Padding="10"
                  Background="#FAFAFA"
                  BorderBrush="#DDD"/>
+                 <!-- ROLE -->
+<TextBlock Text="Role" Margin="0,14,0,4"/>
 
-        <!-- SAVE BUTTON -->
-        <Button Content="Save Worker"
-                Height="42"
-                Margin="0,24,0,0"
-                HorizontalAlignment="Center"
-                Width="180"
-                Click="SaveWorker_Click"/>
+<ComboBox x:Name="RoleBox"
+          Height="40"
+          SelectedIndex="1">
+    <ComboBoxItem Content="Admin" Tag="Admin"/>
+    <ComboBoxItem Content="Worker" Tag="Worker"/>
+</ComboBox>
+
+
+<StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Margin="0,24,0,0">
+
+    <Button Content="Save Worker"
+            Width="160"
+            Height="42"
+            Margin="6"
+            Background="#1976D2"
+            Foreground="White"
+            FontWeight="SemiBold"
+            Click="SaveWorker_Click"/>
+
+    <Button Content="Edit Worker"
+            Width="160"
+            Height="42"
+            Margin="6"
+            Background="#2E7D32"
+            Foreground="White"
+            FontWeight="SemiBold"
+            Click="EditWorker_Click"/>
+</StackPanel>
+
     </StackPanel>
 </Border>
 
 
             <!-- WORKERS LIST -->
-            <Border Grid.Row="1"
+            <Border Grid.Row="2"
                     Background="White"
                     Padding="14"
                     CornerRadius="8">

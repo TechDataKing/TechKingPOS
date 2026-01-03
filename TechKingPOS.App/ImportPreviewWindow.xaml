@@ -21,7 +21,8 @@
                 <DataGridTextColumn Header="Marked Price" Binding="{Binding MarkedPrice}"/>
                 <DataGridTextColumn Header="Selling Price" Binding="{Binding SellingPrice}"/>
                 <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}"/>
-                <DataGridTextColumn Header="Unit" Binding="{Binding Unit}"/>
+                <DataGridTextColumn Header="UnitType" Binding="{Binding UnitType}"/>
+                <DataGridTextColumn Header="UnitValue" Binding="{Binding UnitValue}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Error}"/>
             </DataGrid.Columns>
         </DataGrid>

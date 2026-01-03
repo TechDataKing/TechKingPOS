@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechKingPOS.App.Models;
+using TechKingPOS.App.Data;
+using TechKingPOS.App.Security;
+
 
 namespace TechKingPOS.App.Services
 {
     public static class ReceiptBuilder
     {
-        private const int Width = 32;
+        private static int GetReceiptWidth()
+        {
+            var size = SettingsCache.Current?.PaperSize;
+            return size == "80mm" ? 48 : 32;
+        }
+
         private const int MinReceiptLines = 26;
         private const int FooterLines = 2;
 
@@ -16,28 +24,51 @@ namespace TechKingPOS.App.Services
             IEnumerable<SaleItem> items,
             PaymentResult payment,
             string receiptNumber,
-            string cashier = "Admin")
+            string cashier )
         {
             var sb = new StringBuilder();
+            int width = GetReceiptWidth();
+            decimal totalQty = items.Sum(i => i.Quantity);
 
-            decimal total = items.Sum(i => i.Total);
-            decimal subtotal = Math.Round(total / 1.16m, 2);
-            decimal vat = total - subtotal;
-            int totalQty = items.Sum(i => i.Quantity);
+// ================= HEADER =================
+var settings = SettingsCache.Current;
 
-            // ================= HEADER =================
-            sb.AppendLine("Quality Electronics");
-            sb.AppendLine("Tel: 0712 345 678");
-            sb.AppendLine(Line());
+// Business name
+if (!string.IsNullOrWhiteSpace(settings?.BusinessName))
+    sb.AppendLine(Trim(settings.BusinessName, width));
 
-            sb.AppendLine($"Receipt #: {receiptNumber}");
-            sb.AppendLine($"Date: {DateTime.Now:yyyy-MM-dd HH:mm}");
-            sb.AppendLine($"Cashier: {cashier}");
-            sb.AppendLine(Line());
+        // Address (ONE LINE)
+        if (!string.IsNullOrWhiteSpace(settings?.PhysicalAddress))
+            sb.AppendLine(Trim(settings.PhysicalAddress, width));
 
-            // ================= ITEMS =================
+        // Phone
+        if (!string.IsNullOrWhiteSpace(settings?.Phone))
+            sb.AppendLine($"Tel: {Trim(settings.Phone, width - 5)}");
+
+        sb.AppendLine(Line(width));
+
+        sb.AppendLine($"Receipt #: {receiptNumber}");
+        sb.AppendLine($"Date: {DateTime.Now:yyyy-MM-dd HH:mm}");
+
+        // Cashier (FIRST NAME ONLY)
+        if (settings?.ShowCashierOnReceipt == true)
+        {
+            string cashierName = cashier;
+
+            if (!string.IsNullOrWhiteSpace(UserSession.UserName))
+            {
+                cashierName = UserSession.UserName
+                    .Trim()
+                    .Split(' ', StringSplitOptions.RemoveEmptyEntries)[0];
+            }
+
+            sb.AppendLine($"Cashier: {cashierName}");
+        }
+        sb.AppendLine(Line(width));
+
+                    // ================= ITEMS =================
             sb.AppendLine("ITEM            QTY   PRICE   TOTAL");
-            sb.AppendLine(Line());
+            sb.AppendLine(Line(width));
 
             foreach (var i in items)
             {
@@ -49,20 +80,31 @@ namespace TechKingPOS.App.Services
                 );
             }
 
-            sb.AppendLine(Line());
+            sb.AppendLine(Line(width));
 
             // ================= TOTALS =================
             sb.AppendLine($"Items:{totalQty,22}");
-            sb.AppendLine($"Subtotal:{subtotal,18:0.00}");
-            sb.AppendLine($"VAT (16%):{vat,18:0.00}");
-            sb.AppendLine(Line());
-            sb.AppendLine($"TOTAL:{total,22:0.00}");
-            sb.AppendLine(Line());
+            sb.AppendLine($"Subtotal:{payment.Subtotal,18:0.00}");
+
+            if (payment.Discount > 0)
+                sb.AppendLine($"Discount:{-payment.Discount,18:0.00}");
+
+            if (settings?.VatEnabled == true && payment.Vat > 0)
+            {
+                sb.AppendLine(
+                    $"VAT ({settings.VatPercent:0.#}%):{payment.Vat,18:0.00}"
+                );
+            }
+            sb.AppendLine(Line(width));
+            sb.AppendLine($"TOTAL:{payment.Total,22:0.00}");
+
+
+            sb.AppendLine(Line(width));
 
             // ================= PAYMENT =================
             BuildPaymentSection(sb, payment);
 
-            sb.AppendLine(Line());
+            sb.AppendLine(Line(width));
 
             // ===== FORCE MIN HEIGHT =====
             int contentLines = sb
@@ -72,15 +114,19 @@ namespace TechKingPOS.App.Services
 
             int targetLines = MinReceiptLines - FooterLines;
 
-            while (contentLines < targetLines)
+            while (contentLines
+ < targetLines)
             {
                 sb.AppendLine();
                 contentLines++;
             }
 
-            // ================= FOOTER =================
-            sb.AppendLine("Thank you for shopping with us");
-            sb.AppendLine(Center("© TechKing"));
+// ================= FOOTER =================
+    if (!string.IsNullOrWhiteSpace(settings?.ReceiptFooter))
+    {
+        sb.AppendLine(Center(Trim(settings.ReceiptFooter, width),width));
+    }
+            sb.AppendLine(Center("© TechKing",width));
 
             return sb.ToString();
         }
@@ -115,7 +161,7 @@ namespace TechKingPOS.App.Services
                 sb.AppendLine($"Cash:{payment.CashAmount,23:0.00}");
                 sb.AppendLine($"Mpesa:{payment.MpesaAmount,21:0.00}");
                 sb.AppendLine($"Paid:{payment.AmountPaid,23:0.00}");
-                sb.AppendLine($"Change:{(payment.AmountPaid - payment.Total),20:0.00}");
+                sb.AppendLine($"Change:{(payment.Change),20:0.00}");
                 return;
             }
 
@@ -130,18 +176,19 @@ namespace TechKingPOS.App.Services
             // CASH ONLY
             sb.AppendLine("Payment: CASH");
             sb.AppendLine($"Amount Paid:{payment.AmountPaid,15:0.00}");
-            sb.AppendLine($"Change:{(payment.AmountPaid - payment.Total),20:0.00}");
+            sb.AppendLine($"Change:{(payment.Change),20:0.00}");
         }
 
         // ================= HELPERS =================
+        private static string Line(int width)
+            => new string('-', width);
 
-        private static string Line() => new string('-', Width);
-
-        private static string Center(string text)
+        private static string Center(string text, int width)
         {
-            int pad = Math.Max(0, (Width - text.Length) / 2);
+            int pad = Math.Max(0, (width - text.Length) / 2);
             return new string(' ', pad) + text;
         }
+
 
         private static string Trim(string text, int max)
             => string.IsNullOrEmpty(text)

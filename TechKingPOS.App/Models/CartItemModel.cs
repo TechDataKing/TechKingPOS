@@ -5,4 +5,6 @@ public class CartItemModel
     public string Unit { get; set; }
     public decimal Price { get; set; }
     public decimal Total => Quantity * Price;
+    public int BranchId { get; set; }
+
 }

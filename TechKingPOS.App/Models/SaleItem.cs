@@ -6,18 +6,20 @@ namespace TechKingPOS.App.Models
 
         public string Name { get; set; } = string.Empty;
         public string Alias { get; set; } = string.Empty;   // 🔹 ADD THIS
-        public string Unit { get; set; } = string.Empty;
+        public string UnitType { get; set; } = string.Empty;
         public decimal MarkedPrice { get; set; }
-
-        public int Quantity { get; set; }
+        public decimal UnitValue { get; set; }
+        public decimal Quantity { get; set; }
         public decimal Price { get; set; }
+        public int BranchId { get; set; }
 
-        public decimal Total => Quantity * Price;
+
+        public bool IsRepack { get; set; }
 
         // 🔹 What shows in the list
-       
+        public decimal Total =>  Quantity * Price;
         public decimal SubTotal { get; set; }
-        public string Display => $"{Name} {Unit}";
+        public string Display => $"{Name} {UnitType}";
 
     }
 }

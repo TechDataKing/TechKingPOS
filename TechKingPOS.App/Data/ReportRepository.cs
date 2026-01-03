@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Services;
+using TechKingPOS.App.Security;
 
 namespace TechKingPOS.App.Data
 {
@@ -11,7 +12,7 @@ namespace TechKingPOS.App.Data
         // ================= SALES SUMMARY =================
         public static SalesSummary GetSalesSummary(
             DateTime from,
-            DateTime to)
+            DateTime to, int branchId)
         {
             using var connection = DbService.GetConnection();
             connection.Open();
@@ -26,20 +27,21 @@ namespace TechKingPOS.App.Data
             var cmd = connection.CreateCommand();
             cmd.CommandText = @"
                 SELECT
-                    COUNT(DISTINCT ReceiptNumber)       AS ReceiptCount,
-                    IFNULL(SUM(Total), 0)               AS TotalSales,
-                    IFNULL(SUM(Tax), 0)                 AS Tax,
-                    IFNULL(SUM(Discount), 0)            AS Discount,
-                    IFNULL(SUM(AmountPaid), 0)          AS AmountPaid
+                    COUNT(DISTINCT ReceiptNumber),
+                    IFNULL(SUM(Total), 0),
+                    IFNULL(SUM(Tax), 0),
+                    IFNULL(SUM(Discount), 0),
+                    IFNULL(SUM(AmountPaid), 0)
                 FROM Transactions
-                WHERE CreatedAt BETWEEN @from AND @to;
+                WHERE CreatedAt BETWEEN @from AND @to
+                AND (@branchId = 0 OR BranchId = @branchId);
             ";
 
             cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd HH:mm:ss"));
             cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd HH:mm:ss"));
-
+            cmd.Parameters.AddWithValue("@branchId", branchId);
             using var reader = cmd.ExecuteReader();
-            reader.Read();
+                        reader.Read();
 
             var summary = new SalesSummary
             {
@@ -63,7 +65,7 @@ namespace TechKingPOS.App.Data
         // ================= SOLD ITEMS =================
         public static List<SoldItemReport> GetSoldItems(
             DateTime from,
-            DateTime to)
+            DateTime to, int branchId)
         {
             using var connection = DbService.GetConnection();
             connection.Open();
@@ -80,17 +82,19 @@ namespace TechKingPOS.App.Data
                 SELECT
                     ReceiptNumber,
                     ItemName,
-                    SUM(Quantity)       AS Quantity,
+                    SUM(Quantity),
                     Price,
-                    SUM(Total)          AS Total
+                    SUM(Total)
                 FROM Sales
                 WHERE CreatedAt BETWEEN @from AND @to
+                AND (@branchId = 0 OR BranchId = @branchId)
                 GROUP BY ReceiptNumber, ItemName, Price
                 ORDER BY CreatedAt ASC;
             ";
 
             cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd HH:mm:ss"));
             cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@branchId", branchId);
 
             var result = new List<SoldItemReport>();
 
