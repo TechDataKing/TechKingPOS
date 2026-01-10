@@ -16,23 +16,25 @@ namespace TechKingPOS.App
         .OpenSalesFromChild();
 }
 
-private void FindCustomer_Click(object sender, RoutedEventArgs e)
-{
-    ((MainWindow)Application.Current.MainWindow)
-        .OpenReportsFromChild();
-}
+// private void FindCustomer_Click(object sender, RoutedEventArgs e)
+// {
+//     ((MainWindow)Application.Current.MainWindow)
+//         .OpenReportsFromChild();
+// }
 
 private void CreditSummary_Click(object sender, RoutedEventArgs e)
 {
     ((MainWindow)Application.Current.MainWindow)
-        .OpenReportsFromChild();
+        .OpenReportsFromChild(r => r.OpenCreditReport());
 }
+
 
 private void PaymentHistory_Click(object sender, RoutedEventArgs e)
 {
     ((MainWindow)Application.Current.MainWindow)
-        .OpenReportsFromChild();
+        .OpenReportsFromChild(r => r.OpenCreditReport());
 }
+
 
 
         private void SubmitPayment_Click(object sender, RoutedEventArgs e)

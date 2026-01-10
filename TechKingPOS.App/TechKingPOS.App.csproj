@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -11,6 +11,19 @@
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+  
+
+  <!-- APP ICON -->
+    <ApplicationIcon>Assets\TechKingPOS.ico</ApplicationIcon>
+
+    <!-- Identity -->
+    <Company>TechDataKing</Company>
+    <Product>TechKingPOS</Product>
+    <Authors>TechDataKing</Authors>
+    <Description>TechKingPOS – Offline-first Point of Sale system</Description>
+    <Copyright>© 2026 TechDataKing</Copyright>
+    <PackageId>TechKingPOS</PackageId>
+
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MQvZkg0fexdF4CK+0xoGLsL4h19xfrukMfELU/9mEz4TjuRJ3cLjqtqSxmkHBpCEoK+fc3CaL2NaDtB/c9NoDg==",
+  "dgSpecHash": "NqmHkW+ceXggFveuxfnl8UcNVLGdP6qCFPi1x2AE6UxQsgY//F0KarY+aODRY4+h5ZFEHaYsDFcjqWxEMCif4g==",
   "success": true,
   "projectFilePath": "C:\\techKingPOS\\TechKingPOS.app\\TechKingPOS.App.csproj",
   "expectedPackageFiles": [
@@ -35,7 +35,10 @@
     "C:\\Users\\Walter\\.nuget\\packages\\system.io.packaging\\8.0.1\\system.io.packaging.8.0.1.nupkg.sha512",
     "C:\\Users\\Walter\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\Walter\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
-    "C:\\Users\\Walter\\.nuget\\packages\\system.security.cryptography.xml\\8.0.2\\system.security.cryptography.xml.8.0.2.nupkg.sha512"
+    "C:\\Users\\Walter\\.nuget\\packages\\system.security.cryptography.xml\\8.0.2\\system.security.cryptography.xml.8.0.2.nupkg.sha512",
+    "C:\\Users\\Walter\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.22\\microsoft.netcore.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Walter\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.22\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.22.nupkg.sha512",
+    "C:\\Users\\Walter\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.22\\microsoft.aspnetcore.app.runtime.win-x64.8.0.22.nupkg.sha512"
   ],
   "logs": []
 }

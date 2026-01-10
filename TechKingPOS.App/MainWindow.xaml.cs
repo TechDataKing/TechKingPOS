@@ -62,30 +62,41 @@ namespace TechKingPOS.App
             BottomRight = Bottom | Right
         }
 
+
+
         public MainWindow()
         {
             InitializeComponent();
-            ApplyPermissions();
             LoadLoggedInUser();
+            
             Instance = this;
+
              if (SessionService.IsLoggedIn)
             UserNameText.Text = SessionService.CurrentUser.Name;
+
         }
 
         // ================= DEFAULT SIZES =================
-        private void ApplyDefaultSize(string key, Border host)
-        {
-            switch (key)
-            {
-                case "Sales": host.Width = 1200; host.Height = 700; break;
-                case "Items": host.Width = 500; host.Height = 660; break;
-                case "Stock": host.Width = 1200; host.Height = 700; break;
-                case "Credit": host.Width = 900; host.Height = 650; break;
-                case "Reports": host.Width = 1200; host.Height = 700; break;
-                case "Workers": host.Width = 850; host.Height = 700; break;
-                case "Settings": host.Width = 700; host.Height = 650; break;
-            }
-        }
+        private static readonly Dictionary<string, (double Width, double Height)> DefaultWindowSizes
+    = new()
+{
+    { PermissionMap.OpenSales,   (1200, 700) },
+    { PermissionMap.OpenAddItem, (500, 660)  },
+    { PermissionMap.OpenManageStock, (1200, 700) },
+    { PermissionMap.OpenCreditManagement, (900, 650) },
+    { PermissionMap.OpenReports, (1200, 700) },
+    { PermissionMap.OpenWorkers, (850, 700)  },
+    { PermissionMap.OpenSettings,(700, 650)  }
+};
+private void ApplyDefaultSize(string permissionKey, Border host)
+{
+    if (!DefaultWindowSizes.TryGetValue(permissionKey, out var size))
+        return;
+
+    host.Width = size.Width;
+    host.Height = size.Height;
+}
+
 
         // ================= TASK MENU =================
         private void ToggleTaskMenu(object sender, RoutedEventArgs e)
@@ -101,7 +112,7 @@ private void OpenWindow(
     string key,
     Func<Window> factory)
 {
-   if (!PermissionService.CanOpen(key))
+   if (!PermissionService.Can(SessionService.CurrentUser.Id, SessionService.CurrentUser.Role, key))
     {
         MessageBox.Show("Access denied", "Permission",
             MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -439,19 +450,19 @@ private void OpenWindow(
 
         // ================= ROUTES =================
 private void OpenSales(object sender, RoutedEventArgs e) =>
-    OpenWindow("Sales", () => new SalesWindow());
+    OpenWindow(PermissionMap.OpenSales, () => new SalesWindow());
 
 private void OpenItems(object sender, RoutedEventArgs e) =>
-    OpenWindow("Items", () => new AddItemWindow());
+    OpenWindow(PermissionMap.OpenAddItem, () => new AddItemWindow());
 
 private void OpenStock(object sender, RoutedEventArgs e) =>
-    OpenWindow("Stock", () => new ManageStockWindow());
+    OpenWindow(PermissionMap.OpenManageStock, () => new ManageStockWindow());
 
 private void OpenCredit(object sender, RoutedEventArgs e) =>
-    OpenWindow("Credit", () => new CreditManagement());
+    OpenWindow(PermissionMap.OpenCreditManagement, () => new CreditManagement());
 
 private void OpenReports(object sender, RoutedEventArgs e) =>
-    OpenWindow("Reports", () =>
+    OpenWindow(PermissionMap.OpenReports, () =>
     {
         var w = new ReportsWindow();
         w.InitializeReport();
@@ -459,54 +470,31 @@ private void OpenReports(object sender, RoutedEventArgs e) =>
     });
 
 private void OpenWorkers(object sender, RoutedEventArgs e) =>
-    OpenWindow("Workers", () => new WorkerWindow());
+    OpenWindow(PermissionMap.OpenWorkers, () => new WorkerWindow());
 
 private void OpenSettings(object sender, RoutedEventArgs e) =>
-    OpenWindow("Settings", () => new SettingsWindow());
+    OpenWindow(PermissionMap.OpenSettings, () => new SettingsWindow());
 
-            public void OpenReportsFromChild()
-        {
-            OpenWindow("Reports", () =>
-            {
-                var w = new ReportsWindow();
-                w.InitializeReport();
-                return w;
-            });
-        }
+
+public void OpenReportsFromChild(Action<ReportsWindow> configure)
+{
+    OpenWindow(PermissionMap.OpenReports, () =>
+    {
+        var w = new ReportsWindow();
+        w.InitializeReport();
+        configure?.Invoke(w);
+        return w;
+    });
+}
+
 
 public void OpenSalesFromChild()
 {
-    OpenWindow("Sales", () => new SalesWindow());
+    OpenWindow(PermissionMap.OpenSales, () => new SalesWindow());
 }
 
 
-private void ApplyPermissions()
-{
-    // If worker is logged in → restrict access
-    if (UserSession.IsWorker)
-    {
-        // Worker allowed windows
-        btnSales.Visibility   = Visibility.Visible;
-        btnStock.Visibility   = Visibility.Visible;
-        btnCredit.Visibility  = Visibility.Visible;
 
-        // Worker NOT allowed windows
-        btnReports.Visibility = Visibility.Collapsed;
-        btnWorkers.Visibility = Visibility.Collapsed;
-        btnSettings.Visibility = Visibility.Collapsed;
-    }
-    else
-    {
-        // Admin → everything visible
-        btnSales.Visibility   = Visibility.Visible;
-        btnItems.Visibility   = Visibility.Visible;
-        btnStock.Visibility   = Visibility.Visible;
-        btnCredit.Visibility  = Visibility.Visible;
-        btnReports.Visibility = Visibility.Visible;
-        btnWorkers.Visibility = Visibility.Visible;
-        btnSettings.Visibility = Visibility.Visible;
-    }
-}
 
 private void LoadLoggedInUser()
 {
@@ -600,6 +588,8 @@ private void TaskButton_MouseLeave(object sender, MouseEventArgs e)
 {
     TaskButtonHint.IsOpen = false;
 }
+
+// <! -- PERMISSIONS OVERLAY HANDLERS -- >
 
    }  
  }

@@ -6,6 +6,8 @@ using TechKingPOS.App.Security;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
+using System.Windows.Media;
+using System;
 using System.Linq;
 
 namespace TechKingPOS.App
@@ -46,6 +48,7 @@ namespace TechKingPOS.App
         public SettingsWindow()
         {
             InitializeComponent();
+
 
             EnableDiscountCheck.Checked += (_, _) => UpdateDiscountUI();
             EnableDiscountCheck.Unchecked += (_, _) => UpdateDiscountUI();
@@ -641,5 +644,9 @@ private void RangesGrid_CellEditEnding(object sender, DataGridCellEditEndingEven
                 // add others if needed
             };
         }
+
+
+
+
             }
 }

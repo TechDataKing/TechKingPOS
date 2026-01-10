@@ -4,6 +4,7 @@
         Title="Workers"
         Height="650"
         Width="900"
+        KeyDown="Window_KeyDown"
         WindowStartupLocation="CenterScreen"
         Background="#F4F6F8">
 
@@ -55,9 +56,9 @@
 
 </Window.Resources>
 
-
-    <!-- ✅ PAGE SCROLL -->
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <!-- MAIN GRID -->
+    <Grid >
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="16">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -124,6 +125,16 @@
                 Click="EditBranch_Click">
             Edit Branch
         </Button>
+        <Button Content="Permissions"
+                        Height="42"
+                        Margin="8,0,0,0"
+                        Padding="14,0"
+                        Background="#0288D1"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Click="Permissions_Click"/>
     </StackPanel>
 </Border>
 
@@ -252,7 +263,8 @@
                               Grid.Row="1"
                               AutoGenerateColumns="False"
                               IsReadOnly="True"
-                              SelectionMode="Single">
+                              SelectionMode="Single"
+                              SelectionChanged="WorkersGrid_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                             <DataGridTextColumn Header="ID" Binding="{Binding NationalId}" Width="120"/>
@@ -280,4 +292,125 @@
 
         </Grid>
     </ScrollViewer>
-</Window>
+            <Grid x:Name="PermissionsOverlay"
+      Visibility="Collapsed"
+      Background="#80000000"
+      MouseDown="Overlay_MouseDown">
+
+    <!-- WHITE CARD -->
+    <Border Width="700"
+            MaxHeight="520"
+            Background="White"
+            CornerRadius="12"
+            Padding="20"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            MouseDown="Card_MouseDown">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- HEADER -->
+            <Grid Grid.Row="0">
+                <TextBlock Text="Permissions"
+                           FontWeight="Bold"
+                           FontSize="16"
+                           VerticalAlignment="Center"/>
+
+                <!-- X CLOSE -->
+                <Button Content="✕"
+                        Width="32"
+                        Height="32"
+                        FontSize="16"
+                        FontWeight="Bold"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Foreground="#444"
+                        HorizontalAlignment="Right"
+                        Cursor="Hand"
+                        Click="ClosePermissions_Click"/>
+            </Grid>
+
+            <!-- CONTENT -->
+            <Grid Grid.Row="1" Margin="0,12,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- LEFT COLUMN -->
+                <Border Grid.Column="0"
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="12"
+                        Margin="0,0,10,0">
+
+                    <StackPanel>
+                        <TextBlock Text="WINDOWS PERMISSIONS"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <CheckBox Content="Open Sales Screen" Tag="open_sales"/>
+                        <CheckBox Content="Open Add Item" Tag="open_add_item"/>
+                        <CheckBox Content="Open Manage Stock" Tag="open_manage_stock"/>
+                        <CheckBox Content="Open Credit Management" Tag="open_credit_management"/>
+                        <CheckBox Content="Open Reports" Tag="open_reports"/>
+                        <CheckBox Content="Open Workers" Tag="open_workers"/>
+                        <CheckBox Content="Open Settings" Tag="open_settings"/>
+
+                        <Separator Margin="0,12"/>
+
+                        <TextBlock Text="STOCK"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <CheckBox Content="View Stock Targets" Tag="stock.targets"/>
+                        <CheckBox Content="Edit Items" Tag="stock.edit_item"/>
+                        <CheckBox Content="Mark Damaged Stock" Tag="stock.damaged"/>
+                        <CheckBox Content="Repack Stock" Tag="stock.repack"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- RIGHT COLUMN -->
+                <Border Grid.Column="1"
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="12">
+
+                    <StackPanel>
+                        <TextBlock Text="CREDIT &amp; REPORTS"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <CheckBox Content="Add Credit Sales" Tag="credit.add"/>
+                        <CheckBox Content="View Credit Summary" Tag="credit.summary"/>
+                        <CheckBox Content="Add Credit Payments" Tag="credit.add_payments"/>
+                        <CheckBox Content="View Payment History" Tag="credit.payment_history"/>
+
+                        <Separator Margin="0,12"/>
+
+                        <TextBlock Text="REPORTS ACCESS"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,10"/>
+
+                        <CheckBox Content="Sales Reports" Tag="reports.sales"/>
+                        <CheckBox Content="Inventory Reports" Tag="reports.inventory"/>
+                        <CheckBox Content="Credit Reports" Tag="reports.credit"/>
+                        <CheckBox Content="Expense Reports" Tag="reports.expenses"/>
+                        <CheckBox Content="Change Branch" Tag="system.change_branch"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Grid>
+
+        </Grid>
+    <!-- ✅ PAGE SCROLL -->
+    </Window>

@@ -10,57 +10,69 @@ namespace TechKingPOS.App.Data
     public static class ReportsRepository
     {
         // ================= SALES SUMMARY =================
-        public static SalesSummary GetSalesSummary(
-            DateTime from,
-            DateTime to, int branchId)
-        {
-            using var connection = DbService.GetConnection();
-            connection.Open();
+public static SalesSummary GetSalesSummary(
+    DateTime from,
+    DateTime to,
+    int branchId)
+{
+    using var connection = DbService.GetConnection();
+    connection.Open();
 
-            LoggerService.Info(
-                "📊",
-                "REPORT",
-                "Loading sales summary",
-                $"{from:yyyy-MM-dd} → {to:yyyy-MM-dd}"
-            );
+    LoggerService.Info(
+        "📊",
+        "REPORT",
+        "Loading sales summary",
+        $"{from:yyyy-MM-dd} → {to:yyyy-MM-dd}"
+    );
 
-            var cmd = connection.CreateCommand();
-            cmd.CommandText = @"
-                SELECT
-                    COUNT(DISTINCT ReceiptNumber),
-                    IFNULL(SUM(Total), 0),
-                    IFNULL(SUM(Tax), 0),
-                    IFNULL(SUM(Discount), 0),
-                    IFNULL(SUM(AmountPaid), 0)
-                FROM Transactions
-                WHERE CreatedAt BETWEEN @from AND @to
-                AND (@branchId = 0 OR BranchId = @branchId);
-            ";
+    var cmd = connection.CreateCommand();
+    cmd.CommandText = @"
+        SELECT
+            COUNT(DISTINCT t.ReceiptNumber),
+            IFNULL(SUM(t.Total), 0),
+            IFNULL(SUM(t.Tax), 0),
+            IFNULL(SUM(t.Discount), 0),
+            IFNULL(SUM(t.AmountPaid), 0),
+            IFNULL(SUM(sp.TotalProfit), 0)
+        FROM Transactions t
+        LEFT JOIN (
+            SELECT
+                ReceiptNumber,
+                SUM(Profit) AS TotalProfit
+            FROM Sales
+            GROUP BY ReceiptNumber
+        ) sp ON sp.ReceiptNumber = t.ReceiptNumber
+        WHERE t.CreatedAt BETWEEN @from AND @to
+        AND (@branchId = 0 OR t.BranchId = @branchId);
+    ";
 
-            cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd HH:mm:ss"));
-            cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd HH:mm:ss"));
-            cmd.Parameters.AddWithValue("@branchId", branchId);
-            using var reader = cmd.ExecuteReader();
-                        reader.Read();
+    cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd HH:mm:ss"));
+    cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd HH:mm:ss"));
+    cmd.Parameters.AddWithValue("@branchId", branchId);
 
-            var summary = new SalesSummary
-            {
-                ReceiptCount = reader.GetInt32(0),
-                TotalSales   = reader.GetDecimal(1),
-                Tax          = reader.GetDecimal(2),
-                Discount     = reader.GetDecimal(3),
-                AmountPaid   = reader.GetDecimal(4)
-            };
+    using var reader = cmd.ExecuteReader();
+    reader.Read();
 
-            LoggerService.Info(
-                "✅",
-                "REPORT",
-                "Sales summary loaded",
-                $"Receipts={summary.ReceiptCount}, Total={summary.TotalSales}"
-            );
+    var summary = new SalesSummary
+    {
+        ReceiptCount = reader.GetInt32(0),
+        TotalSales   = reader.GetDecimal(1),
+        Tax          = reader.GetDecimal(2),
+        Discount     = reader.GetDecimal(3),
+        AmountPaid   = reader.GetDecimal(4),
+        Profit       = reader.GetDecimal(5)
+    };
 
-            return summary;
-        }
+    LoggerService.Info(
+        "✅",
+        "REPORT",
+        "Sales summary loaded",
+        $"Receipts={summary.ReceiptCount}, Total={summary.TotalSales}, Profit={summary.Profit}"
+    );
+
+    return summary;
+}
+
 
         // ================= SOLD ITEMS =================
         public static List<SoldItemReport> GetSoldItems(

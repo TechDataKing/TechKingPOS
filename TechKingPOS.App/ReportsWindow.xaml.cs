@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Documents;
 using System.Printing;
+using System.Windows.Threading;
 using System.Windows.Media;
+using System.Windows.Input;
 using ClosedXML.Excel;
 using Microsoft.Win32;
 using System.IO;
@@ -23,6 +25,9 @@ namespace TechKingPOS.App
     public partial class ReportsWindow : Window
     {
         private bool _isLoaded = false;
+        private bool _isLoading = false;
+        private TabItem? _lastAllowedTab;
+
          private List<CreditView> _allCredits = new();
 
         public ReportsWindow()
@@ -35,7 +40,7 @@ namespace TechKingPOS.App
 
         private int _editingExpenseId = 0;
         private int _selectedBranchId = 0; // 0 = All Branches
-
+        
 private enum ReportType
 {
     Sales,
@@ -52,7 +57,6 @@ private ReportType GetActiveReport()
 
 public void InitializeReport()
 {
-    _isLoaded = true;
 
     FromDatePicker.SelectedDate = DateTime.Today;
     ToDatePicker.SelectedDate = DateTime.Today;
@@ -143,39 +147,177 @@ private void PrintReport_Click(object sender, RoutedEventArgs e)
     }
 }
 
-
-
-        // ================= WINDOW LOADED =================
+// ================= WINDOW LOADED =================
 private void ReportsWindow_Loaded(object sender, RoutedEventArgs e)
-{   
-    MessageBox.Show("Window Loaded");
+{   ReportsTabControl.SelectedIndex = -1;
 
-    if (BranchComboBox == null)
-    {
-        MessageBox.Show("BranchComboBox is NULL");
-        return;
-    }
-
-    MessageBox.Show("BranchComboBox exists");
-
+    // 🔒 Block all logic during init
+    _isLoaded = false;
+    _isLoading = true;
 
     FromDatePicker.SelectedDate = DateTime.Today;
     ToDatePicker.SelectedDate = DateTime.Today;
 
-    Dispatcher.BeginInvoke(
-        new Action(LoadReport),
-        System.Windows.Threading.DispatcherPriority.Background
-    );
+    TabItem? firstAllowedTab = null;
 
-    LoadOutOfStock();
-    LoadCredits();
-    LoadBranches();
+    foreach (TabItem tab in ReportsTabControl.Items)
+    {
+        string? key = tab.Tag as string;
 
+        bool allowed =
+            string.IsNullOrWhiteSpace(key) ||
+            PermissionService.Can(
+                SessionService.CurrentUser.Id,
+                SessionService.CurrentUser.Role,
+                key
+            );
+
+        // Tabs stay enabled so clicks can be intercepted
+        tab.IsEnabled = true;
+
+        if (allowed && firstAllowedTab == null)
+            firstAllowedTab = tab;
+    }
+
+    // 🔒 Force initial safe tab BEFORE any rendering
+    if (firstAllowedTab != null)
+    {
+        _lastAllowedTab = firstAllowedTab;
+        ReportsTabControl.SelectedItem = firstAllowedTab;
+    }
+
+    // 🔁 Defer heavy loading until UI is stable
+    Dispatcher.BeginInvoke(() =>
+    {
+        LoadReport();
+        LoadOutOfStock();
+        LoadCredits();
+        LoadBranches();
+        LoadExpenses();
+
+        // ✅ App fully ready
+        _isLoaded = true;
+        _isLoading = false;
+
+    }, DispatcherPriority.Background);
+}
+private void ReportsTabItem_Loaded(object sender, RoutedEventArgs e)
+{
+    if (sender is not TabItem tab)
+        return;
+
+    string? key = tab.Tag as string;
+
+    bool allowed =
+        string.IsNullOrWhiteSpace(key) ||
+        PermissionService.Can(
+            SessionService.CurrentUser.Id,
+            SessionService.CurrentUser.Role,
+            key
+        );
+
+    if (!allowed)
+    {
+        // 🚫 PREVENT CONTENT FROM EVER SHOWING
+        tab.Content = null;
+
+        // 🔒 also prevent default selection
+        if (ReportsTabControl.SelectedItem == tab)
+            ReportsTabControl.SelectedIndex = -1;
+    }
 }
 
+   private void ReportsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (_isLoading)
+        return;
 
+    if (ReportsTabControl.SelectedItem is not TabItem tab)
+        return;
 
+    string? permissionKey = tab.Tag as string;
 
+    // Tabs without permission are always allowed
+    if (string.IsNullOrWhiteSpace(permissionKey))
+    {
+        _lastAllowedTab = tab;
+        return;
+    }
+
+    bool allowed = PermissionService.Can(
+        SessionService.CurrentUser.Id,
+        SessionService.CurrentUser.Role,
+        permissionKey
+    );
+
+    if (!allowed)
+    {
+        // 🚫 Prevent partial render + crash-safe rollback
+        Dispatcher.BeginInvoke(() =>
+        {
+            MessageBox.Show(
+                "Access denied",
+                "Permission",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+            );
+
+            _isLoading = true;
+
+            if (_lastAllowedTab != null)
+                ReportsTabControl.SelectedItem = _lastAllowedTab;
+
+            _isLoading = false;
+
+        }, DispatcherPriority.Background);
+
+        return;
+    }
+
+    // ✅ Allowed → remember
+    _lastAllowedTab = tab;
+}
+
+private void ReportsTabControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+{
+    if (e.OriginalSource is not DependencyObject source)
+        return;
+
+    var tab = ItemsControl.ContainerFromElement(
+        ReportsTabControl,
+        source
+    ) as TabItem;
+
+    if (tab == null)
+        return;
+
+    string? permissionKey = tab.Tag as string;
+
+    if (string.IsNullOrWhiteSpace(permissionKey))
+        return;
+
+    bool allowed = PermissionService.Can(
+        SessionService.CurrentUser.Id,
+        SessionService.CurrentUser.Role,
+        permissionKey
+    );
+
+    if (!allowed)
+    {
+        // 🚫 BLOCK DEFAULT TAB SELECTION
+        e.Handled = true;
+        Dispatcher.BeginInvoke(() =>
+    {
+        MessageBox.Show(
+            "Access denied",
+            "Permission",
+            MessageBoxButton.OK,
+            MessageBoxImage.Warning
+        );
+    }, DispatcherPriority.Background);
+        
+    }
+}
         // ================= SALES =================
 
         private void LoadToday()
@@ -291,9 +433,10 @@ private void LoadCredits(DateTime? from= null,DateTime? to=null)
         WHERE c.Balance > 0
           AND (@from IS NULL OR c.CreatedAt >= @from)
           AND (@to IS NULL OR c.CreatedAt <= @to)
+          AND (@branchId = 0 OR c.BranchId = @branchId)
         ORDER BY LastPaymentDate DESC;
     ";
-
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
     cmd.Parameters.AddWithValue("@from",
         from.HasValue ? from.Value.ToString("yyyy-MM-dd") : DBNull.Value);
 
@@ -347,15 +490,24 @@ private void LoadTodayExpenses()
 }
 private void LoadExpenses()
 {
-    var from = DateTime.Today;
-    var to = DateTime.Today;
+    DateTime from = ExpenseFromDatePicker.SelectedDate?.Date
+                    ?? DateTime.Today;
+
+    DateTime to = ExpenseToDatePicker.SelectedDate?.Date
+                  ?? DateTime.Today;
+
+    // 🔥 MAKE RANGE INCLUSIVE
+    to = to.AddDays(1).AddSeconds(-1);
 
     var list = ExpenseRepository.GetExpenses(from, to);
 
     ExpensesGrid.ItemsSource = list;
+
     TotalExpensesText.Text =
-        ExpenseRepository.GetTotalExpenses(from, to).ToString("0.00");
+        ExpenseRepository.GetTotalExpenses(from, to)
+            .ToString("0.00");
 }
+
 
 
 private void SaveExpense_Click(object sender, RoutedEventArgs e)
@@ -760,12 +912,15 @@ private void LoadExpensesByDate_Click(object sender, RoutedEventArgs e)
         return;
     }
 
-    // TODO: Replace with your repository call
-    // Example:
-    // ExpensesGrid.ItemsSource = ExpenseRepository.GetByDate(from.Value, to.Value);
+    var list = ExpenseRepository.GetExpenses(from.Value, to.Value);
 
-    MessageBox.Show($"Expenses filtered from {from:yyyy-MM-dd} to {to:yyyy-MM-dd}");
-        }
+    ExpensesGrid.ItemsSource = list;
+
+    TotalExpensesText.Text =
+        ExpenseRepository.GetTotalExpenses(from.Value, to.Value)
+            .ToString("0.00");
+}
+
         private TableCell H(string text)
         {
             return new TableCell(new Paragraph(new Run(text)))
@@ -1304,12 +1459,14 @@ private void BranchComboBox_SelectionChanged(object sender, SelectionChangedEven
     if (BranchComboBox.SelectedValue == null)
         return;
 
-    SessionContext.CurrentBranchId =
-        (int)BranchComboBox.SelectedValue;
+    _selectedBranchId = (int)BranchComboBox.SelectedValue;
+    SessionContext.CurrentBranchId = _selectedBranchId;
 
     LoadReport();
     LoadCredits();
     LoadOutOfStock();
+    LoadExpenses();
+    
 }
 
 private void LoadBranches()
@@ -1338,5 +1495,11 @@ private void LoadBranches()
 
     _isLoaded = true;
 }
+
+public void OpenCreditReport()
+{
+    ReportsTabControl.SelectedIndex = 2; // Credit tab
+}
+
     }
 }

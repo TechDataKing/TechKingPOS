@@ -12,8 +12,9 @@ namespace TechKingPOS.App.Models
         public decimal Quantity { get; set; }
         public decimal Price { get; set; }
         public int BranchId { get; set; }
-
-
+        public decimal CostPrice { get; set; }  // 🔹 ADD THIS
+        public decimal Profit { get; set; }     // 🔹 ADD THIS
+        public decimal costTotal { get; set; } // 🔹 ADD THIS
         public bool IsRepack { get; set; }
 
         // 🔹 What shows in the list

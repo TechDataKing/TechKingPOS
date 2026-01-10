@@ -542,6 +542,31 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                 }
             );
         }
+        public static decimal GetMarkedPrice(
+    SqliteConnection connection,
+    SqliteTransaction transaction,
+    int itemId)
+{
+    using var cmd = connection.CreateCommand();
+    cmd.Transaction = transaction;
+    cmd.CommandText = @"
+        SELECT MarkedPrice
+        FROM Items
+        WHERE Id = @id
+          AND BranchId = @branchId;
+    ";
+
+    cmd.Parameters.AddWithValue("@id", itemId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+
+    object? result = cmd.ExecuteScalar();
+
+    if (result == null || result == DBNull.Value)
+        throw new InvalidOperationException("Marked price not found for item");
+
+    return Convert.ToDecimal(result);
+}
+
 
     }
 }

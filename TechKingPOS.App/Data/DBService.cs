@@ -7,19 +7,59 @@ namespace TechKingPOS.App.Data
 {
     public static class DbService
     {
+        // ✅ INSTALLER-SAFE, WRITABLE LOCATION
         private static readonly string DbPath =
-            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "app.db");
+            Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "TechKingPOS",
+                "Data",
+                "app.db"
+            );
 
         public static readonly string ConnectionString =
             $"Data Source={DbPath};Pooling=True;";
 
-        static DbService()
+static DbService()
+{
+    try
+    {
+        EnsureDatabase();
+    }
+    catch (Exception ex)
+    {
+        try
         {
-            EnsureDatabase();
+            var baseDir = Environment.GetFolderPath(
+                Environment.SpecialFolder.LocalApplicationData
+            );
+
+            var logDir = Path.Combine(baseDir, "TechKingPOS", "crash");
+            Directory.CreateDirectory(logDir);
+
+            var logFile = Path.Combine(
+                logDir,
+                "DB_STATIC_INIT_ERROR.txt"
+            );
+
+            File.WriteAllText(
+                logFile,
+                "=== DbService STATIC INIT FAILURE ===\n\n" +
+                ex.ToString()
+            );
         }
+        catch
+        {
+            // absolutely swallow — we must not hide original error
+        }
+
+        throw; // 🔥 still crash — but now we KNOW WHY
+    }
+}
+
 
         private static void EnsureDatabase()
         {
+            // ✅ Ensure folders exist
             Directory.CreateDirectory(Path.GetDirectoryName(DbPath)!);
 
             using var connection = new SqliteConnection(ConnectionString);
@@ -27,6 +67,7 @@ namespace TechKingPOS.App.Data
 
             ApplyPragmas(connection);
             CreateTables(connection);
+            EnsureDefaultBranch(connection);
 
             LoggerService.Info("🗄️", "DB", "Database initialized", DbPath);
         }
@@ -43,12 +84,19 @@ namespace TechKingPOS.App.Data
             cmd.ExecuteNonQuery();
         }
 
+        // ⚠️ YOUR TABLES — UNCHANGED
+        private static void CreateTables(SqliteConnection connection)
+        {
+            var cmd = connection.CreateCommand();
 
-      private static void CreateTables(SqliteConnection connection)
-{
-    var cmd = connection.CreateCommand();
-
-    cmd.CommandText = @"
+            cmd.CommandText = @"
+            CREATE TABLE IF NOT EXISTS Branch (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL UNIQUE,
+    Code TEXT NOT NULL UNIQUE,
+    IsActive INTEGER DEFAULT 1,
+    CreatedAt TEXT NOT NULL
+);
     CREATE TABLE IF NOT EXISTS Items (
         Id INTEGER PRIMARY KEY AUTOINCREMENT,
         BranchId INTEGER NOT NULL DEFAULT 1,
@@ -88,6 +136,8 @@ namespace TechKingPOS.App.Data
         Quantity INTEGER NOT NULL,
         Price REAL NOT NULL,
         Total REAL NOT NULL,
+        CostPrice REAL NOT NULL DEFAULT 0,
+        Profit REAL NOT NULL DEFAULT 0,
         BranchId INTEGER NOT NULL DEFAULT 1,
         CreatedAt TEXT NOT NULL,
         FOREIGN KEY (BranchId) REFERENCES Branch(Id)
@@ -96,9 +146,10 @@ namespace TechKingPOS.App.Data
     -- Customers are unique by Name (phone can be NULL)
     CREATE TABLE IF NOT EXISTS Customers (
         Id INTEGER PRIMARY KEY AUTOINCREMENT,
-        Name TEXT NOT NULL UNIQUE,
+        Name TEXT NOT NULL ,
         Phone TEXT,
         BranchId INTEGER NOT NULL DEFAULT 1,
+        UNIQUE (Name , BranchId),
         FOREIGN KEY (BranchId) REFERENCES Branch(Id)
     );
 
@@ -289,19 +340,65 @@ CREATE TABLE IF NOT EXISTS RepackRules (
 
     FOREIGN KEY (ItemId) REFERENCES Items(Id)
 );
-CREATE TABLE IF NOT EXISTS Branch (
-    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Name TEXT NOT NULL UNIQUE,
-    Code TEXT NOT NULL UNIQUE,
-    IsActive INTEGER DEFAULT 1,
-    CreatedAt TEXT NOT NULL
+
+CREATE TABLE IF NOT EXISTS permissions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    key TEXT NOT NULL UNIQUE,
+    description TEXT
+);
+
+CREATE TABLE IF NOT EXISTS roles (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);
+CREATE TABLE IF NOT EXISTS role_permissions (
+    role_id INTEGER NOT NULL,
+    permission_id INTEGER NOT NULL,
+    PRIMARY KEY (role_id, permission_id)
+);
+CREATE TABLE IF NOT EXISTS user_roles (
+    user_id INTEGER NOT NULL,
+    role_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, role_id)
+);
+CREATE TABLE IF NOT EXISTS user_permissions (
+    user_id INTEGER NOT NULL,
+    permission_key TEXT NOT NULL,
+    granted INTEGER NOT NULL DEFAULT 1,
+    granted_at TEXT NOT NULL,
+
+    PRIMARY KEY (user_id, permission_key)
 );
 
 
-    ";
 
-    cmd.ExecuteNonQuery();
-}
+
+";
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void EnsureDefaultBranch(SqliteConnection connection)
+        {
+            using var check = connection.CreateCommand();
+            check.CommandText = "SELECT COUNT(*) FROM Branch;";
+            long count = (long)check.ExecuteScalar();
+
+            if (count > 0)
+                return;
+
+            using var cmd = connection.CreateCommand();
+            cmd.CommandText = @"
+                INSERT INTO Branch (Name, Code, IsActive, CreatedAt)
+                VALUES ('Main Branch', 'MAIN', 1, @created);
+            ";
+
+            cmd.Parameters.AddWithValue(
+                "@created",
+                DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+            );
+
+            cmd.ExecuteNonQuery();
+        }
 
         public static SqliteConnection GetConnection()
         {

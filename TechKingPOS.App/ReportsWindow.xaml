@@ -206,6 +206,7 @@
 
         <!-- BRANCH COMBO -->
         <ComboBox Grid.Column="4"
+                    Tag="reports.change_branch"
                   x:Name="BranchComboBox"
                   VerticalAlignment="Center"
                   DisplayMemberPath="Name"
@@ -239,10 +240,14 @@
 </Border>
 
 
-        <TabControl x:Name="ReportsTabControl" Grid.Row="1" Background="White" >
+        <TabControl x:Name="ReportsTabControl"
+             Grid.Row="1" Background="White"
+             SelectionChanged="ReportsTabControl_SelectionChanged"
+             PreviewMouseLeftButtonDown="ReportsTabControl_PreviewMouseLeftButtonDown">
 
             <!-- ================= SALES TAB ================= -->
-            <TabItem Header="  Sales Report  ">
+            <TabItem Header=" Sales Report" 
+                Tag="reports.sales" Loaded = "ReportsTabItem_Loaded">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid Margin="18">
                     <Grid.RowDefinitions>
@@ -353,7 +358,7 @@
             </TabItem>
 
            <!-- ================= INVENTORY TAB ================= -->
-<TabItem Header="  Inventory  ">
+<TabItem Header="  Inventory  " Tag="reports.inventory">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="18">
             <Grid.RowDefinitions>
@@ -439,7 +444,7 @@
 </TabItem>
 
         <!-- ================= CREDIT TAB ================= -->
-        <TabItem Header="  Credit  ">
+        <TabItem Header="  Credit  "    Tag="reports.credit">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <Grid Margin="18">
                     <Grid.RowDefinitions>
@@ -610,7 +615,7 @@
 
 
  <!-- ================= EXPENSES TAB ================= -->
-<TabItem Header="  Expenses  ">
+<TabItem Header="  Expenses  "   Tag="reports.expenses">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="18">
             <Grid.ColumnDefinitions>

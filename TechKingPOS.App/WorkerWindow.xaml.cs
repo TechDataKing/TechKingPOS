@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Input;
 using TechKingPOS.App.Data;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Security;
@@ -14,6 +16,7 @@ namespace TechKingPOS.App
         private List<WorkerView> _allWorkers = new();
         private int? _editingWorkerId = null;
         private WorkerView _editingWorker = null;
+private int _selectedWorkerId = 0;
 
 private List<Branch> _branches = new();
 
@@ -106,6 +109,8 @@ private void SaveWorker_Click(object sender, RoutedEventArgs e)
     MessageBox.Show("Worker updated successfully.");
 
     _editingWorker = null;
+    _editingWorkerId = null;
+    ResetWorkerSelection();
 }
 
     // ================= CREATE MODE =================
@@ -259,6 +264,129 @@ private void LoadBranches()
 
     SessionContext.CurrentBranchId =
         (int)BranchCombo.SelectedValue;
+}
+
+
+// <=================== Permissions ===================>
+
+private void Permissions_Click(object sender, RoutedEventArgs e)
+{
+    if (_selectedWorkerId <= 0)
+    {
+        MessageBox.Show(
+            "Please select a worker first.",
+            "No Worker Selected",
+            MessageBoxButton.OK,
+            MessageBoxImage.Warning
+        );
+        return;
+    }
+
+    PermissionsOverlay.Visibility = Visibility.Visible;
+
+    LoadPermissionsForSelectedWorker();
+    HookPermissionCheckboxes();
+}
+private void LoadPermissionsForSelectedWorker()
+{
+    foreach (var cb in FindVisualChildren<CheckBox>(PermissionsOverlay))
+    {
+        if (cb.Tag is not string key)
+            continue;
+
+        cb.IsChecked = PermissionRepository.HasPermission(_selectedWorkerId, key);
+    }
+}
+private bool _permissionHooksAttached = false;
+
+private void HookPermissionCheckboxes()
+{
+    if (_permissionHooksAttached)
+        return;
+
+    foreach (var cb in FindVisualChildren<CheckBox>(PermissionsOverlay))
+    {
+        if (cb.Tag is string)
+        {
+            cb.Checked += PermissionChanged;
+            cb.Unchecked += PermissionChanged;
+        }
+    }
+
+    _permissionHooksAttached = true;
+}
+
+private void PermissionChanged(object sender, RoutedEventArgs e)
+{
+    if (_selectedWorkerId <= 0)
+        return;
+
+    if (sender is not CheckBox cb)
+        return;
+
+    if (cb.Tag is not string key)
+        return;
+
+    PermissionRepository.SetUserPermission(
+        _selectedWorkerId,
+        key,
+        cb.IsChecked == true
+    );
+}
+private static IEnumerable<T> FindVisualChildren<T>(DependencyObject parent)
+    where T : DependencyObject
+{
+    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+    {
+        var child = VisualTreeHelper.GetChild(parent, i);
+
+        if (child is T t)
+            yield return t;
+
+        foreach (var descendant in FindVisualChildren<T>(child))
+            yield return descendant;
+    }
+}
+
+private void Window_KeyDown(object sender, KeyEventArgs e)
+{
+    if (e.Key == Key.Escape && PermissionsOverlay.Visibility == Visibility.Visible)
+    {
+        PermissionsOverlay.Visibility = Visibility.Collapsed;
+        ResetWorkerSelection();
+    }
+}
+
+private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
+{
+    PermissionsOverlay.Visibility = Visibility.Collapsed;
+    ResetWorkerSelection();
+}
+
+private void Card_MouseDown(object sender, MouseButtonEventArgs e)
+{
+    e.Handled = true; // prevent closing when clicking inside
+}
+
+private void ClosePermissions_Click(object sender, RoutedEventArgs e)
+{
+    PermissionsOverlay.Visibility = Visibility.Collapsed;
+    ResetWorkerSelection();
+}
+private void WorkersGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (WorkersGrid.SelectedItem is not WorkerView worker)
+    {
+        _selectedWorkerId = 0;
+        return;
+    }
+
+    _selectedWorkerId = worker.Id;
+}
+private void ResetWorkerSelection()
+{
+    WorkersGrid.SelectedItem = null;
+    _selectedWorkerId = 0;
 }
 
     }

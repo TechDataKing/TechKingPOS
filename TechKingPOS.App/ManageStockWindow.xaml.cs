@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Threading;
 using TechKingPOS.App.Data;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Services;
 using TechKingPOS.App.Security;
+
 
 
 namespace TechKingPOS.App
@@ -29,15 +32,18 @@ private List<ItemLookup> _repackItems = new();
 private ItemLookup? _selectedRepackItem = null;
 private RepackRuleModel? _selectedRepackRule = null;
 private bool _isEditMode = false;
+private TabItem? _lastAllowedTab;
+private bool _isLoaded = false;
+
+
+private bool _isLoading;
+
 
         public ManageStockWindow()
         {
             InitializeComponent();
 
-            LoadItems();
-            LoadDamagedItems();
-            LoadRepackItems();
-
+                this.Loaded += Window_Loaded;
             TargetSearchBox.TextChanged += TargetSearchBox_TextChanged;
             EditSearchBox.TextChanged += EditSearchBox_TextChanged;
             EditItemsList.SelectionChanged += EditItemsList_SelectionChanged;
@@ -46,7 +52,172 @@ private bool _isEditMode = false;
             DamagedItemSearchList.SelectionChanged += DamagedItemSearchList_SelectionChanged;
             DamagedItemsList.SelectionChanged += DamagedItemsList_SelectionChanged;
 
+
         }
+private void Window_Loaded(object sender, RoutedEventArgs e)
+{
+    // 🔒 Prevent WPF from auto-selecting first tab
+    StockTabs.SelectedIndex = -1;
+
+    // 🔒 Block all tab logic during initialization
+    _isLoading = true;
+
+    TabItem? firstAllowedTab = null;
+
+    // 🔍 Permission scan
+    foreach (TabItem tab in StockTabs.Items)
+    {
+        string? key = tab.Tag as string;
+
+        bool allowed =
+            string.IsNullOrWhiteSpace(key) ||
+            PermissionService.Can(
+                SessionService.CurrentUser.Id,
+                SessionService.CurrentUser.Role,
+                key
+            );
+
+        // ⚠️ Tabs must stay enabled so clicks can be intercepted
+        tab.IsEnabled = true;
+
+        if (allowed && firstAllowedTab == null)
+            firstAllowedTab = tab;
+    }
+
+    // 🔒 Force safe default tab BEFORE any rendering
+    if (firstAllowedTab != null)
+    {
+        _lastAllowedTab = firstAllowedTab;
+        StockTabs.SelectedItem = firstAllowedTab;
+    }
+
+    // 🔁 Defer ALL heavy loading until UI is stable
+    Dispatcher.BeginInvoke(() =>
+    {
+        LoadItems();
+        LoadDamagedItems();
+        LoadRepackItems();
+
+        // ✅ App fully ready
+        _isLoading = false;
+
+    }, DispatcherPriority.Background);
+}
+private void StockTabItem_Loaded(object sender, RoutedEventArgs e)
+{
+    if (sender is not TabItem tab)
+        return;
+
+    string? key = tab.Tag as string;
+
+    bool allowed =
+        string.IsNullOrWhiteSpace(key) ||
+        PermissionService.Can(
+            SessionService.CurrentUser.Id,
+            SessionService.CurrentUser.Role,
+            key
+        );
+
+    if (!allowed)
+    {
+        // 🚫 PREVENT CONTENT FROM EVER RENDERING
+        tab.Content = null;
+
+        // 🔒 prevent default selection
+        if (StockTabs.SelectedItem == tab)
+            StockTabs.SelectedIndex = -1;
+    }
+}
+
+private void StockTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (_isLoading)
+        return;
+
+    if (StockTabs.SelectedItem is not TabItem tab)
+        return;
+
+    string? permissionKey = tab.Tag as string;
+
+    if (string.IsNullOrWhiteSpace(permissionKey))
+    {
+        _lastAllowedTab = tab;
+        return;
+    }
+
+    bool allowed = PermissionService.Can(
+        SessionService.CurrentUser.Id,
+        SessionService.CurrentUser.Role,
+        permissionKey
+    );
+
+    if (!allowed)
+    {
+        Dispatcher.BeginInvoke(() =>
+        {
+            MessageBox.Show(
+                "Access denied",
+                "Permission",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning
+            );
+
+            _isLoading = true;
+
+            if (_lastAllowedTab != null)
+                StockTabs.SelectedItem = _lastAllowedTab;
+
+            _isLoading = false;
+
+        }, DispatcherPriority.Background);
+
+        return;
+    }
+
+    _lastAllowedTab = tab;
+}
+
+private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+{
+    if (e.OriginalSource is not DependencyObject source)
+        return;
+
+    var tab = ItemsControl.ContainerFromElement(
+        StockTabs,
+        source
+    ) as TabItem;
+
+    if (tab == null)
+        return;
+
+    string? permissionKey = tab.Tag as string;
+
+    if (string.IsNullOrWhiteSpace(permissionKey))
+        return;
+
+    bool allowed = PermissionService.Can(
+        SessionService.CurrentUser.Id,
+        SessionService.CurrentUser.Role,
+        permissionKey
+    );
+
+    if (!allowed)
+    {
+        // 🚫 BLOCK DEFAULT TAB SELECTION
+        e.Handled = true;
+        Dispatcher.BeginInvoke(() =>
+    {
+        MessageBox.Show(
+            "Access denied",
+            "Permission",
+            MessageBoxButton.OK,
+            MessageBoxImage.Warning
+        );
+    }, DispatcherPriority.Background);
+        
+    }
+}
+
         private void LoadRepackItems()
         {
             _repackItems = ItemRepository.GetAllItems();
@@ -638,6 +809,7 @@ private bool _isEditMode = false;
 
             AddRepackRulePanel.Visibility = Visibility.Visible;
         }
+
 
 
     }

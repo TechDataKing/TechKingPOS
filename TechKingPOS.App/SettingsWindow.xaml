@@ -44,6 +44,9 @@
                         HorizontalContentAlignment="Left"
                         Click="Users_Click"/>
 
+                        
+
+
                 <Button Content="System" Height="42" Margin="0,4"
                         HorizontalContentAlignment="Left"
                         Click="System_Click"/>
@@ -286,7 +289,11 @@
                     <CheckBox x:Name="AllowGiveDiscountsCheck"
                             Content="Allow workers to give discounts"
                             Margin="0,8,0,0"/>
-                </StackPanel>
+            
+
+                        <!-- TWO COLUMN GRID -->
+                 </StackPanel>
+
 
 
                         <!-- ================= SYSTEM ================= -->

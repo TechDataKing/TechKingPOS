@@ -106,26 +106,30 @@
 
             <Button Content="Add Credit"
                     Style="{StaticResource NavButtonStyle}"
-                    Background="#E0E7FF"
                     Margin="0,0,0,10"
+                    FontSize="14"
+                    FontWeight="SemiBold"
                     Click="AddCredit_Click"/>
 
-            <Button Content="Find Customer"
+            <!-- <Button Content="Find Customer"
                     Style="{StaticResource NavButtonStyle}"
                     Margin="0,5,0,10"
-                    Background="#E0E7FF"
-                    Click="FindCustomer_Click"/>
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Click="FindCustomer_Click"/> -->
 
             <Button Content="Credit Summary"
                     Style="{StaticResource NavButtonStyle}"
                     Margin="0,5,0,10"
-                    Background="#E0E7FF"
+                    FontSize="14"
+                    FontWeight="SemiBold"
                     Click="CreditSummary_Click"/>
 
             <Button Content="Payment History"
                     Style="{StaticResource NavButtonStyle}"
                     Margin="0,5,0,10"
-                    Background="#E0E7FF"
+                    FontSize="14"
+                    FontWeight="SemiBold"
                     Click="PaymentHistory_Click"/>
 
         </StackPanel>

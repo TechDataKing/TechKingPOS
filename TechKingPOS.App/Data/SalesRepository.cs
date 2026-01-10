@@ -18,7 +18,10 @@ namespace TechKingPOS.App.Data
             decimal discount,
             decimal vat,
             decimal total,
-            decimal amountPaid)
+            decimal amountPaid,
+            decimal totalCost = 0m,
+            decimal totalProfit = 0m
+            )
         {
             using var connection = DbService.GetConnection();
             connection.Open();
@@ -116,8 +119,19 @@ namespace TechKingPOS.App.Data
                                 transaction,
                                 item.ItemId
                             );
+                        decimal costPrice = ItemRepository.GetMarkedPrice(
+                            connection,
+                            transaction,
+                            item.ItemId
+                        );
+                            decimal costTotal = costPrice * baseQty;
+                            decimal lineProfit = item.Total - costTotal;
+
+                            totalCost += costTotal;
+                            totalProfit += lineProfit;
 
 
+                
                         // Deduct stock (transaction-safe)
                         ItemRepository.DeductStock(
                             connection,
@@ -127,6 +141,8 @@ namespace TechKingPOS.App.Data
                             $"Sale {receiptNumber}",
                             cashier
                         );
+                        
+
 
                     var itemCmd = connection.CreateCommand();
                     itemCmd.Transaction = transaction;
@@ -140,6 +156,8 @@ namespace TechKingPOS.App.Data
                                 Quantity,
                                 Price,
                                 Total,
+                                CostPrice,
+                                Profit,
                                 BranchId,
                                 CreatedAt
                             )
@@ -152,6 +170,8 @@ namespace TechKingPOS.App.Data
                                 @qty,
                                 @price,
                                 @total,
+                                @costPrice,
+                                @profit,
                                 @branchId,
                                 @created
                             );
@@ -165,6 +185,8 @@ namespace TechKingPOS.App.Data
                         itemCmd.Parameters.AddWithValue("@qty", item.Quantity);
                         itemCmd.Parameters.AddWithValue("@price", item.Price);
                         itemCmd.Parameters.AddWithValue("@total", item.Total);
+                        itemCmd.Parameters.AddWithValue("@costPrice", costPrice);
+                        itemCmd.Parameters.AddWithValue("@profit", lineProfit);
                         itemCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);   
                         itemCmd.Parameters.AddWithValue("@created", createdAt);
 

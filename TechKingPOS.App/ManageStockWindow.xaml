@@ -5,6 +5,7 @@
         Height="650"
         Width="1000"
         Background="#F4F6F8"
+        Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen">
 
     <!-- ================= RESOURCES ================= -->
@@ -18,7 +19,10 @@
         <Setter.Value>
             <ControlTemplate TargetType="TextBox">
                 <Grid>
-                    <ScrollViewer x:Name="PART_ContentHost"/>
+                    <ScrollViewer x:Name="PART_ContentHost"
+              Padding="{TemplateBinding Padding}"
+              VerticalAlignment="Center"/>
+
 
                     <TextBlock Text="{TemplateBinding Tag}"
                                Margin="12,0,0,0"
@@ -28,18 +32,14 @@
                                IsHitTestVisible="False">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Text.Length,
                                             RelativeSource={RelativeSource TemplatedParent}}"
                                                  Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Text.Length,
-                                            RelativeSource={RelativeSource TemplatedParent}}"
-                                                 Value="1">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
+                                    
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
@@ -63,10 +63,15 @@
     </Window.Resources>
 
     <Grid Margin="15">
-        <TabControl Background="White">
+<TabControl
+    x:Name="StockTabs"
+    SelectionChanged="StockTabs_SelectionChanged"
+    PreviewMouseLeftButtonDown="StockTabs_PreviewMouseLeftButtonDown">
 
             <!-- ================= TARGETS TAB ================= -->
-            <TabItem Header=" Targets ">
+            <TabItem Header=" Targets "
+                 Tag="stock.targets" Loaded="StockTabItem_Loaded"
+                >
                 <Border Padding="15" Background="White">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -124,7 +129,7 @@
             </TabItem>
 
             <!-- ================= EDIT ITEMS TAB ================= -->
-            <TabItem Header=" Edit Item ">
+            <TabItem Header=" Edit Item " Tag="stock.edit_item">
                 <Border Padding="15" Background="White">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -233,7 +238,7 @@
                 </Border>
             </TabItem>
 <!-- ================= DAMAGED GOODS TAB ================= -->
-<TabItem Header=" Damaged ">
+<TabItem Header=" Damaged " Tag="stock.damaged">
     <Border Padding="15" Background="White">
         <Grid>
             <!-- 3 COLUMNS -->
@@ -441,7 +446,9 @@
         </Grid>
     </Border>
 </TabItem>
-<TabItem Header=" Repack ">
+
+            <!-- ================= REPACK TAB ================= -->
+<TabItem Header=" Repack " Tag="stock.repack">
     <Border Padding="15" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>

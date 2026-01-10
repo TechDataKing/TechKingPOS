@@ -78,7 +78,7 @@ public static void SaveCredit(
         customerCmd.CommandText = @"
             INSERT INTO Customers (Name, Phone, BranchId)
             VALUES (@n, @p, @branchId)
-            ON CONFLICT(Name) DO NOTHING;
+            ON CONFLICT(Name, BranchId) DO NOTHING;
         ";
         customerCmd.Parameters.AddWithValue("@n", customerName);
         customerCmd.Parameters.AddWithValue("@p", phone);
@@ -98,7 +98,7 @@ public static void SaveCredit(
         creditCmd.CommandText = @"
             INSERT INTO Credits (CustomerId, ReceiptNumber, Total, Paid, Balance, BranchId, CreatedAt)
             VALUES (@cid, @r, @t, @p, @b, @branchId, @c)
-            ON CONFLICT(CustomerId, BranchId) DO UPDATE SET
+            ON CONFLICT(CustomerId) DO UPDATE SET
                 Total = Total + @t,
                 Paid = Paid + @p,
                 Balance = Balance + @b;

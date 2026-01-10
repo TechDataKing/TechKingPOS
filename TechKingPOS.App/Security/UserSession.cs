@@ -10,5 +10,6 @@ namespace TechKingPOS.App.Security
 
         public static bool IsAdmin => Role == UserRole.Admin;
         public static bool IsWorker => Role == UserRole.Worker;
+        public static bool IsGuest => Role == UserRole.Guest;
     }
 }

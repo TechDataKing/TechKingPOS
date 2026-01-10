@@ -183,6 +183,7 @@ Worker created / disabled
 
 Settings changed
 
+                    Background="#E0E7FF"
 
 
 using System;

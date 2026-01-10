@@ -10,8 +10,7 @@ namespace TechKingPOS.App.Models
         public int BranchId { get; set; }
 
 
-        public decimal Profit => TotalSales - Tax - Discount;
-
+        public decimal Profit { get; set; } 
     public decimal SubTotal { get; set; }
 
     // ================= DISCOUNT =================

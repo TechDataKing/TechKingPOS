@@ -1,5 +1,7 @@
 using System;
 using Microsoft.Data.Sqlite;
+using System.Windows;
+
 using TechKingPOS.App.Data;
 
 namespace TechKingPOS.App.Services
@@ -21,10 +23,18 @@ namespace TechKingPOS.App.Services
             ";
 
             using var r = cmd.ExecuteReader();
-
+            
             if (!r.Read())
-                throw new Exception("Branch is not initialized in database");
-
+                {
+                    MessageBox.Show(
+                        "No branch configured. Please restart the application.",
+                        "Initialization Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error
+                    );
+                    Application.Current.Shutdown();
+                    return;
+                }
             BranchContext.Id   = r.GetInt32(0);
             BranchContext.Name = r.GetString(1);
             BranchContext.Code = r.GetString(2);
