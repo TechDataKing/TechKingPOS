@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {},
     ".NETCoreApp,Version=v8.0/win-x64": {
-      "TechKingPOS.App/1.0.0": {
+      "TechKingPOS.App/1.2.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "ClosedXML": "0.105.0",
@@ -1243,7 +1243,7 @@
     }
   },
   "libraries": {
-    "TechKingPOS.App/1.0.0": {
+    "TechKingPOS.App/1.2.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,5 +1,5 @@
 #define MyAppName "TechKingPOS"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.5.0"
 #define MyAppPublisher "TechDataKing"
 #define MyAppExeName "TechKingPOS.App.exe"
 
@@ -12,7 +12,7 @@ DefaultDirName={commonpf}\TechKingPOS
 DefaultGroupName=TechKingPOS
 DisableProgramGroupPage=yes
 OutputDir=Output
-OutputBaseFilename=TechKingPOS_1.0.0
+OutputBaseFilename=TechKingPOS_1.5.0
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

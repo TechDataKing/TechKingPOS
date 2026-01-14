@@ -1,6 +1,7 @@
-<Window x:Class="TechKingPOS.App.SalesWindow"
+<local:RefreshOnFocusWindow x:Class="TechKingPOS.App.SalesWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TechKingPOS.App.Services"
         Title="Sales"
         Height="700"
         Width="Auto"
@@ -382,4 +383,4 @@
             </Grid>
         </Grid>
     </Grid>
-</Window>
+</local:RefreshOnFocusWindow>

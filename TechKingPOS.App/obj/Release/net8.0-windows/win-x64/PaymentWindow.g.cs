@@ -139,7 +139,7 @@ namespace TechKingPOS.App {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TechKingPOS.App;V1.0.0.0;component/paymentwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TechKingPOS.App;V1.5.0.0;component/paymentwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\PaymentWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -66,7 +66,7 @@ private async void RunUpdate(UpdateProgressWindow progressWindow)
         progressWindow.SetProgress(100);
         await Task.Delay(500);
 
-        LaunchInstaller(installerPath);
+        LaunchInstaller(installerPath, progressWindow);
     }
     catch (Exception ex)
     {
@@ -78,7 +78,7 @@ private async void RunUpdate(UpdateProgressWindow progressWindow)
 }
 
 
-private void RelaunchApplication(UpdateProgressWindow progressWindow)
+private void RelaunchNewVersion(UpdateProgressWindow progressWindow)
 {
     progressWindow.Dispatcher.Invoke(() =>
     {
@@ -86,34 +86,53 @@ private void RelaunchApplication(UpdateProgressWindow progressWindow)
         progressWindow.Close();
     });
 
-    // Start new instance
-    System.Diagnostics.Process.Start(
-        Environment.ProcessPath!
+    var exePath = System.IO.Path.Combine(
+        AppDomain.CurrentDomain.BaseDirectory,
+        "TechKingPOS.App.exe"
     );
 
-    // Kill old instance
-    Application.Current.Dispatcher.Invoke(() =>
+    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
     {
-        Application.Current.Shutdown();
-    });
-}
-
-private void LaunchInstaller(string installerPath)
-{
-    var psi = new System.Diagnostics.ProcessStartInfo
-    {
-        FileName = installerPath,
-        Arguments = "/VERYSILENT /NORESTART",
+        FileName = exePath,
         UseShellExecute = true
-    };
-
-    System.Diagnostics.Process.Start(psi);
-
-    Application.Current.Dispatcher.Invoke(() =>
-    {
-        Application.Current.Shutdown();
     });
+
+    Application.Current.Shutdown();
 }
+
+
+private async void LaunchInstaller(string installerPath, UpdateProgressWindow progressWindow)
+{
+    try
+    {
+        progressWindow.SetStatus("Installing update...");
+        progressWindow.SetProgress(100);
+
+        var psi = new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = installerPath,
+            Arguments = "/SILENT /NORESTART",
+            UseShellExecute = true
+        };
+
+        var installerProcess = System.Diagnostics.Process.Start(psi);
+
+        if (installerProcess != null)
+        {
+            await installerProcess.WaitForExitAsync();
+        }
+
+        progressWindow.SetStatus("Update complete. Launching application...");
+        await Task.Delay(800);
+
+        RelaunchNewVersion(progressWindow);
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(ex.Message, "Installer Error", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}
+
 
 
         private void SkipUpdate_Click(object sender, RoutedEventArgs e)
@@ -122,5 +141,6 @@ private void LaunchInstaller(string installerPath)
             DialogResult = false;
             Close();
         }
+        
     }
 }

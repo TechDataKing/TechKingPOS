@@ -6,6 +6,75 @@
         Height="650"
         Background="#F4F6F8"
         WindowStartupLocation="CenterScreen">
+        <Window.Resources>
+
+    <!-- LEFT MENU BUTTON STYLE -->
+ <Style x:Key="LeftMenuButtonStyle" TargetType="Button">
+    <Setter Property="Height" Value="44"/>
+    <Setter Property="Margin" Value="0,4"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="Foreground" Value="#546E7A"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Tag" Value="False"/> <!-- We'll use Tag=True for active -->
+
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Border x:Name="Root"
+                        CornerRadius="6"
+                        Background="{TemplateBinding Background}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="Accent"
+                                Grid.Column="0"
+                                Background="Transparent"/>
+
+                        <ContentPresenter Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          Margin="12,0"/>
+                    </Grid>
+                </Border>
+
+                <ControlTemplate.Triggers>
+
+                    <!-- Hover -->
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="#1E88E5"/>
+                        <Setter TargetName="Root" Property="Background" Value="#E3F2FD"/>
+                        <Setter TargetName="Accent" Property="Background" Value="#1E88E5"/>
+                    </Trigger>
+
+                    <!-- Pressed -->
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="Root" Property="Background" Value="#BBDEFB"/>
+                    </Trigger>
+
+                    <!-- Disabled -->
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5"/>
+                    </Trigger>
+
+                    <!-- Active/Selected -->
+                    <Trigger Property="Tag" Value="True">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter TargetName="Root" Property="Background" Value="#1976D2"/>
+                        <Setter TargetName="Accent" Property="Background" Value="#FFC107"/>
+                    </Trigger>
+
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+</Window.Resources>
+
 
     <Grid Margin="16">
 
@@ -20,38 +89,60 @@
                 CornerRadius="8"
                 Padding="12"
                 Margin="0,0,12,0">
+<StackPanel>
 
-            <StackPanel>
+    <TextBlock Text="Settings"
+               FontSize="20"
+               FontWeight="Bold"
+               Margin="8,0,0,16"/>
 
-                <TextBlock Text="Settings"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           Margin="8,0,0,16"/>
+    <Button x:Name="BusinessButton" Style="{StaticResource LeftMenuButtonStyle}"
+            Click="Business_Click">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="🏢" FontSize="16" Margin="0,0,10,0"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            <TextBlock Text="Business" FontSize="14" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Button>
 
-                <Button Content="Business" Height="42" Margin="0,4"
-                        HorizontalContentAlignment="Left"
-                        Click="Business_Click"/>
+    <Button x:Name="ReceiptButton" Style="{StaticResource LeftMenuButtonStyle}"
+            Click="Receipt_Click">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="🧾" FontSize="16" Margin="0,0,10,0"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            <TextBlock Text="Receipt &amp; Print" FontSize="14" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Button>
 
-                <Button Content="Receipt &amp; Print" Height="42" Margin="0,4"
-                        HorizontalContentAlignment="Left"
-                        Click="Receipt_Click"/>
+    <Button x:Name="SalesButton" Style="{StaticResource LeftMenuButtonStyle}"
+            Click="Sales_Click">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="💳" FontSize="16" Margin="0,0,10,0"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            <TextBlock Text="Sales &amp; Payment" FontSize="14" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Button>
 
-                <Button Content="Sales &amp; Payment" Height="42" Margin="0,4"
-                        HorizontalContentAlignment="Left"
-                        Click="Sales_Click"/>
+    <Button x:Name="UsersButton" Style="{StaticResource LeftMenuButtonStyle}"
+            Click="Users_Click">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="👤" FontSize="16" Margin="0,0,10,0"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            <TextBlock Text="Users &amp; Security" FontSize="14" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Button>
 
-                <Button Content="Users &amp; Security" Height="42" Margin="0,4"
-                        HorizontalContentAlignment="Left"
-                        Click="Users_Click"/>
+    <Button x:Name="SystemButton" Style="{StaticResource LeftMenuButtonStyle}"
+            Click="System_Click">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="⚙" FontSize="16" Margin="0,0,10,0"
+                       Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+            <TextBlock Text="System" FontSize="14" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Button>
 
-                        
+</StackPanel>
 
-
-                <Button Content="System" Height="42" Margin="0,4"
-                        HorizontalContentAlignment="Left"
-                        Click="System_Click"/>
-
-            </StackPanel>
         </Border>
 
         <!-- ================= RIGHT CONTENT ================= -->
@@ -67,34 +158,69 @@
                 </Grid.RowDefinitions>
 
                 <!-- ================= SCROLLABLE CONTENT ================= -->
-                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-                    <Grid>
+<ScrollViewer Grid.Row="0"
+              VerticalScrollBarVisibility="Auto"
+              HorizontalScrollBarVisibility="Disabled">
+
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
 
                         <!-- ================= BUSINESS ================= -->
-                        <StackPanel x:Name="BusinessPanel">
-                            <TextBlock Text="Business Settings"
-                                       FontSize="20"
-                                       FontWeight="Bold"
-                                       Margin="0,0,0,20"/>
+<StackPanel x:Name="BusinessPanel" Margin="0,0,0,0">
 
-                            <TextBlock Text="Business Name"/>
-                            <TextBox x:Name="BusinessNameBox" Height="38" Width="420"/>
+    <TextBlock Text="Business Settings"
+               FontSize="20"
+               FontWeight="Bold"
+               Margin="0,0,0,24"/>
 
-                            <TextBlock Text="Branch Name or code" Margin="0,12,0,2"/>
-                            <TextBox x:Name="BranchNameBox" Height="38" Width="420"/>
+    <!-- Grid for labels and inputs -->
+    <Grid HorizontalAlignment="Stretch" MaxWidth="600">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/> <!-- Label -->
+            <ColumnDefinition Width="*"/>   <!-- Input -->
+        </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Phone" Margin="0,12,0,2"/>
-                            <TextBox x:Name="PhoneBox" Height="38" Width="420"/>
+        <!-- Define 6 rows for 6 fields -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Business Name -->
+            <RowDefinition Height="Auto"/> <!-- Branch Name -->
+            <RowDefinition Height="Auto"/> <!-- Phone -->
+            <RowDefinition Height="Auto"/> <!-- Email -->
+            <RowDefinition Height="Auto"/> <!-- Address -->
+            <RowDefinition Height="Auto"/> <!-- Footer -->
+        </Grid.RowDefinitions>
 
-                            <TextBlock Text="Email" Margin="0,12,0,2"/>
-                            <TextBox x:Name= "EmailBox" Height="38" Width="420"/>
+        <!-- BUSINESS NAME -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Business Name" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="BusinessNameBox" Height="38" Margin="0,0,0,8"/>
 
-                            <TextBlock Text="Physical Address" Margin="0,12,0,2"/>
-                            <TextBox x:Name="AddressBox" Height="60" Width="420" AcceptsReturn="True"/>
+        <!-- BRANCH NAME -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Branch Name" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="BranchNameBox" Height="38" Margin="0,0,0,8"/>
 
-                            <TextBlock Text="Receipt Footer Message" Margin="0,12,0,2"/>
-                            <TextBox x:Name="FooterBox" Height="60" Width="420" AcceptsReturn="True"/>
-                        </StackPanel>
+        <!-- PHONE -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Phone Number" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="PhoneBox" Height="38" Margin="0,0,0,8"/>
+
+        <!-- EMAIL -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Email Address" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="EmailBox" Height="38" Margin="0,0,0,8"/>
+
+        <!-- ADDRESS -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Business Address" VerticalAlignment="Top" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="AddressBox" Height="60" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,8"/>
+
+        <!-- FOOTER -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Receipt Footer Message" VerticalAlignment="Top" Margin="0,0,8,0"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="FooterBox" Height="60" AcceptsReturn="True" TextWrapping="Wrap"/>
+    </Grid>
+
+</StackPanel>
+
+
 
                         <!-- ================= RECEIPT ================= -->
                         <StackPanel x:Name="ReceiptPanel" Visibility="Collapsed">
@@ -118,7 +244,7 @@
 
                             <ComboBox x:Name="PaperSizeCombo"
                                     Height="36"
-                                    Width="200">
+                                    MaxWidth="200">
                                 <ComboBoxItem Content="58mm"/>
                                 <ComboBoxItem Content="80mm"/>
                             </ComboBox>
@@ -127,7 +253,7 @@
 
                             <TextBox x:Name="ReceiptCopiesBox"
                                     Height="36"
-                                    Width="120"/>
+                                    MaxWidth="120"/>
 
                         </StackPanel>
 
@@ -161,7 +287,7 @@
 
                         <TextBox x:Name="VatPercentBox"
                                 Height="36"
-                                Width="120"/>
+                                MaxWidth="120"/>
 
 
 

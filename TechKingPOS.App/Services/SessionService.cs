@@ -28,14 +28,14 @@ namespace TechKingPOS.App.Services
                 Id = 0,
                 Name = "Guest",
                 Role = UserRole.Guest,
-                BranchId = 0
+                BranchId = 1
             };
 
             UserSession.UserId = 0;
             UserSession.UserName = "Guest";
             UserSession.Role = UserRole.Guest;
 
-            SessionContext.CurrentBranchId = 0;
+            SessionContext.CurrentBranchId = 1;
         }
 
         public static void Logout()

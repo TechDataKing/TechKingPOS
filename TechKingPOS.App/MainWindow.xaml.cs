@@ -38,6 +38,13 @@ namespace TechKingPOS.App
 
         private const double TASKBAR_HEIGHT = 42;
         private const double RESIZE_THICKNESS = 6;
+        // ================= WINDOW CASCADE / ANIMATION =================
+        private Border _activeWindow;
+
+        private const double CASCADE_OFFSET = 30;
+        private const double BASE_LEFT = 40;
+        private const double BASE_TOP_OFFSET = 20;
+
 
         private enum ResizeMode
         {
@@ -86,7 +93,7 @@ namespace TechKingPOS.App
     { PermissionMap.OpenCreditManagement, (900, 650) },
     { PermissionMap.OpenReports, (1200, 700) },
     { PermissionMap.OpenWorkers, (850, 700)  },
-    { PermissionMap.OpenSettings,(700, 650)  }
+    { PermissionMap.OpenSettings,(780, 650)  }
 };
 private void ApplyDefaultSize(string permissionKey, Border host)
 {
@@ -139,39 +146,107 @@ private void OpenWindow(
     _openWindows[key] = host;
     Desktop.Children.Add(host);
 
-    Canvas.SetLeft(host, 120);
-    Canvas.SetTop(host, 80);
+        PlaceWindowRelativeToActive(host);
+        AnimateWindowIn(host);
 
-    AddTaskButton(key, win.Title);
-    BringToFront(host);
+        AddTaskButton(key, win.Title);
+        BringToFront(host);
+}
+private void PlaceWindowRelativeToActive(Border window)
+{
+    double left;
+    double top;
+
+    if (_activeWindow != null && Desktop.Children.Contains(_activeWindow))
+    {
+        left = Canvas.GetLeft(_activeWindow) + CASCADE_OFFSET;
+        top  = Canvas.GetTop(_activeWindow)  + CASCADE_OFFSET;
+    }
+    else
+    {
+        left = BASE_LEFT;
+        top  = TASKBAR_HEIGHT + BASE_TOP_OFFSET;
+    }
+
+    // ===== CLAMP TO DESKTOP =====
+    if (left + window.Width > Desktop.ActualWidth)
+        left = BASE_LEFT;
+
+    if (top + window.Height > Desktop.ActualHeight)
+        top = TASKBAR_HEIGHT + BASE_TOP_OFFSET;
+
+    Canvas.SetLeft(window, left);
+    Canvas.SetTop(window, top);
+}
+private void AnimateWindowIn(Border window)
+{
+    window.Opacity = 0;
+
+    var transform = new TranslateTransform { Y = -10 };
+    window.RenderTransform = transform;
+
+    var fade = new System.Windows.Media.Animation.DoubleAnimation
+    {
+        From = 0,
+        To = 1,
+        Duration = TimeSpan.FromMilliseconds(150)
+    };
+
+    var slide = new System.Windows.Media.Animation.DoubleAnimation
+    {
+        From = -10,
+        To = 0,
+        Duration = TimeSpan.FromMilliseconds(150),
+        EasingFunction = new System.Windows.Media.Animation.CubicEase
+        {
+            EasingMode = System.Windows.Media.Animation.EasingMode.EaseOut
+        }
+    };
+
+    window.BeginAnimation(OpacityProperty, fade);
+    transform.BeginAnimation(TranslateTransform.YProperty, slide);
 }
 
 
         // ================= TASKBAR =================
-        private void AddTaskButton(string key, string title)
+private void AddTaskButton(string key, string title)
+{
+    if (_taskButtons.ContainsKey(key))
+        return;
+
+    var btn = new Button
+    {
+        Content = title,
+        Margin = new Thickness(4, 0, 4, 0),
+        Padding = new Thickness(12, 4, 12, 4),
+        Background = Brushes.Transparent,
+        Foreground = Brushes.White,
+        BorderBrush = Brushes.Gray
+    };
+
+    btn.Click += (s, e) => RestoreWindow(key);
+
+    _taskButtons[key] = btn;
+    TaskBar.Children.Add(btn);
+}
+
+
+private void RestoreWindow(string key)
+{
+    if (!_openWindows.TryGetValue(key, out var win))
+    {
+        // Window no longer exists → remove dead task button
+        if (_taskButtons.TryGetValue(key, out var btn))
         {
-            var btn = new Button
-            {
-                Content = title,
-                Margin = new Thickness(4, 0, 4, 0),
-                Padding = new Thickness(12, 4, 12, 4),
-                Background = Brushes.Transparent,
-                Foreground = Brushes.White,
-                BorderBrush = Brushes.Gray
-            };
-
-            btn.Click += (s, e) => RestoreWindow(key);
-
-            _taskButtons[key] = btn;
-            TaskBar.Children.Add(btn);
+            TaskBar.Children.Remove(btn);
+            _taskButtons.Remove(key);
         }
+        return;
+    }
 
-        private void RestoreWindow(string key)
-        {
-            var win = _openWindows[key];
-            win.Visibility = Visibility.Visible;
-            BringToFront(win);
-        }
+    win.Visibility = Visibility.Visible;
+    BringToFront(win);
+}
 
         private void RemoveTaskButton(string key)
         {
@@ -440,13 +515,15 @@ private void OpenWindow(
             _resizingWindow = null;
         }
 
-        private void BringToFront(Border window)
-        {
-            foreach (UIElement child in Desktop.Children)
-                Panel.SetZIndex(child, 0);
+private void BringToFront(Border window)
+{
+    foreach (UIElement child in Desktop.Children)
+        Panel.SetZIndex(child, 0);
 
-            Panel.SetZIndex(window, 100);
-        }
+    Panel.SetZIndex(window, 100);
+    _activeWindow = window;
+}
+
 
         // ================= ROUTES =================
 private void OpenSales(object sender, RoutedEventArgs e) =>

@@ -14,11 +14,11 @@ using System.Windows.Media;
 
 namespace TechKingPOS.App
 {
-    public partial class SalesWindow : Window
+    public partial class SalesWindow : RefreshOnFocusWindow
 
     {
         // ================= DISCOUNT STATE =================
-
+        private bool _isLoaded;
         // Is any discount applied?
         private bool _hasDiscount;
         
@@ -31,7 +31,8 @@ namespace TechKingPOS.App
         // Raw value entered (e.g. 500 or 10)
         private decimal _discountValue;
 
-         private long _lastSettingsVersion;
+            private long _lastItemVersion = -1;
+            private long _lastSettingsVersion = -1;
 
 
         // Cart (right side)
@@ -58,6 +59,14 @@ namespace TechKingPOS.App
     (_settings?.VatEnabled == true && _settings.VatPercent > 0)
         ? _settings.VatPercent / 100m
         : 0m;
+
+
+protected override void OnContentRendered(EventArgs e)
+{
+    base.OnContentRendered(e);
+    _isLoaded = true;
+}
+
 
 
     private DiscountMode _discountMode = DiscountMode.None;        // overall mode
@@ -103,6 +112,38 @@ namespace TechKingPOS.App
 
             
         }
+protected override void Refresh()
+{
+    if (!_isLoaded)
+        return;
+
+    // 🔁 SETTINGS
+    if (_lastSettingsVersion != SettingsCache.Version)
+    {
+        _lastSettingsVersion = SettingsCache.Version;
+        LoadDiscountSettings();
+        ApplyReceiptSettings();
+        UpdateTotals(); // 🔥 cart preserved
+    }
+
+    // 🔁 ITEMS
+    if (_lastItemVersion != ItemRepository.Version)
+    {
+        _lastItemVersion = ItemRepository.Version;
+
+        var selected = ItemsList.SelectedItem;
+
+        _allItems = ItemRepository.GetAllItems();
+        ItemsList.ItemsSource = _allItems;
+
+        // optional: restore selection
+        if (selected is ItemLookup old)
+        {
+            ItemsList.SelectedItem =
+                _allItems.FirstOrDefault(i => i.Id == old.Id);
+        }
+    }
+}
 
         private void LoadDiscountSettings()
 {
@@ -912,16 +953,6 @@ namespace TechKingPOS.App
             }
         }
 
-        protected override void OnActivated(EventArgs e)
-        {
-            base.OnActivated(e);
-
-            if (_lastSettingsVersion != SettingsCache.Version)
-            {
-                _lastSettingsVersion = SettingsCache.Version;
-                SettingsApplier.Apply(this);
-            }
-        }
 
          private void ApplyReceiptSettings()
     {

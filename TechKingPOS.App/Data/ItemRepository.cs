@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
+using System.Threading;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Services;
 using TechKingPOS.App.Security;
 namespace TechKingPOS.App.Data
 {
     public static class ItemRepository
+    {  private static long _version = 0;
+
+    public static long Version => _version;
+
+    private static void Touch()
     {
+        Interlocked.Increment(ref _version);
+    }
+
         // ================= INSERT =================
        public static void InsertItem(
             string name,
@@ -43,6 +52,7 @@ namespace TechKingPOS.App.Data
             cmd.Parameters.AddWithValue("$created", DateTime.UtcNow);
 
             cmd.ExecuteNonQuery();
+            Touch();
 
             long newItemId;
             using (var idCmd = connection.CreateCommand())
@@ -263,6 +273,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
             cmd.Parameters.AddWithValue("$id", itemId);
 
             cmd.ExecuteNonQuery();
+            Touch();
 
             ActivityRepository.Log(new Activity
             {
@@ -331,6 +342,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
             cmd.Parameters.AddWithValue("$id", id);
 
             cmd.ExecuteNonQuery();
+            Touch();
 
             ActivityRepository.Log(new Activity
             {
@@ -411,6 +423,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
             cmd.CommandText = "DELETE FROM Items WHERE Id = $id;";
             cmd.Parameters.AddWithValue("$id", id);
             cmd.ExecuteNonQuery();
+            Touch();
 
             ActivityRepository.Log(new Activity
             {

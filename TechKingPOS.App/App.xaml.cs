@@ -9,103 +9,101 @@ namespace TechKingPOS.App
 {
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
+protected override async void OnStartup(StartupEventArgs e)
+{
+    // Global crash handlers...
+    AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
+    {
+        if (ex.ExceptionObject is Exception exception)
+            LogFatal("APPDOMAIN", exception);
+
+        MessageBox.Show(
+            ex.ExceptionObject.ToString(),
+            "❌ Application Crash",
+            MessageBoxButton.OK,
+            MessageBoxImage.Error
+        );
+    };
+
+    DispatcherUnhandledException += (s, ex) =>
+    {
+        LogFatal("DISPATCHER", ex.Exception);
+
+        MessageBox.Show(
+            ex.Exception.ToString(),
+            "❌ UI Crash",
+            MessageBoxButton.OK,
+            MessageBoxImage.Error
+        );
+
+        ex.Handled = true;
+    };
+
+    base.OnStartup(e);
+    ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+    // Load services
+    try
+    {
+        BranchService.Load();
+        SettingsCache.Load();
+    }
+    catch (Exception ex)
+    {
+        LogFatal("STARTUP", ex);
+
+        MessageBox.Show(
+            "Critical startup error:\n" + ex.Message,
+            "Startup Error",
+            MessageBoxButton.OK,
+            MessageBoxImage.Error
+        );
+
+        Shutdown();
+        return;
+    }
+
+    // 🔄 UPDATE CHECK (async-friendly)
+    try
+    {
+        var updateResult = await UpdateService.CheckForUpdateAsync();
+
+        if (updateResult.IsUpdateAvailable)
         {
-            // ================================
-            // GLOBAL CRASH HANDLERS
-            // ================================
-            AppDomain.CurrentDomain.UnhandledException += (s, ex) =>
+            var updateWindow = new UpdateWindow(
+                UpdateService.GetCurrentVersion(),
+                updateResult.LatestVersion
+            );
+
+            var userAccepted = updateWindow.ShowDialog();
+
+            if (userAccepted == true)
             {
-                if (ex.ExceptionObject is Exception exception)
-                {
-                    LogFatal("APPDOMAIN", exception);
-                }
-
-                MessageBox.Show(
-                    ex.ExceptionObject.ToString(),
-                    "❌ Application Crash",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
-            };
-
-
-                DispatcherUnhandledException += (s, ex) =>
-                {
-                    LogFatal("DISPATCHER", ex.Exception);
-
-                    MessageBox.Show(
-                        ex.Exception.ToString(),
-                        "❌ UI Crash",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error
-                    );
-
-                    ex.Handled = true;
-                };
-
-
-            base.OnStartup(e);
-
-            ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-            // ================================
-            // LOAD CORE SERVICES
-            // ================================
-            try
-            {
-                BranchService.Load();
-                SettingsCache.Load();
-            }
-            catch (Exception ex)
-            {
-                LogFatal("STARTUP", ex);
-
-                MessageBox.Show(
-                    "Critical startup error:\n" + ex.Message,
-                    "Startup Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
-
-                Shutdown();
+                // UpdateWindow handles download + restart, so exit
                 return;
             }
-
-
-
-            // ================================
-            // 🔄 UPDATE CHECK (DISABLED FOR v1.0.0)
-            // ================================
-            try
-            {
-                // Updater intentionally disabled
-                // Will be enabled AFTER installer is released
-            }
-            catch
-            {
-                // Absolutely ignore all update errors
-                // App must NEVER crash because of updates
-            }
-
-            // ================================
-            // NORMAL APP STARTUP
-            // ================================
-            var settings = SettingsCache.Current;
-
-            if (settings.RequireLogin)
-            {
-                MainWindow = new LoginWindow();
-            }
-            else
-            {
-                SessionService.LoginAsGuest();
-                MainWindow = new MainWindow();
-            }
-
-            MainWindow.Show();
-            ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
+    }
+    catch (Exception ex)
+    {
+        LogFatal("UPDATE", ex);
+    }
+
+    // NORMAL APP STARTUP
+    var settings = SettingsCache.Current;
+
+    if (settings.RequireLogin)
+        MainWindow = new LoginWindow();
+    else
+    {
+        SessionService.LoginAsGuest();
+        MainWindow = new MainWindow();
+    }
+
+    MainWindow.Show();
+    ShutdownMode = ShutdownMode.OnMainWindowClose;
+}
+
         private static void LogFatal(string source, Exception ex)
 {
     try

@@ -338,45 +338,55 @@ namespace TechKingPOS.App
             BusinessPanel.Visibility = Visibility.Visible;
         }
 
-        private void Business_Click(object sender, RoutedEventArgs e) {
+        private void Business_Click(object sender, RoutedEventArgs e)
+{
+    ConfirmNavigation(() =>
+    {
+        SetActiveButton(BusinessButton);
+        HideAll();
+        BusinessPanel.Visibility = Visibility.Visible;
+    });
+}
 
-            ConfirmNavigation(ShowBusiness);
-            //MessageBox.Show("ConfirmNavigation HIT");
+private void Receipt_Click(object sender, RoutedEventArgs e)
+{
+    ConfirmNavigation(() =>
+    {
+        SetActiveButton(ReceiptButton);
+        HideAll();
+        ReceiptPanel.Visibility = Visibility.Visible;
+    });
+}
 
-        }
+private void Sales_Click(object sender, RoutedEventArgs e)
+{
+    ConfirmNavigation(() =>
+    {
+        SetActiveButton(SalesButton);
+        HideAll();
+        SalesPanel.Visibility = Visibility.Visible;
+    });
+}
 
-        private void Receipt_Click(object sender, RoutedEventArgs e)
-        {
-            ConfirmNavigation(() =>
-            {           
-            HideAll();
-            ReceiptPanel.Visibility = Visibility.Visible;
-        });
-        }
+private void Users_Click(object sender, RoutedEventArgs e)
+{
+    ConfirmNavigation(() =>
+    {
+        SetActiveButton(UsersButton);
+        HideAll();
+        UsersPanel.Visibility = Visibility.Visible;
+    });
+}
 
-        private void Sales_Click(object sender, RoutedEventArgs e)
-        { ConfirmNavigation(() =>
-        {       
-            HideAll();
-            SalesPanel.Visibility = Visibility.Visible;
-        });
-        }   
-
-        private void Users_Click(object sender, RoutedEventArgs e)
-        { ConfirmNavigation(() =>
-        {
-            HideAll();
-            UsersPanel.Visibility = Visibility.Visible;
-        }   );
-        }   
-
-        private void System_Click(object sender, RoutedEventArgs e)
-        { ConfirmNavigation(() =>
-        {       
-            HideAll();
-            SystemPanel.Visibility = Visibility.Visible;
-        }   );
-        }   
+private void System_Click(object sender, RoutedEventArgs e)
+{
+    ConfirmNavigation(() =>
+    {
+        SetActiveButton(SystemButton);
+        HideAll();
+        SystemPanel.Visibility = Visibility.Visible;
+    });
+}
 
         private void UpdateDiscountUI()
         {
@@ -644,6 +654,18 @@ private void RangesGrid_CellEditEnding(object sender, DataGridCellEditEndingEven
                 // add others if needed
             };
         }
+private void SetActiveButton(Button active)
+{
+    // Reset all buttons
+    BusinessButton.Tag = false;
+    ReceiptButton.Tag = false;
+    SalesButton.Tag = false;
+    UsersButton.Tag = false;
+    SystemButton.Tag = false;
+
+    // Set the clicked button as active
+    active.Tag = true;
+}
 
 
 
