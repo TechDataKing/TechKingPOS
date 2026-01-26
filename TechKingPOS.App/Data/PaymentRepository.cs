@@ -42,7 +42,7 @@ namespace TechKingPOS.App.Data
             cmd.Parameters.AddWithValue("@receipt", receiptNumber);
             cmd.Parameters.AddWithValue("@method", method);
             cmd.Parameters.AddWithValue("@amount", amount);
-            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue(
                 "@created",
                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
@@ -63,7 +63,7 @@ namespace TechKingPOS.App.Data
                 UnitValue = amount,
                 Reason = method,
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.Now
             });
 

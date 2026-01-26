@@ -13,7 +13,7 @@ using TechKingPOS.App.Security;
 
 namespace TechKingPOS.App
 {
-    public partial class ManageStockWindow : Window
+    public partial class ManageStockWindow : Window, ISupportBranchRefresh
     {
         private List<ItemLookup> _allItems = new();
 
@@ -43,7 +43,8 @@ private bool _isLoading;
         {
             InitializeComponent();
 
-                this.Loaded += Window_Loaded;
+            LoadAllItems();
+
             TargetSearchBox.TextChanged += TargetSearchBox_TextChanged;
             EditSearchBox.TextChanged += EditSearchBox_TextChanged;
             EditItemsList.SelectionChanged += EditItemsList_SelectionChanged;
@@ -54,54 +55,100 @@ private bool _isLoading;
 
 
         }
+        public void RefreshByBranch(int branchId)
+{
+    // Logic to refresh the window's data based on the new branch ID
+    if (branchId != SessionContext.EffectiveBranchId)
+    {
+        // Update the branch ID in session context (if necessary)
+        SessionContext.CurrentBranchId = branchId;
+
+        // Reload the data for this branch (e.g., items, sales records)
+        LoadAllItems(); // Re-load items for the new branch
+    }
+}
+
 private void Window_Loaded(object sender, RoutedEventArgs e)
 {
-    // 🔒 Prevent WPF from auto-selecting first tab
+    // Prevent WPF from auto-selecting first tab
     StockTabs.SelectedIndex = -1;
 
-    // 🔒 Block all tab logic during initialization
     _isLoading = true;
 
+    // Determine first allowed tab
     TabItem? firstAllowedTab = null;
-
-    // 🔍 Permission scan
     foreach (TabItem tab in StockTabs.Items)
     {
         string? key = tab.Tag as string;
-
-        bool allowed =
-            string.IsNullOrWhiteSpace(key) ||
-            PermissionService.Can(
-                SessionService.CurrentUser.Id,
-                SessionService.CurrentUser.Role,
-                key
-            );
-
-        // ⚠️ Tabs must stay enabled so clicks can be intercepted
+        bool allowed = string.IsNullOrWhiteSpace(key) ||
+                       PermissionService.Can(SessionService.CurrentUser.Id,
+                                             SessionService.CurrentUser.Role,
+                                             key);
         tab.IsEnabled = true;
-
         if (allowed && firstAllowedTab == null)
             firstAllowedTab = tab;
     }
 
-    // 🔒 Force safe default tab BEFORE any rendering
     if (firstAllowedTab != null)
     {
         _lastAllowedTab = firstAllowedTab;
         StockTabs.SelectedItem = firstAllowedTab;
     }
 
-    // 🔁 Defer ALL heavy loading until UI is stable
+    // Defer heavy loading to ensure SessionContext is ready
     Dispatcher.BeginInvoke(() =>
     {
-        LoadItems();
-        LoadDamagedItems();
-        LoadRepackItems();
-
-        // ✅ App fully ready
+        LoadAllItems();
+        LoadAllItems(); // call legacy method if needed
         _isLoading = false;
-
     }, DispatcherPriority.Background);
+}
+
+/// <summary>
+/// Loads items for all tabs in a branch-aware way, similar to SalesWindow.
+/// </summary>
+private void LoadAllItems()
+{
+    // ✅ Fetch all items (cumulative or branch-specific)
+    _allItems = ItemRepository.GetAllItems();
+    
+
+    // -------------------- Targets Tab --------------------
+    TargetGrid.ItemsSource = _allItems
+        .Where(i => i.TargetQuantity == null) // only items without target
+        .ToList();
+    TargetGrid.DisplayMemberPath = "Display"; // use computed property
+    LoggerService.Info("🎯", "STOCK", "Targets loaded",
+                       $"Count={TargetGrid.Items.Count}");
+
+    // -------------------- Edit Tab -----------------------
+    EditItemsList.ItemsSource = _allItems.ToList();
+    EditItemsList.DisplayMemberPath = "Display";
+
+    // -------------------- Damaged Tab --------------------
+    _damagedSearchItems = _allItems.ToList();
+    DamagedItemSearchList.ItemsSource = _damagedSearchItems;
+    DamagedItemSearchList.DisplayMemberPath = "Display";
+
+    _damagedItems = DamagedRepository.GetAll()
+        .Select(d => new DamagedItemVM
+        {
+            Id = d.Id,
+            ItemId = d.ItemId,
+            Name = d.ItemName,
+            Alias = d.Alias,
+            Quantity = d.Quantity,
+            SellingPrice = d.SellingPrice,
+            Reason = d.Reason,
+            CreatedAt = d.DamagedAt
+        })
+        .ToList();
+    DamagedItemsList.ItemsSource = _damagedItems;
+
+    // -------------------- Repack Tab ---------------------
+    _repackItems = _allItems.ToList();
+    RepackItemList.ItemsSource = _repackItems;
+    RepackItemList.DisplayMemberPath = "Display";
 }
 private void StockTabItem_Loaded(object sender, RoutedEventArgs e)
 {
@@ -121,7 +168,9 @@ private void StockTabItem_Loaded(object sender, RoutedEventArgs e)
     if (!allowed)
     {
         // 🚫 PREVENT CONTENT FROM EVER RENDERING
-        tab.Content = null;
+        tab.IsEnabled = false;
+        tab.Visibility = Visibility.Collapsed; // optional
+
 
         // 🔒 prevent default selection
         if (StockTabs.SelectedItem == tab)
@@ -224,24 +273,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
             RepackItemList.ItemsSource = _repackItems;
         }
 
-        // ================= LOAD =================
-        private void LoadItems()
-        {
-            _allItems = ItemRepository.GetAllItems();
-
-            // Targets tab → items WITHOUT target
-            TargetGrid.ItemsSource = _allItems
-                .Where(i => i.TargetQuantity == null)
-                .ToList();
-
-            LoggerService.Info("🎯", "STOCK", "Targets loaded",
-                $"Count={TargetGrid.Items.Count}");
-
-                _damagedSearchItems = _allItems.ToList();
-                 DamagedItemSearchList.ItemsSource = _damagedSearchItems;
-                 DamagedItemSearchList.DisplayMemberPath = "Name";
-                 EditItemsList.ItemsSource = _allItems.ToList();
-        }
+        
 
         // ================= TARGET SEARCH =================
         private void TargetSearchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -272,7 +304,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
             LoggerService.Info("🎯", "STOCK", "Target set",
                 $"{item.Name} → {target}");
 
-            LoadItems();
+            LoadAllItems();
         }
 
         // ================= EDIT SEARCH =================
@@ -339,7 +371,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
     MessageBox.Show("Item saved");
 
     ClearEditForm();
-    LoadItems();
+    LoadAllItems();
     EditItemsList.ItemsSource = _allItems.ToList();
 }
 
@@ -358,7 +390,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
 
             ItemRepository.DeleteItem(item.Id);
             LoggerService.Info("🗑️", "STOCK", "Item deleted", item.Name);
-            LoadItems();
+            LoadAllItems();
             EditItemsList.ItemsSource = _allItems.ToList();
             ClearEditForm();
 
@@ -482,7 +514,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
             });
 
             LoadDamagedItems();
-            LoadItems();
+            LoadAllItems();
             ClearDamagedForm();
         }
 
@@ -509,7 +541,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
         });
 
         LoadDamagedItems();
-        LoadItems();
+        LoadAllItems();
     }
 
         private void DamagedItemsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -643,7 +675,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
                         $"UnitValue={unitValue}, Price={price}, Active={isActive}",
                     Reason = "Add repack sale rule",
                     PerformedBy = SessionContext.CurrentUserName,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 });
             }
@@ -684,7 +716,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
                         $"UnitValue={unitValue}, Price={price}, Active={isActive}",
                     Reason = "Edit repack sale rule",
                     PerformedBy = SessionContext.CurrentUserName,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 });
             }
@@ -739,7 +771,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
                     $"Active=false",
                 Reason = "Disable repack sale rule",
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.UtcNow
             });
 
@@ -783,7 +815,7 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
                 AfterValue = null,
                 Reason = "Delete repack sale rule",
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.UtcNow
             });
 
@@ -809,7 +841,6 @@ private void StockTabs_PreviewMouseLeftButtonDown(object sender, MouseButtonEven
 
             AddRepackRulePanel.Visibility = Visibility.Visible;
         }
-
 
 
     }

@@ -18,11 +18,25 @@ namespace TechKingPOS.App.Data
             conn.Open();
 
             var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-                SELECT Id, Name, Code, IsActive
-                FROM Branch
-                ORDER BY Name;
-            ";
+            // Admins can see all branches, non-admins see only their own branch
+            if (SessionContext.IsAdmin)
+            {
+                cmd.CommandText = @"
+                    SELECT Id, Name, Code, IsActive
+                    FROM Branch
+                    ORDER BY Name;
+                ";
+            }
+            else
+            {
+                cmd.CommandText = @"
+                    SELECT Id, Name, Code, IsActive
+                    FROM Branch
+                    WHERE Id = @branchId
+                    ORDER BY Name;
+                ";
+                cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
+            }
 
             using var r = cmd.ExecuteReader();
             while (r.Read())
@@ -200,13 +214,27 @@ namespace TechKingPOS.App.Data
             using var conn = DbService.GetConnection();
             conn.Open();
 
-            using var cmd = conn.CreateCommand();
-            cmd.CommandText = @"
-                SELECT Id, Name, Code, IsActive
-                FROM Branch
-                WHERE IsActive = 1
-                ORDER BY Name;
-            ";
+            var cmd = conn.CreateCommand();
+            // Admins can see all active branches, non-admins see only their branch
+            if (SessionContext.IsAdmin)
+            {
+                cmd.CommandText = @"
+                    SELECT Id, Name, Code, IsActive
+                    FROM Branch
+                    WHERE IsActive = 1
+                    ORDER BY Name;
+                ";
+            }
+            else
+            {
+                cmd.CommandText = @"
+                    SELECT Id, Name, Code, IsActive
+                    FROM Branch
+                    WHERE IsActive = 1 AND Id = @branchId
+                    ORDER BY Name;
+                ";
+                cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
+            }
 
             using var r = cmd.ExecuteReader();
             while (r.Read())
@@ -221,6 +249,33 @@ namespace TechKingPOS.App.Data
             }
 
             return list;
+        }
+
+        // ================= GET BY ID =================
+        public static Branch GetById(int id)
+        {
+            using var conn = DbService.GetConnection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = @"
+                SELECT Id, Name, Code, IsActive
+                FROM Branch
+                WHERE Id = @id
+                LIMIT 1;
+            ";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using var r = cmd.ExecuteReader();
+            if (!r.Read()) return null;
+
+            return new Branch
+            {
+                Id = r.GetInt32(0),
+                Name = r.GetString(1),
+                Code = r.IsDBNull(2) ? "" : r.GetString(2),
+                IsActive = r.GetInt32(3) == 1
+            };
         }
     }
 }

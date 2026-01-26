@@ -122,7 +122,7 @@ namespace TechKingPOS.App
         
         private void LoadSettings()
         {
-            _settings = SettingsRepository.Get();
+            _settings = SettingsCache.Current;
             
 
             bool needsSave = false;

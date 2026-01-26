@@ -68,7 +68,7 @@ namespace TechKingPOS.App.Data
                 headerCmd.Parameters.AddWithValue("@discount", discount);
                 headerCmd.Parameters.AddWithValue("@paid", amountPaid);
                 headerCmd.Parameters.AddWithValue("@created", createdAt);
-                headerCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+                headerCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
                 headerCmd.ExecuteNonQuery();
 
                 var idCmd = connection.CreateCommand();
@@ -85,7 +85,7 @@ namespace TechKingPOS.App.Data
                     QuantityChange = 0,
                     Reason = $"Sale started. Items={items.Count}",
                     PerformedBy = SessionContext.CurrentUserName,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 });
 
@@ -142,7 +142,7 @@ namespace TechKingPOS.App.Data
                             cashier
                         );
                         
-
+                    
 
                     var itemCmd = connection.CreateCommand();
                     itemCmd.Transaction = transaction;
@@ -187,7 +187,7 @@ namespace TechKingPOS.App.Data
                         itemCmd.Parameters.AddWithValue("@total", item.Total);
                         itemCmd.Parameters.AddWithValue("@costPrice", costPrice);
                         itemCmd.Parameters.AddWithValue("@profit", lineProfit);
-                        itemCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);   
+                        itemCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);   
                         itemCmd.Parameters.AddWithValue("@created", createdAt);
 
                     itemCmd.ExecuteNonQuery();
@@ -208,7 +208,7 @@ namespace TechKingPOS.App.Data
                         Price = item.Price,
                         AfterValue = item.Total.ToString("0.00"),
                         PerformedBy = SessionContext.CurrentUserName,
-                        BranchId = SessionContext.CurrentBranchId,
+                        BranchId = SessionContext.EffectiveBranchId,
                         CreatedAt = DateTime.Now
                     });
 

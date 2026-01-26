@@ -6,10 +6,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TechKingPOS.App.Security;
 using TechKingPOS.App.Services;
+using TechKingPOS.App.Data;
+using TechKingPOS.App.Models;
 
 
 namespace TechKingPOS.App
-{
+{  
+
     class WindowStateData
     {
         public bool IsMaximized;
@@ -19,7 +22,10 @@ namespace TechKingPOS.App
         public double Height;
     }
     public partial class MainWindow : Window
-    {   public static MainWindow Instance { get; private set; }
+    {   
+        private BranchContextGuard _branchContextGuard;
+
+        public static MainWindow Instance { get; private set; }
         private Border _draggingWindow;
         private Point _dragOffset;
 
@@ -32,6 +38,7 @@ namespace TechKingPOS.App
 
         private double _startLeft;
         private double _startTop;
+        private Dictionary<string, int> _lastUsedBranchForWindows = new Dictionary<string, int>();
 
         private readonly Dictionary<string, Border> _openWindows = new();
         private readonly Dictionary<string, Button> _taskButtons = new();
@@ -45,6 +52,7 @@ namespace TechKingPOS.App
         private const double BASE_LEFT = 40;
         private const double BASE_TOP_OFFSET = 20;
 
+        private List<Branch> _branches = new List<Branch>();
 
         private enum ResizeMode
         {
@@ -74,7 +82,10 @@ namespace TechKingPOS.App
         public MainWindow()
         {
             InitializeComponent();
+            _branchContextGuard = new BranchContextGuard();
+
             LoadLoggedInUser();
+            LoadBranchSelector();
             
             Instance = this;
 
@@ -526,8 +537,21 @@ private void BringToFront(Border window)
 
 
         // ================= ROUTES =================
-private void OpenSales(object sender, RoutedEventArgs e) =>
-    OpenWindow(PermissionMap.OpenSales, () => new SalesWindow());
+private void OpenSales(object sender, RoutedEventArgs e)
+{
+    OpenWindow(PermissionMap.OpenSales, () =>
+    {
+        // Check if there's a saved branch for Sales, else use current branch
+        int lastUsedBranch = _lastUsedBranchForWindows.ContainsKey("Sales")
+            ? _lastUsedBranchForWindows["Sales"]
+            : SessionContext.CurrentBranchId; // Default to current branch if not set
+
+        var salesWindow = new SalesWindow();
+        salesWindow.LoadSalesData(lastUsedBranch);  // Load sales data for the branch
+
+        return salesWindow;
+    });
+}
 
 private void OpenItems(object sender, RoutedEventArgs e) =>
     OpenWindow(PermissionMap.OpenAddItem, () => new AddItemWindow());
@@ -538,13 +562,33 @@ private void OpenStock(object sender, RoutedEventArgs e) =>
 private void OpenCredit(object sender, RoutedEventArgs e) =>
     OpenWindow(PermissionMap.OpenCreditManagement, () => new CreditManagement());
 
-private void OpenReports(object sender, RoutedEventArgs e) =>
+// Opening Reports Window with Guard Activation
+private void OpenReports(object sender, RoutedEventArgs e)
+{
     OpenWindow(PermissionMap.OpenReports, () =>
     {
         var w = new ReportsWindow();
         w.InitializeReport();
+        _branchContextGuard.ActivateReportsWindow();  // Activate guard for Reports
+        w.Closed += (s, args) => _branchContextGuard.DeactivateReportsWindow();  // Deactivate guard when window is closed
         return w;
     });
+}
+
+// Opening Reports Window from Child Window
+public void OpenReportsFromChild(Action<ReportsWindow> configure)
+{
+    OpenWindow(PermissionMap.OpenReports, () =>
+    {
+        var w = new ReportsWindow();
+        w.InitializeReport();
+        _branchContextGuard.ActivateReportsWindow();  // Activate guard for Reports
+        configure?.Invoke(w);  // Allow customization of the window
+        w.Closed += (s, args) => _branchContextGuard.DeactivateReportsWindow();  // Deactivate guard when window is closed
+        return w;
+    });
+}
+
 
 private void OpenWorkers(object sender, RoutedEventArgs e) =>
     OpenWindow(PermissionMap.OpenWorkers, () => new WorkerWindow());
@@ -552,17 +596,6 @@ private void OpenWorkers(object sender, RoutedEventArgs e) =>
 private void OpenSettings(object sender, RoutedEventArgs e) =>
     OpenWindow(PermissionMap.OpenSettings, () => new SettingsWindow());
 
-
-public void OpenReportsFromChild(Action<ReportsWindow> configure)
-{
-    OpenWindow(PermissionMap.OpenReports, () =>
-    {
-        var w = new ReportsWindow();
-        w.InitializeReport();
-        configure?.Invoke(w);
-        return w;
-    });
-}
 
 
 public void OpenSalesFromChild()
@@ -666,7 +699,130 @@ private void TaskButton_MouseLeave(object sender, MouseEventArgs e)
     TaskButtonHint.IsOpen = false;
 }
 
-// <! -- PERMISSIONS OVERLAY HANDLERS -- >
+// <! -- BRANCH HANDLERS -- >
+private void LoadBranchSelector()
+{
+    if (!UserSession.IsAdmin)
+    {
+        BranchSelector.Visibility = Visibility.Collapsed;
+        return;
+    }
+
+    // 1️⃣ Fetch all branches
+    _branches = BranchRepository.GetAll();
+
+    if (_branches == null || !_branches.Any())
+    {
+        MessageBox.Show("No branches found in the system.");
+        return;
+    }
+
+    // 2️⃣ Bind to ComboBox
+    BranchSelector.ItemsSource = _branches;
+    BranchSelector.DisplayMemberPath = "Name";
+    BranchSelector.SelectedValuePath = "Id";
+
+    // 3️⃣ Select current branch or default to main (ID=1)
+    int currentId = SessionContext.CurrentBranchId;
+
+    if (currentId <= 0 || !_branches.Any(b => b.Id == currentId))
+    {
+        // Ensure default branch exists
+        var mainBranch = _branches.FirstOrDefault(b => b.Id == 1);
+        currentId = mainBranch != null ? mainBranch.Id : _branches.First().Id;
+        SessionContext.CurrentBranchId = currentId;
+    }
+
+    BranchSelector.SelectedValue = currentId;
+}
+
+private void BranchSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    if (BranchSelector.SelectedValue == null) return;
+
+    int selectedId = (int)BranchSelector.SelectedValue;
+
+    // If the selected branch is the same as the current, do nothing
+    if (selectedId == SessionContext.CurrentBranchId) return;
+
+    // Optional: check unsaved tasks before switching
+    if (_openWindows.Count > 0)
+    {
+        var result = MessageBox.Show(
+            "Switching branch will close all open windows. Continue?",
+            "Confirm Branch Switch",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Warning
+        );
+
+        if (result != MessageBoxResult.Yes)
+        {
+            // If the user decides not to switch, revert to the current branch
+            BranchSelector.SelectedValue = SessionContext.CurrentBranchId;
+            return;
+        }
+
+        // Close all open windows and task buttons
+        foreach (var win in _openWindows.Values)
+            Desktop.Children.Remove(win);
+
+        _openWindows.Clear();
+        _taskButtons.Clear();
+        TaskBar.Children.Clear();
+    }
+
+    // Update CurrentBranchId for non-admin users and EffectiveBranchId for admin users
+    SessionContext.CurrentBranchId = selectedId;
+
+    // For Admin, also use EffectiveBranchId
+    if (SessionContext.IsAdmin)
+    {
+        // Set EffectiveBranchId when Admin switches branch (MainWindow only)
+        SessionContext.CurrentBranchId = selectedId;  // Admin can switch branch freely
+    }
+
+    // Trigger the branch refresh for all open windows, but skip ReportsWindow
+    foreach (var window in _openWindows.Values.OfType<ISupportBranchRefresh>())
+    {
+        window.RefreshByBranch(SessionContext.EffectiveBranchId);
+    }
+
+    // Refresh all windows (including those that support branch switching)
+    RefreshAllWindowsByBranch();
+}
+private void RefreshAllWindowsByBranch()
+{
+    foreach (var win in _openWindows.Values)
+    {
+        if (win is ReportsWindow || win is WorkerWindow)
+        {
+            // Skip refreshing Reports and Worker windows (they handle their own branch context)
+            continue;
+        }
+
+        // Get the last used branch for this window
+        int lastUsedBranch = 0;
+        if (_lastUsedBranchForWindows.ContainsKey(win.GetType().Name))
+        {
+            lastUsedBranch = _lastUsedBranchForWindows[win.GetType().Name];
+        }
+        else
+        {
+            lastUsedBranch = SessionContext.CurrentBranchId;  // Default to the current branch if not found
+        }
+
+        // Refresh the window with the correct branch
+        if (win is ISupportBranchRefresh branchWindow)
+        {
+            branchWindow.RefreshByBranch(lastUsedBranch);
+        }
+    }
+}
+
+public interface ISupportBranchRefresh
+{
+    void RefreshByBranch(int branchId);
+}
 
    }  
  }

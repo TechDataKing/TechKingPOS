@@ -38,7 +38,7 @@ namespace TechKingPOS.App.Data
                 ($branchId, $name, $alias, $mp, $sp, $qty, $unitType, $unitValue, NULL, $created);
             ";
 
-            cmd.Parameters.AddWithValue("$branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("$branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue("$name", name);
             cmd.Parameters.AddWithValue("$alias", alias);
             cmd.Parameters.AddWithValue("$mp", markedPrice);
@@ -95,11 +95,11 @@ namespace TechKingPOS.App.Data
                     MarkedPrice, SellingPrice,
                     UnitType, TargetQuantity
                 FROM Items
-                WHERE BranchId = $branchId
+                WHERE (@branch = 0 OR BranchId = $branchId) 
                 ORDER BY Name ASC;
             ";
-
-            cmd.Parameters.AddWithValue("$branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branch", SessionContext.EffectiveBranchId);
+            cmd.Parameters.AddWithValue("$branchId", SessionContext.EffectiveBranchId);
 
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -125,11 +125,9 @@ namespace TechKingPOS.App.Data
                     MarkedPrice, SellingPrice,
                     UnitType, TargetQuantity
                 FROM Items
-                WHERE BranchId = $branchId AND (Name LIKE $q OR Alias LIKE $q)
+                WHERE (Name LIKE $q OR Alias LIKE $q)
                 ORDER BY Name ASC;
             ";
-
-            cmd.Parameters.AddWithValue("$branchId", SessionContext.CurrentBranchId);
             cmd.Parameters.AddWithValue("$q", $"%{text}%");
 
             using var reader = cmd.ExecuteReader();
@@ -154,12 +152,10 @@ namespace TechKingPOS.App.Data
                 SELECT
                     Id, Name, Quantity
                 FROM Items
-                WHERE BranchId = $branchId AND TargetQuantity IS NULL
+                WHERE TargetQuantity IS NULL
                 AND Name LIKE $q
                 ORDER BY Name ASC;
             ";
-
-            cmd.Parameters.AddWithValue("$branchId", SessionContext.CurrentBranchId);
             cmd.Parameters.AddWithValue("$q", $"%{text}%");
 
             using var reader = cmd.ExecuteReader();
@@ -198,7 +194,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
             )
         LIMIT 1;
     ";
-    cmd.Parameters.AddWithValue("$branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("$branchId", SessionContext.EffectiveBranchId);
     cmd.Parameters.AddWithValue("$name", name.Trim());
     cmd.Parameters.AddWithValue(
         "$alias",
@@ -288,7 +284,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                 AfterValue = (beforeQty + addQuantity).ToString(),
                 Reason = "Stock added",
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.UtcNow
             });
         }
@@ -355,7 +351,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                 AfterValue = quantity.ToString(),
                 Reason = "Item updated",
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.UtcNow
             });
         }
@@ -384,7 +380,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                     AfterValue = target.ToString(),
                     Reason = "Target quantity set",
                      PerformedBy = SessionContext.CurrentUserName,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 });
 
@@ -438,7 +434,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                 AfterValue = "",
                 Reason = "Item deleted",
                 PerformedBy = SessionContext.CurrentUserName,
-                BranchId = SessionContext.CurrentBranchId,
+                BranchId = SessionContext.EffectiveBranchId,
                 CreatedAt = DateTime.UtcNow
             });
         }
@@ -472,7 +468,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
           AND BranchId = @bid;
     ";
     cmd.Parameters.AddWithValue("@id", itemId);
-    cmd.Parameters.AddWithValue("@bid", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@bid", SessionContext.EffectiveBranchId);
 
     return Convert.ToDecimal(cmd.ExecuteScalar());
 }
@@ -550,7 +546,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
                     AfterValue = afterQty.ToString(),
                     Reason = reason,
                     PerformedBy = performedBy,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 }
             );
@@ -570,7 +566,7 @@ public static ItemModel? GetByNameOrAlias(string name, string? alias)
     ";
 
     cmd.Parameters.AddWithValue("@id", itemId);
-    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
 
     object? result = cmd.ExecuteScalar();
 

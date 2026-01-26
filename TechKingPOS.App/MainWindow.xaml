@@ -7,6 +7,7 @@
 
 <Window.Resources>
 
+    <!-- ================= TASK MENU BUTTON STYLE ================= -->
     <Style x:Key="TaskMenuButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="#FFF8E7"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -15,7 +16,6 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Margin" Value="0,4,0,4"/>
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -23,7 +23,6 @@
                             CornerRadius="6">
                         <ContentPresenter VerticalAlignment="Center"/>
                     </Border>
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#F3EAD3"/>
@@ -37,7 +36,105 @@
         </Setter>
     </Style>
 
+    <!-- ================= PROFESSIONAL BRANCH COMBOBOX STYLE ================= -->
+    <Style x:Key="BranchComboBoxStyle" TargetType="ComboBox">
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="Background" Value="#111827"/> <!-- Taskbar color -->
+    <Setter Property="Padding" Value="4,2"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Width" Value="140"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="BorderBrush" Value="#374151"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ComboBox">
+                <Grid>
+                    <!-- Closed box -->
+                    <Border Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4">
+                        <DockPanel>
+                            <ContentPresenter Name="ContentSite"
+                                              Margin="6,2,25,2"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                            <ToggleButton Name="ToggleButton"
+                                          DockPanel.Dock="Right"
+                                          Focusable="False"
+                                          IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                          ClickMode="Press"
+                                          Background="Transparent"
+                                          BorderThickness="0">
+                                <Path HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Data="M 0 0 L 4 4 L 8 0 Z"
+                                      Fill="White"/>
+                            </ToggleButton>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- Dropdown popup -->
+                    <Popup Name="Popup"
+                           Placement="Bottom"
+                           IsOpen="{TemplateBinding IsDropDownOpen}"
+                           AllowsTransparency="True"
+                           Focusable="False"
+                           PopupAnimation="Slide">
+                        <Border Name="DropDownBorder"
+                                Background="#111827"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                <StackPanel IsItemsHost="True"
+                                            KeyboardNavigation.DirectionalNavigation="Contained"/>
+                            </ScrollViewer>
+                        </Border>
+                    </Popup>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="Border" Property="Background" Value="#888"/>
+                        <Setter Property="Foreground" Value="#AAA"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+
+    <!-- ComboBoxItem style -->
+    <Setter Property="ItemContainerStyle">
+        <Setter.Value>
+            <Style TargetType="ComboBoxItem">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="#111827"/>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#1D4ED8"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="#2563EB"/>
+                        <Setter Property="Foreground" Value="White"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Setter.Value>
+    </Setter>
+</Style>
+
+
 </Window.Resources>
+
 
 
     <Grid PreviewMouseDown="RootGrid_MouseDown">
@@ -70,78 +167,75 @@
                 VerticalAlignment="Center"
                 Margin="0,0,12,0">
 
-                <!-- USER BUTTON -->
-                <Border Background="Transparent"
-                        Cursor="Hand"
-                        VerticalAlignment="Center"
-                        MouseLeftButtonUp="ToggleUserMenu">
-
-                    <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
-
-                        <TextBlock Text="👤"
-                                FontSize="14"
-                                Foreground="White"
-                                Margin="0,0,6,0"/>
-
-                        <TextBlock x:Name="UserNameText"
-                                Text="John"
-                                Foreground="White"
-                                FontWeight="SemiBold"/>
-
-                        <TextBlock Text=" ▼"
-                                Foreground="White"
-                                FontSize="10"
-                                Margin="4,0,0,0"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- DROPDOWN POPUP -->
-                <Popup x:Name="UserMenu"
-                    Placement="Bottom"
-                    PlacementTarget="{Binding RelativeSource={RelativeSource PreviousData}}"
-                    StaysOpen="False"
-                    AllowsTransparency="True">
-
-                    <Border Background="White"
-                            CornerRadius="6"
-                            Width="160"
-                            BorderBrush="#E5E7EB"
-                            BorderThickness="1"
-                            Padding="4">
-
-                        <StackPanel>
-
-                            <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalContentAlignment="Left"
-                                    Padding="10"
-                                    Click="EditProfile_Click">
-
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="✏️"
-                                            Margin="0,0,8,0"/>
-                                    <TextBlock Text="Edit Profile"/>
-                                </StackPanel>
-                            </Button>
-
-                            <Separator/>
-
-                            <Button Background="Transparent"
-                                    BorderThickness="0"
-                                    HorizontalContentAlignment="Left"
-                                    Padding="10"
-                                    Click="Logout_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="⏻"
-                                            Margin="0,0,8,0"/>
-                                    <TextBlock Text="Logout"/>
-                                </StackPanel>
-                            </Button>
-
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,12,0">
+                    <!-- Branch selector for Admin -->
+                    <ComboBox x:Name="BranchSelector"
+                            Style="{StaticResource BranchComboBoxStyle}"
+                            SelectedValuePath="Id"
+                            DisplayMemberPath="Name"
+                            SelectionChanged="BranchSelector_SelectionChanged"/>
+                    
+                    <!-- USER BUTTON -->
+                    <Border x:Name="UserButtonBorder"
+                            Background="Transparent"
+                            Cursor="Hand"
+                            VerticalAlignment="Center"
+                            MouseLeftButtonUp="ToggleUserMenu">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="👤"
+                                    FontSize="14"
+                                    Foreground="White"
+                                    Margin="12,0,6,0"/> <!-- added spacing before branch -->
+                            <TextBlock x:Name="UserNameText"
+                                    Text="John"
+                                    Foreground="White"
+                                    FontWeight="SemiBold"/>
+                            <TextBlock Text=" ▼"
+                                    Foreground="White"
+                                    FontSize="10"
+                                    Margin="4,0,0,0"/>
                         </StackPanel>
                     </Border>
-                </Popup>
+
+                    <!-- DROPDOWN POPUP -->
+                    <Popup x:Name="UserMenu"
+                        Placement="Bottom"
+                        PlacementTarget="{Binding ElementName=UserButtonBorder}"
+                        StaysOpen="False"
+                        AllowsTransparency="True"
+                        PopupAnimation="Slide">
+                        <Border Background="White"
+                                CornerRadius="6"
+                                Width="160"
+                                BorderBrush="#E5E7EB"
+                                BorderThickness="1"
+                                Padding="4">
+                            <StackPanel>
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        HorizontalContentAlignment="Left"
+                                        Padding="10"
+                                        Click="EditProfile_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="✏️" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Edit Profile"/>
+                                    </StackPanel>
+                                </Button>
+                                <Separator/>
+                                <Button Background="Transparent"
+                                        BorderThickness="0"
+                                        HorizontalContentAlignment="Left"
+                                        Padding="10"
+                                        Click="Logout_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="⏻" Margin="0,0,8,0"/>
+                                        <TextBlock Text="Logout"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
+                </StackPanel>
 
                 </Grid>
 

@@ -36,7 +36,7 @@ public static void AddExpense(
     cmd.Parameters.AddWithValue("@desc", description ?? "");
     cmd.Parameters.AddWithValue("@a", amount);
     cmd.Parameters.AddWithValue("@m", paymentMethod);
-    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
     cmd.Parameters.AddWithValue("@created",
         DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -58,7 +58,7 @@ public static void AddExpense(
         QuantityChange = amount,
         Reason = description,
         PerformedBy = SessionContext.CurrentUserName,
-        BranchId = SessionContext.CurrentBranchId,
+        BranchId = SessionContext.EffectiveBranchId,
         CreatedAt = DateTime.UtcNow
     });
 
@@ -81,7 +81,7 @@ public static void AddExpense(
                 WHERE Date BETWEEN @from AND @to AND (@branchId = 0 OR BranchId = @branchId)
                 ORDER BY Date DESC;
             ";
-            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd"));
 
@@ -120,7 +120,7 @@ public static void DeleteExpense(int id)
         WHERE Id = @id AND BranchId = @branchId;
     ";
     readCmd.Parameters.AddWithValue("@id", id);
-    readCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    readCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
 
     string category = "Expense";
     decimal amount = 0;
@@ -139,7 +139,7 @@ public static void DeleteExpense(int id)
     delCmd.Transaction = tx;
     delCmd.CommandText = "DELETE FROM Expenses WHERE Id = @id AND BranchId = @branchId;";
     delCmd.Parameters.AddWithValue("@id", id);
-    delCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    delCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
     delCmd.ExecuteNonQuery();
 
     // 👉 ACTIVITY LOG
@@ -152,7 +152,7 @@ public static void DeleteExpense(int id)
         QuantityChange = -amount,
         Reason = "Expense deleted",
         PerformedBy = SessionContext.CurrentUserName,
-        BranchId = SessionContext.CurrentBranchId,
+        BranchId = SessionContext.EffectiveBranchId,
         CreatedAt = DateTime.UtcNow
     });
 
@@ -186,7 +186,7 @@ public static void UpdateExpense(
         WHERE Id = @id AND BranchId = @branchId;
     ";
 
-    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
     cmd.Parameters.AddWithValue("@id", id);
     cmd.Parameters.AddWithValue("@d", date.ToString("yyyy-MM-dd"));
     cmd.Parameters.AddWithValue("@c", category);
@@ -206,7 +206,7 @@ public static void UpdateExpense(
         QuantityChange = amount,
         Reason = description,
         PerformedBy = SessionContext.CurrentUserName,
-        BranchId = SessionContext.CurrentBranchId,
+        BranchId = SessionContext.EffectiveBranchId,
         CreatedAt = DateTime.UtcNow
     });
 
@@ -227,7 +227,7 @@ public static void UpdateExpense(
                 AND (@branchId = 0 OR BranchId = @branchId);
             ";
 
-            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue("@from", from.ToString("yyyy-MM-dd"));
             cmd.Parameters.AddWithValue("@to", to.ToString("yyyy-MM-dd"));
 

@@ -32,16 +32,22 @@ namespace TechKingPOS.App
     }
 
     // 🔁 ALWAYS LOAD FRESH FROM DB
-    Worker user = WorkerRepository.FindByEmailOrId(username);
+Worker user = WorkerRepository.FindByEmailOrId(username);
 
-    if (user == null)
-    {
-        StatusText.Text = "Invalid login details";
-        return;
-    }
+if (user == null)
+{
+    StatusText.Text = "Invalid login details";
+    return;
+}
 
     if (!PasswordService.Verify(password, user.PasswordHash))
     {
+// MessageBox.Show(
+//     $"VERIFY DEBUG\n\n" +
+//     $"Hash from DB:\n{user.PasswordHash}\n\n" +
+//     $"Verify result: {PasswordService.Verify(password, user.PasswordHash)}"
+// );
+
         StatusText.Text = "Invalid login details";
         return;
     }
@@ -97,14 +103,13 @@ private void ForgotPassword_Click(object sender, MouseButtonEventArgs e)
     }
 
     // 2️⃣ FIND USER
-    var user = WorkerRepository.FindByEmailOrId(username);
+Worker user = WorkerRepository.FindByEmailOrId(username);
 
-    if (user == null)
-    {
-        StatusText.Text = "Account not found.";
-        return;
-    }
-
+if (user == null)
+{
+    StatusText.Text = "Invalid login details";
+    return;
+}
     // 3️⃣ DEACTIVATE ACCOUNT (LOCK IT)
     WorkerRepository.DeactivateWorker(user.Id);
 

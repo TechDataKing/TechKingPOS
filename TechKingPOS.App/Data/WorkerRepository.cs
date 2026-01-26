@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using Microsoft.Data.Sqlite;
 using TechKingPOS.App.Models;
 using BCrypt.Net;
@@ -106,18 +108,45 @@ public static Worker FindByEmailOrId(string value)
 
     var cmd = conn.CreateCommand();
     cmd.CommandText = @"
-        SELECT Id, Name, NationalId, Phone, Email,
-               PasswordHash, IsActive, Role, MustChangePassword, BranchId
-        FROM Workers
-        WHERE Email = @v OR NationalId = @v
-        AND IsActive = 1
-        LIMIT 1;
+    SELECT Id, Name, NationalId, Phone, Email,
+        PasswordHash, IsActive, Role, MustChangePassword, BranchId
+    FROM Workers
+    WHERE IsActive = 1
+    AND (
+            TRIM(Email) = TRIM(@v) COLLATE NOCASE
+        OR TRIM(NationalId) = TRIM(@v)
+    )
+    LIMIT 1;
     ";
+    cmd.Parameters.AddWithValue("@v", value.Trim());
 
-    cmd.Parameters.AddWithValue("@v", value);
 
     using var r = cmd.ExecuteReader();
-    if (!r.Read()) return null;
+
+    if (!r.Read())
+    {
+        // MessageBox.Show(
+        //     $"DB DEBUG:\n" +
+        //     $"NO ROW RETURNED\n\n" +
+        //     $"Search value: [{value}]\n" +
+        //     $"Length: {value.Length}"
+        // );
+        return null;
+    }
+
+    // // 👇 THIS IS THE MOST IMPORTANT DEBUG
+    // MessageBox.Show(
+    //     $"DB DEBUG: ROW FOUND\n\n" +
+    //     $"Id: {r.GetInt32(0)}\n" +
+    //     $"Name: {r.GetString(1)}\n" +
+    //     $"NationalId: {r.GetString(2)}\n" +
+    //     $"Phone: {r.GetString(3)}\n" +
+    //     $"Email: {(r.IsDBNull(4) ? "NULL" : r.GetString(4))}\n" +
+    //     $"IsActive: {r.GetInt32(6)}\n" +
+    //     $"Role(raw): {r.GetInt32(7)}\n" +
+    //     $"MustChangePassword: {r.GetInt32(8)}\n\n" +
+    //     $"PasswordHash:\n{r.GetString(5)}"
+    // );
 
     return new Worker
     {
@@ -133,6 +162,7 @@ public static Worker FindByEmailOrId(string value)
         BranchId = r.GetInt32(9)
     };
 }
+
 
 
 public static void ResetAllPasswords()

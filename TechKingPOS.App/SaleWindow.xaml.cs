@@ -14,9 +14,10 @@ using System.Windows.Media;
 
 namespace TechKingPOS.App
 {
-    public partial class SalesWindow : RefreshOnFocusWindow
+    public partial class SalesWindow : RefreshOnFocusWindow, ISupportBranchRefresh
 
-    {
+    {    
+
         // ================= DISCOUNT STATE =================
         private bool _isLoaded;
         // Is any discount applied?
@@ -44,6 +45,8 @@ namespace TechKingPOS.App
         private Button _activeCustomer;
         // Holds a cart per customer button
         private Dictionary<Button, ObservableCollection<SaleItem>> _customerCarts = new();
+        private Dictionary<string, int> _lastUsedBranchForWindows = new Dictionary<string, int>();
+
 
         private string? _quickPaymentMethod; // "Cash", "Mpesa", or null
 
@@ -74,10 +77,10 @@ protected override void OnContentRendered(EventArgs e)
         public SalesWindow()
         {
             InitializeComponent();
-            SettingsCache.Load();
+            
             ApplyReceiptSettings();
-
             LoadDiscountSettings();
+
             _customerButtons = new List<Button>
      {
                     Customer1Btn,
@@ -112,6 +115,46 @@ protected override void OnContentRendered(EventArgs e)
 
             
         }
+
+// Get the last used branch for this specific window
+public int GetCurrentBranch()
+{
+    string windowKey = this.GetType().Name; // Get the window's name as key
+    if (_lastUsedBranchForWindows.ContainsKey(windowKey))
+    {
+        return _lastUsedBranchForWindows[windowKey];
+    }
+    return SessionContext.EffectiveBranchId; // Default to the effective branch if not found
+}
+
+// Load sales data for the specified branch and store it in the dictionary
+public void LoadSalesData(int branchId)
+{
+    string windowKey = this.GetType().Name; // Get the window's name as key
+    _lastUsedBranchForWindows[windowKey] = branchId; // Store the branch ID for this window
+
+    // Reload data for this branch
+    SessionContext.CurrentBranchId = branchId; // Set current branch
+    LoadItems(); // Reload items for the branch
+    UpdateTotals(); // Recalculate totals
+    ApplyReceiptSettings();
+    LoadDiscountSettings();
+}
+
+public void RefreshByBranch(int branchId)
+{
+    // Logic to refresh the window's data based on the new branch ID
+    if (branchId != SessionContext.EffectiveBranchId)
+    {
+        // Update the branch ID in session context
+        SessionContext.CurrentBranchId = branchId;
+
+        // Reload the data for this branch (e.g., items, sales records)
+        LoadSalesData(branchId); // Use the method to load data for the new branch
+    }
+}
+
+
 protected override void Refresh()
 {
     if (!_isLoaded)
@@ -148,7 +191,7 @@ protected override void Refresh()
         private void LoadDiscountSettings()
 {
     // Load settings including discount ranges from DB
-    _settings = SettingsRepository.Get();
+    _settings = SettingsCache.Current;
     if (_settings == null)
     {
         _settings = new AppSetting();
@@ -260,7 +303,7 @@ protected override void Refresh()
                 Quantity = 1,
                 Price = dbItem.SellingPrice,
                 MarkedPrice = dbItem.MarkedPrice,
-                BranchId = SessionContext.CurrentBranchId
+                BranchId = SessionContext.EffectiveBranchId
             };
 
             var rules = RepackRepository
@@ -627,12 +670,26 @@ protected override void Refresh()
 
         ChangeText.Text = change.ToString("0.00");
     }
+        private void RefreshSettingsIfNeeded()
+        {
+            if (_lastSettingsVersion != SettingsCache.Version)
+            {
+                _lastSettingsVersion = SettingsCache.Version;
+                LoadDiscountSettings();
+                ApplyReceiptSettings();
+            }
+        }
 
 
         // ================= FINISH & PAY =================
             private void FinishPay_Click(object sender, RoutedEventArgs e)
-        {
-            // ================= QUICK FULL PAYMENT HANDLER =================
+        {   
+
+        RefreshSettingsIfNeeded();
+
+         //================= QUICK FULL PAYMENT HANDLER =================
+   
+   
         if (_quickPaymentMethod != null)
         {
             if (CartItems.Count == 0)
@@ -730,7 +787,7 @@ protected override void Refresh()
                 _quickPaymentMethod = null;
                 ResetQuickPaymentButtons();
             }
-            catch (Exception ex)
+            catch ( Exception ex)
             {
                 MessageBox.Show(ex.Message, "Sale failed");
             }
@@ -751,7 +808,7 @@ protected override void Refresh()
                 return;
             }
             // ================= CREDIT MODE CHECK =================
-            if (!SettingsCache.Current.EnableCreditSales)
+            if (!_settings.EnableCreditSales)
             {
                 MessageBox.Show(
                     "Credit sales are disabled in settings.\nPlease use quick payment.",
@@ -872,42 +929,38 @@ protected override void Refresh()
                 MessageBox.Show(ex.Message, "Sale failed");
             }
         }
-           private void Discount_Click(object sender, RoutedEventArgs e)
-        {
-            if (!_settings.EnableDiscounts)
-            {
-                _settings = SettingsRepository.Get(); 
+private void Discount_Click(object sender, RoutedEventArgs e)
+{
+    // 🔑 FORCE settings refresh FIRST
+    if (_lastSettingsVersion != SettingsCache.Version)
+    {
+        _lastSettingsVersion = SettingsCache.Version;
+        LoadDiscountSettings();
+    }
 
-                MessageBox.Show("Discounts are disabled in settings.");
-                return;
-            }
+    // ✅ NOW settings are guaranteed fresh
+    if (_settings == null || !_settings.EnableDiscounts)
+    {
+        MessageBox.Show("Discounts are disabled in settings.");
+        return;
+    }
 
-            if (_discountMode == DiscountMode.None)
-            {
-                MessageBox.Show("No discount type is enabled in settings.");
-                return;
-            }
+    if (_discountMode == DiscountMode.None)
+    {
+        MessageBox.Show("No discount type is enabled in settings.");
+        return;
+    }
 
-            _hasDiscount = !_hasDiscount;
+    _hasDiscount = !_hasDiscount;
 
-            if (sender is Button btn)
-            {
-                if (_hasDiscount)
-                {
-                    btn.Background = Brushes.SeaGreen;
-                    btn.Foreground = Brushes.White;
-                }
-                else
-                {
-                    btn.Background = Brushes.White;
-                    btn.Foreground = Brushes.Black;
-                }
-            }
+    if (sender is Button btn)
+    {
+        btn.Background = _hasDiscount ? Brushes.SeaGreen : Brushes.White;
+        btn.Foreground = _hasDiscount ? Brushes.White : Brushes.Black;
+    }
 
-            UpdateTotals();
-        }
-
-
+    UpdateTotals();
+}
         private decimal CalculateDiscount(decimal subtotal)
         {
             if (!_settings.EnableDiscounts || !_hasDiscount)

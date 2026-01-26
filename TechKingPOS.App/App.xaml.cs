@@ -40,6 +40,8 @@ protected override async void OnStartup(StartupEventArgs e)
     };
 
     base.OnStartup(e);
+    SettingsCache.Load();
+    
     ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
     // Load services

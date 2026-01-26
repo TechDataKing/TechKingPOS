@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 using TechKingPOS.App.Models;
 using TechKingPOS.App.Services;
+using TechKingPOS.App.Security;
 
 namespace TechKingPOS.App.Data
 {
@@ -21,10 +22,11 @@ namespace TechKingPOS.App.Data
             reduceCmd.CommandText = @"
                 UPDATE Items
                 SET Quantity = Quantity - $qty
-                WHERE Id = $id
+                WHERE Id = $id AND BranchId = @branchId
             ";
             reduceCmd.Parameters.AddWithValue("$qty", item.Quantity);
             reduceCmd.Parameters.AddWithValue("$id", item.ItemId);
+            reduceCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             reduceCmd.ExecuteNonQuery();
 
             // 2️⃣ Insert damaged record
@@ -34,16 +36,16 @@ namespace TechKingPOS.App.Data
                 (
                     ItemId, ItemName, Alias, Unit,
                     Quantity, MarkedPrice, SellingPrice,
-                    Reason, RecordedBy, DamagedAt
+                    Reason, RecordedBy, DamagedAt, BranchId
                 )
                 VALUES
                 (
                     $itemId, $name, $alias, $unit,
                     $qty, $mp, $sp,
-                    $reason, $by, $date
+                    $reason, $by, $date, $branchId
                 )
             ";
-
+            cmd.Parameters.AddWithValue("$branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue("$itemId", item.ItemId);
             cmd.Parameters.AddWithValue("$name", item.ItemName);
             cmd.Parameters.AddWithValue("$alias", item.Alias);
@@ -82,8 +84,10 @@ namespace TechKingPOS.App.Data
                     Quantity, MarkedPrice, SellingPrice,
                     Reason, RecordedBy, DamagedAt
                 FROM DamagedItems
+                WHERE BranchId = $branchId
                 ORDER BY DamagedAt DESC
             ";
+            cmd.Parameters.AddWithValue("$branchId", SessionContext.EffectiveBranchId);
 
             using var reader = cmd.ExecuteReader();
             while (reader.Read())

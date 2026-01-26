@@ -12,7 +12,7 @@ using System.Windows.Controls;
 
 namespace TechKingPOS.App
 {     
-    public partial class AddItemWindow : Window
+    public partial class AddItemWindow : Window 
     {
           private List<ItemLookup> _allItems = new();
         private bool _suppressTextChange;

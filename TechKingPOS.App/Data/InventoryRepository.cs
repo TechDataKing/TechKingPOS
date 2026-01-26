@@ -53,7 +53,7 @@ namespace TechKingPOS.App.Data
                 WHERE {condition} AND (@branchId = 0 OR BranchId = @branchId)
                 ORDER BY Name ASC;
             ";
-            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())
             {

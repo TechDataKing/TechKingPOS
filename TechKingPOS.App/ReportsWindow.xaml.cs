@@ -23,7 +23,8 @@ using TechKingPOS.App.Security;
 namespace TechKingPOS.App
 {
     public partial class ReportsWindow : Window
-    {
+    {   
+        private BranchContextGuard _branchContextGuard;
         private bool _isLoaded = false;
         private bool _isLoading = false;
         private TabItem? _lastAllowedTab;
@@ -33,9 +34,10 @@ namespace TechKingPOS.App
         public ReportsWindow()
         {
          InitializeComponent();
-         
+         _branchContextGuard = new BranchContextGuard();
 
-            // DO NOT call load methods here
+           //Activate the BranchContextGuard to load all branches   
+            _branchContextGuard.ActivateReportsWindow(); 
         }
 
         private int _editingExpenseId = 0;
@@ -66,7 +68,6 @@ public void InitializeReport()
     LoadCredits();      // CREDIT
     LoadExpenses();    // EXPENSES
     LoadBranches();
-    
 
 }
 
@@ -186,6 +187,9 @@ private void ReportsWindow_Loaded(object sender, RoutedEventArgs e)
         ReportsTabControl.SelectedItem = firstAllowedTab;
     }
 
+    // ⚡ Activate the BranchContextGuard to load all branches
+    _branchContextGuard.ActivateReportsWindow();
+
     // 🔁 Defer heavy loading until UI is stable
     Dispatcher.BeginInvoke(() =>
     {
@@ -226,6 +230,12 @@ private void ReportsTabItem_Loaded(object sender, RoutedEventArgs e)
             ReportsTabControl.SelectedIndex = -1;
     }
 }
+    private void CloseReports()
+    {
+        // Deactivate the guard and restore the original branch context
+        _branchContextGuard.DeactivateReportsWindow();
+        this.Close();  // Close the window
+    }
 
    private void ReportsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
@@ -436,7 +446,7 @@ private void LoadCredits(DateTime? from= null,DateTime? to=null)
           AND (@branchId = 0 OR c.BranchId = @branchId)
         ORDER BY LastPaymentDate DESC;
     ";
-    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
     cmd.Parameters.AddWithValue("@from",
         from.HasValue ? from.Value.ToString("yyyy-MM-dd") : DBNull.Value);
 
@@ -1473,6 +1483,9 @@ private void LoadBranches()
 {
     _isLoaded = false;
 
+    // Store the original branch ID to avoid global changes
+    var originalBranchId = SessionContext.CurrentBranchId;
+
     _branches = BranchRepository.GetActive().ToList();
 
     if (_branches.Count == 0)
@@ -1481,7 +1494,7 @@ private void LoadBranches()
         return;
     }
 
-    // 👉 Add GLOBAL option
+    // Add "All Branches" option at the top of the list
     _branches.Insert(0, new Branch
     {
         Id = 0,
@@ -1491,7 +1504,17 @@ private void LoadBranches()
     BranchComboBox.ItemsSource = _branches;
     BranchComboBox.SelectedIndex = 0;
 
-    SessionContext.CurrentBranchId = 0;
+    // Set CurrentBranchId to 0 only if it's the Report Window
+    if (this is ReportsWindow)
+    {
+        SessionContext.IsReportWindowActive = true;
+        SessionContext.CurrentBranchId = 0;
+    }
+    else
+    {
+        // For other windows (e.g., Sales), retain the original branch ID
+        SessionContext.CurrentBranchId = originalBranchId;
+    }
 
     _isLoaded = true;
 }

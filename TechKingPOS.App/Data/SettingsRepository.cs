@@ -193,7 +193,7 @@ INSERT OR REPLACE INTO AppSettings VALUES
             BeforeValue = oldText,
             AfterValue = newText,
             PerformedBy = SessionContext.CurrentUserName,
-            BranchId = SessionContext.CurrentBranchId,
+            BranchId = SessionContext.EffectiveBranchId,
             CreatedAt = DateTime.Now
         });
     }

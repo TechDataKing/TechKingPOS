@@ -5,86 +5,73 @@ using TechKingPOS.App.Services;
 
 namespace TechKingPOS.App.Data
 {
-    public static class DbService
-    {
-        // ✅ INSTALLER-SAFE, WRITABLE LOCATION
-        private static readonly string DbPath =
-            Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "TechKingPOS",
-                "Data",
-                "app.db"
-            );
-
-        public static readonly string ConnectionString =
-            $"Data Source={DbPath};Pooling=True;";
-
-static DbService()
+public static class DbService
 {
-    try
-    {
-        EnsureDatabase();
-    }
-    catch (Exception ex)
+    // 🔹 Choose DB path based on build configuration
+    private static readonly string DbPath =
+#if DEBUG
+        // Development DB path (same as your old picture)
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "app.db");
+#else
+        // Installed app DB path
+        Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "TechKingPOS",
+            "Data",
+            "app.db"
+        );
+#endif
+
+    public static readonly string ConnectionString =
+        $"Data Source={DbPath};Pooling=True;";
+
+    static DbService()
     {
         try
         {
-            var baseDir = Environment.GetFolderPath(
-                Environment.SpecialFolder.LocalApplicationData
-            );
-
-            var logDir = Path.Combine(baseDir, "TechKingPOS", "crash");
-            Directory.CreateDirectory(logDir);
-
-            var logFile = Path.Combine(
-                logDir,
-                "DB_STATIC_INIT_ERROR.txt"
-            );
-
-            File.WriteAllText(
-                logFile,
-                "=== DbService STATIC INIT FAILURE ===\n\n" +
-                ex.ToString()
-            );
+            EnsureDatabase();
         }
-        catch
+        catch (Exception ex)
         {
-            // absolutely swallow — we must not hide original error
-        }
+            try
+            {
+                var baseDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                var logDir = Path.Combine(baseDir, "TechKingPOS", "crash");
+                Directory.CreateDirectory(logDir);
+                var logFile = Path.Combine(logDir, "DB_STATIC_INIT_ERROR.txt");
+                File.WriteAllText(logFile, "=== DbService STATIC INIT FAILURE ===\n\n" + ex.ToString());
+            }
+            catch { }
 
-        throw; // 🔥 still crash — but now we KNOW WHY
+            throw; // still crash, but now we know why
+        }
     }
-}
 
+    private static void EnsureDatabase()
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(DbPath)!);
 
-        private static void EnsureDatabase()
-        {
-            // ✅ Ensure folders exist
-            Directory.CreateDirectory(Path.GetDirectoryName(DbPath)!);
+        using var connection = new SqliteConnection(ConnectionString);
+        connection.Open();
 
-            using var connection = new SqliteConnection(ConnectionString);
-            connection.Open();
+        ApplyPragmas(connection);
+        CreateTables(connection);
+        EnsureDefaultBranch(connection);
 
-            ApplyPragmas(connection);
-            CreateTables(connection);
-            EnsureDefaultBranch(connection);
+        LoggerService.Info("🗄️", "DB", "Database initialized", DbPath);
+    }
 
-            LoggerService.Info("🗄️", "DB", "Database initialized", DbPath);
-        }
-
-        private static void ApplyPragmas(SqliteConnection connection)
-        {
-            using var cmd = connection.CreateCommand();
-            cmd.CommandText = @"
-                PRAGMA journal_mode = WAL;
-                PRAGMA synchronous = NORMAL;
-                PRAGMA busy_timeout = 5000;
-                PRAGMA foreign_keys = ON;
-            ";
-            cmd.ExecuteNonQuery();
-        }
-
-        // ⚠️ YOUR TABLES — UNCHANGED
+    private static void ApplyPragmas(SqliteConnection connection)
+    {
+        using var cmd = connection.CreateCommand();
+        cmd.CommandText = @"
+            PRAGMA journal_mode = WAL;
+            PRAGMA synchronous = NORMAL;
+            PRAGMA busy_timeout = 5000;
+            PRAGMA foreign_keys = ON;
+        ";
+        cmd.ExecuteNonQuery();
+    }
         private static void CreateTables(SqliteConnection connection)
         {
             var cmd = connection.CreateCommand();

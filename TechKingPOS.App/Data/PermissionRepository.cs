@@ -122,7 +122,7 @@ namespace TechKingPOS.App.Data
                     AfterValue = granted ? "Granted" : "Denied",
                     Reason = $"Permission {(granted ? "granted" : "revoked")}",
                     PerformedBy = SessionContext.CurrentUserName,
-                    BranchId = SessionContext.CurrentBranchId,
+                    BranchId = SessionContext.EffectiveBranchId,
                     CreatedAt = DateTime.UtcNow
                 });
 

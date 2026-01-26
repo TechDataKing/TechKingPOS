@@ -1,19 +1,19 @@
 ﻿TechKingPOS.App
-1.3.0.0
+1.5.0.0
 
 winexe
 C#
 .cs
-C:\techKingPOS\TechKingPOS.app\obj\Debug\net8.0-windows\
+C:\techKingPOS\TechKingPOS.App\obj\Debug\net8.0-windows\
 TechKingPOS.App
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\techKingPOS\TechKingPOS.app\App.xaml
+C:\techKingPOS\TechKingPOS.App\App.xaml
 19816745538
 
-83-1690556472
-224-777886306
+851140484846
+2241346775710
 AddBranchWindow.xaml;AddItemWindow.xaml;CreditManagement.xaml;EditBranchWindow.xaml;EditProfileWindow.xaml;ImportPreviewWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ManageStockWindow.xaml;PaymentWindow.xaml;PrintPreviewWindow.xaml;ReceiptPreviewWindow.xaml;ReportsWindow.xaml;SalesWindow.xaml;SelectItemWindow.xaml;SettingsWindow.xaml;UpdateProgressWindow.xaml;Updatewindow.xaml;WorkerWindow.xaml;
 
 False

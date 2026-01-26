@@ -21,7 +21,7 @@ namespace TechKingPOS.App.Data
                 AND (Name = @s OR Phone = @s)
                 LIMIT 1;
             ";
-            cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+            cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
             cmd.Parameters.AddWithValue("@s", search);
 
             using var r = cmd.ExecuteReader();
@@ -48,7 +48,7 @@ namespace TechKingPOS.App.Data
                     LIMIT 1;
                 ";
                 cmd.Parameters.AddWithValue("@cid", customerId);
-                cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+                cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
 
                 var result = cmd.ExecuteScalar();
                 if (result == null)
@@ -82,7 +82,7 @@ public static void SaveCredit(
         ";
         customerCmd.Parameters.AddWithValue("@n", customerName);
         customerCmd.Parameters.AddWithValue("@p", phone);
-        customerCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+        customerCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
         customerCmd.ExecuteNonQuery();
 
         // 2️⃣ Get customer id
@@ -103,7 +103,7 @@ public static void SaveCredit(
                 Paid = Paid + @p,
                 Balance = Balance + @b;
         ";
-        creditCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+        creditCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
         creditCmd.Parameters.AddWithValue("@cid", customerId);
         creditCmd.Parameters.AddWithValue("@r", receiptNumber);
         creditCmd.Parameters.AddWithValue("@t", total);
@@ -121,6 +121,7 @@ public static void SaveCredit(
             Action = "CREDIT_CREATED",
             AfterValue = $"Receipt={receiptNumber}, Total={total:0.00}, Paid={paid:0.00}, Balance={balance:0.00}",
             PerformedBy = SessionContext.CurrentUserName,
+            BranchId = SessionContext.EffectiveBranchId,
             CreatedAt = DateTime.Now
         });
 
@@ -153,7 +154,7 @@ public static void SaveCredit(
             LIMIT 1;
         ";
         creditIdCmd.Parameters.AddWithValue("@cid", customerId);
-        creditIdCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+        creditIdCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
         var creditIdObj = creditIdCmd.ExecuteScalar();
         if (creditIdObj == null)
             throw new Exception("No credit record found.");
@@ -170,7 +171,7 @@ public static void SaveCredit(
         paymentCmd.Parameters.AddWithValue("@creditId", creditId);
         paymentCmd.Parameters.AddWithValue("@a", amount);
         paymentCmd.Parameters.AddWithValue("@m", method);
-        paymentCmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+        paymentCmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
         paymentCmd.Parameters.AddWithValue("@c", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
         paymentCmd.ExecuteNonQuery();
 
@@ -204,7 +205,7 @@ public static void SaveCredit(
             Action = "CREDIT_PAYMENT_ADDED",
             AfterValue = $"PaymentAdded={amount:0.00}, Method={method}",
             PerformedBy = SessionContext.CurrentUserName,
-            BranchId = SessionContext.CurrentBranchId,
+            BranchId = SessionContext.EffectiveBranchId,
             CreatedAt = DateTime.Now
         });
 
@@ -232,7 +233,7 @@ public static void SaveCredit(
     ";
 
     cmd.Parameters.AddWithValue("@cid", customerId);
-    cmd.Parameters.AddWithValue("@branchId", SessionContext.CurrentBranchId);
+    cmd.Parameters.AddWithValue("@branchId", SessionContext.EffectiveBranchId);
 
     var result = cmd.ExecuteScalar();
     return result == null ? 0m : Convert.ToDecimal(result);
